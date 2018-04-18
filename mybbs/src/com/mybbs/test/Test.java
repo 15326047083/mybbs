@@ -4,6 +4,8 @@ import com.mybbs.dao.CommonDao;
 import com.mybbs.dao.impl.CommonDaoImpl;
 import com.mybbs.po.Area;
 
+import util.SQLUtil;
+
 public class Test {
 	@org.junit.Test
 	public void test() {
@@ -13,6 +15,6 @@ public class Test {
 		u.setInfo("asdasdsad");
 		u.setName("asdasdsadasd");
 		u.setPlateNum(11);
-		commonDao.newCommon(u,"insert into area values(null,?,?,?)");
+		commonDao.newCommon(u,SQLUtil.newUser);
 	}
 }
