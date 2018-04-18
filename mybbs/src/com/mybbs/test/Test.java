@@ -17,7 +17,6 @@ public class Test {
 			}
 		};
 		User u=new User();
-		1111111111111111
 		u.setId(1);
 		commonDao.newCommon(u);
 	}

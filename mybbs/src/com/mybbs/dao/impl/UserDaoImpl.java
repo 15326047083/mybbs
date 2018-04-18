@@ -29,4 +29,10 @@ public class UserDaoImpl implements UserDao{
 		
 	}
 
+	@Override
+	public void getAllUser() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
