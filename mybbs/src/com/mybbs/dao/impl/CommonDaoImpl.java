@@ -6,7 +6,9 @@ public class CommonDaoImpl<T> implements CommonDao<T> {
 
 	public void newCommon(T common) {
 		// TODO Auto-generated method stub
-		System.out.println(common.getClass().toString());
+		System.out.println(common.getClass().getFields());
+		System.out.println(common.getClass().getDeclaredFields());
+		System.out.println(common.getClass().getSimpleName());
 	}
 
 	@Override

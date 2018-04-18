@@ -1,6 +1,5 @@
 package com.mybbs.po;
 
-import java.util.Date;
 
 /**
  * 评论
@@ -14,14 +13,14 @@ public class Discuss {
 	private int userId;
 	private int postId;
 	private String info;
-	private Date time;
+	private String time;
 	private int photoNum;
 
 	public Discuss() {
 
 	}
 
-	public Discuss(int id, int userId, int postId, String info, Date time, int photoNum) {
+	public Discuss(int id, int userId, int postId, String info, String time, int photoNum) {
 		// super();
 		this.id = id;
 		this.userId = userId;
@@ -69,11 +68,11 @@ public class Discuss {
 		this.info = info;
 	}
 
-	public Date getTime() {
+	public String getTime() {
 		return time;
 	}
 
-	public void setTime(Date time) {
+	public void setTime(String time) {
 		this.time = time;
 	}
 
