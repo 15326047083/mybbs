@@ -20,7 +20,7 @@ public class MyFilter implements Filter {
 	}
 
 	public void destroy() {
-	}嗷嗷
+	}
 
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
