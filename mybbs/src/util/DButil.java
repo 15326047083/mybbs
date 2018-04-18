@@ -17,7 +17,7 @@ public class DButil {
 	}
 	
 	public Connection getConnetion() throws SQLException{
-		connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/sc", "root", "root");
+		connection=DriverManager.getConnection("jdbc:mysql://10.0.61.2:3306/mybbs", "root", "123456");
 		return connection;
 	}
 	

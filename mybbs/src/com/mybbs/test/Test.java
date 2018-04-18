@@ -1,24 +1,18 @@
 package com.mybbs.test;
 
 import com.mybbs.dao.CommonDao;
+import com.mybbs.dao.impl.CommonDaoImpl;
 import com.mybbs.po.Area;
-import com.mybbs.po.User;
 
-//public class Test {
-//	private CommonDao<User> commonDao;
-//	@org.junit.Test
-//	public void test() {
-//	commonDao=new CommonDao<User>() {
-//			
-//			@Override
-//			public void newCommon(User common) {
-//				// TODO Auto-generated method stub
-//				System.out.println(common.getClass().toString());
-//			}
-//		};
-//		User u=new User();
-//		u.setId(1);
-//		commonDao.newCommon(u);
-//	}
-//}
-
+public class Test {
+	@org.junit.Test
+	public void test() {
+		CommonDao<Area> commonDao = new CommonDaoImpl<Area>();
+		Area u = new Area();
+		u.setId(1);
+		u.setInfo("asdasdsad");
+		u.setName("asdasdsadasd");
+		u.setPlateNum(11);
+		commonDao.newCommon(u,"insert into area values(null,?,?,?)");
+	}
+}
