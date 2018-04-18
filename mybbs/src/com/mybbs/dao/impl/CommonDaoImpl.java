@@ -9,4 +9,10 @@ public class CommonDaoImpl<T> implements CommonDao<T> {
 		System.out.println(common.getClass().toString());
 	}
 
+	@Override
+	public void updateCommon(T common) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
