@@ -6,5 +6,5 @@ public interface UserDao {
 
 	void newUser(User user);
 	void updateUser(User user);
-	
+	void deleteUser(User user);
 }
