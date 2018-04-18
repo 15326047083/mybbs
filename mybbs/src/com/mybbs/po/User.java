@@ -17,7 +17,7 @@ public class User {
 	private String birthday;
 	private int plateId;// 喜欢的板块ID
 	private long time;// 禁言时间
-	private int power;// 判断用户是否是管理员 0为普通用户 1为管理员用户
+	private int power;// 判断用户是否是管理员 默认权限-1 -1为普通用户 0为管理员用户 大于0以后代表板块ID
 
 	public User() {
 
@@ -25,7 +25,7 @@ public class User {
 
 	public User(int id, String name, String email, String password, int sex, int age, String birthday, int plateId,
 			long time, int power) {
-		//super();
+		// super();
 		this.id = id;
 		this.name = name;
 		this.email = email;

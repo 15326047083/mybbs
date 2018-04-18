@@ -1,5 +1,10 @@
 package com.mybbs.dao;
 
+import com.mybbs.po.User;
+
 public interface UserDao {
 
+	void newUser(User user);
+	void updateUser(User user);
+	
 }
