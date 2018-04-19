@@ -35,4 +35,10 @@ public class UserDaoImpl implements UserDao{
 		
 	}
 
+	@Override
+	public void fuck() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
