@@ -71,7 +71,6 @@ public class CommonDaoImpl<T> implements CommonDao<T> {
 				}
 			}
 			preparedStatement.execute();
-			this.closeDB();
 
 		} catch (ClassNotFoundException | SQLException | IllegalArgumentException | IllegalAccessException e) {
 			// TODO Auto-generated catch block
@@ -92,17 +91,16 @@ public class CommonDaoImpl<T> implements CommonDao<T> {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		this.closeDB();
 	}
 
 	/**
 	 * 根据id获取详细信息
 	 */
-	public T getById(T common, String sql) {
+	public T getById(T common, String firstSql, String secondSql) {
 		try {
-			preparedStatement = connection.prepareStatement(sql);
 			Class<?> clazz = Class.forName(common.getClass().getName());
 			Field[] fields = clazz.getDeclaredFields();// 根据Class对象获得属性 私有的也可以获得
+			preparedStatement = connection.prepareStatement(firstSql + common.getClass().getSimpleName() + secondSql);
 			int id = 0;
 			for (Field f : fields) {
 				f.setAccessible(true);
@@ -128,7 +126,6 @@ public class CommonDaoImpl<T> implements CommonDao<T> {
 					}
 				}
 			}
-			this.closeAllDB();
 		} catch (SQLException | ClassNotFoundException | IllegalArgumentException | IllegalAccessException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -137,16 +134,17 @@ public class CommonDaoImpl<T> implements CommonDao<T> {
 	}
 
 	/**
-	 * 获取所有列表
+	 * 获取所有列表 pages为所要展示第几页
 	 */
 	@Override
-	public List<T> getAllList(T common, String sql) {
+	public List<T> getAllList(T common, String firstSql, String secondSql, int pages) {
 		// TODO Auto-generated method stub
 		List<T> result = new ArrayList<T>();
 		try {
-			preparedStatement = connection.prepareStatement(sql);
 			Class<?> clazz = Class.forName(common.getClass().getName());
 			Field[] fields = clazz.getDeclaredFields();// 根据Class对象获得属性 私有的也可以获得
+			preparedStatement = connection.prepareStatement(firstSql + common.getClass().getSimpleName() + secondSql);
+			preparedStatement.setInt(1, (pages - 1) * 15);
 			resultSet = preparedStatement.executeQuery();
 			@SuppressWarnings("unchecked")
 			Class<T> cl = (Class<T>) common.getClass();
@@ -167,7 +165,6 @@ public class CommonDaoImpl<T> implements CommonDao<T> {
 
 				result.add(common);
 			}
-			this.closeAllDB();
 		} catch (SQLException | ClassNotFoundException | IllegalArgumentException | IllegalAccessException
 				| InstantiationException e) {
 			// TODO Auto-generated catch block
@@ -179,28 +176,35 @@ public class CommonDaoImpl<T> implements CommonDao<T> {
 	/**
 	 * 关闭通道
 	 */
-	public void closeAllDB() {
+	public void closeDB() {
 		try {
-			connection.close();
-			preparedStatement.close();
-			resultSet.close();
+			if (connection != null)
+				connection.close();
+			if (preparedStatement != null)
+				preparedStatement.close();
+			if (resultSet != null)
+				resultSet.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
-	/**
-	 * 关闭通道
-	 */
-	public void closeDB() {
+	@Override
+	public int count(String firstSql, T common) {
+		int allNum = 0;
 		try {
-			connection.close();
-			preparedStatement.close();
+			preparedStatement = connection.prepareStatement(firstSql + common.getClass().getSimpleName());
+			resultSet = preparedStatement.executeQuery();
+			while (resultSet.next()) {
+				allNum = resultSet.getInt(1);
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		// TODO Auto-generated method stub
+		return allNum;
 	}
 
 }

@@ -24,8 +24,9 @@ public class SQLUtil {
 	public static String deletePlate = "delete from plate where id=?";
 	public static String deletePost = "delete from post where id=?";
 	public static String deleteReply = "delete from reply where id=?";
-	public static String getAreaById = "select * from area where id=?";
-	public static String getPlateById = "select * from plate where id=?";
-	public static String getPlateList = "select * from plate";
-	public static String getAreaList = "select * from area";
+	public static String getByIdFirstSql = "select * from ";
+	public static String getByIdSecondSql = " where id=?";
+	public static String getListFirstSql = "select * from ";
+	public static String getListSecondSql = " limit ?,15";
+	public static String firstCountSql = "select count(*) from ";
 }

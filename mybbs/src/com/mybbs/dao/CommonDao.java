@@ -8,8 +8,12 @@ public interface CommonDao<T> {
 
 	void delete(int id, String sql);
 
-	T getById(T common, String sql);
+	T getById(T common, String firstSql, String secondSql);
 
-	List<T> getAllList(T common, String sql);
-	
+	List<T> getAllList(T common, String firstSql, String secondSql, int pages);
+
+	void closeDB();
+
+	int count(String firstSql, T common);
+
 }
