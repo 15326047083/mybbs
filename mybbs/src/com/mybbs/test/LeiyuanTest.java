@@ -22,14 +22,15 @@ public class LeiyuanTest {
 		/**
 		 * 当传入数据中包含id且id值不为0则表示update否则表示新增
 		 */
-		CommonDao<Plate> commonDao = new CommonDaoImpl<Plate>();
-		Plate u = new Plate();
-		u.setId(4);
-		u.setInfo("小宝贝");
-		u.setName("雷园");
-		u.setAreaId(1);
-		u.setpostNum(13);
-		commonDao.saveOrUpdate(u, SQLUtil.updatePlate);
+		CommonDao<Area> commonDao = new CommonDaoImpl<Area>();
+		for (int i = 0; i < 150; i++) {
+			Area u = new Area();
+			u.setInfo("小宝贝" + i);
+			u.setName("雷园" + i);
+			u.setPlateNum(0);
+			commonDao.saveOrUpdate(u, SQLUtil.newArea);
+		}
+		commonDao.closeDB();
 	}
 
 	/**
