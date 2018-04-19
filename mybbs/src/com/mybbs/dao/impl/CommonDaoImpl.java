@@ -190,6 +190,9 @@ public class CommonDaoImpl<T> implements CommonDao<T> {
 		}
 	}
 
+	/**
+	 * 统计总数
+	 */
 	@Override
 	public int count(String firstSql, T common) {
 		int allNum = 0;
