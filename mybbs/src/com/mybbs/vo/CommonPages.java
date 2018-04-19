@@ -11,9 +11,9 @@ import java.util.List;
  */
 public class CommonPages<T> {
 
-	private int pages = 0; // 当前页
-	private int count = 0;// 总数量数
-	private int totalpages = 0;// 总页数
+	private int pages; // 当前页
+	private int count;// 总数量数
+	private int totalpages;// 总页数
 	private int limit = 1;
 	private List<T> commonList;
 
@@ -35,6 +35,13 @@ public class CommonPages<T> {
 	public CommonPages() {
 
 	}
+	public int getCount() {
+		return count;
+	}
+
+	public void setCount(int count) {
+		this.count = count;
+	}
 
 	public int getPages() {
 		return pages;
@@ -42,14 +49,6 @@ public class CommonPages<T> {
 
 	public void setPages(int pages) {
 		this.pages = pages;
-	}
-
-	public int getCount() {
-		return count;
-	}
-
-	public void setCount(int count) {
-		this.count = count;
 	}
 
 	public int getTotalpages() {

@@ -19,4 +19,34 @@
     <servlet-name>loginServlet</servlet-name>
     <url-pattern>/loginServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>loginAdminServlet</display-name>
+    <servlet-name>loginAdminServlet</servlet-name>
+    <servlet-class>com.mybbs.servlet.loginAdminServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>loginAdminServlet</servlet-name>
+    <url-pattern>/loginAdminServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>jumpServlet</display-name>
+    <servlet-name>jumpServlet</servlet-name>
+    <servlet-class>com.mybbs.servlet.jumpServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>jumpServlet</servlet-name>
+    <url-pattern>/jumpServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>getAreaListServlet</display-name>
+    <servlet-name>getAreaListServlet</servlet-name>
+    <servlet-class>com.mybbs.servlet.admin.getAreaListServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>getAreaListServlet</servlet-name>
+    <url-pattern>/getAreaListServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

@@ -27,6 +27,6 @@ public class SQLUtil {
 	public static String getByIdFirstSql = "select * from ";
 	public static String getByIdSecondSql = " where id=?";
 	public static String getListFirstSql = "select * from ";
-	public static String getListSecondSql = " limit ?,15";
+	public static String getListSecondSql = " limit ?,20";
 	public static String firstCountSql = "select count(*) from ";
 }

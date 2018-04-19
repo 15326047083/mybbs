@@ -7,15 +7,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class loginServlet
+ * Servlet implementation class loginAdminServlet
  */
-public class loginServlet extends HttpServlet {
+public class loginAdminServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public loginServlet() {
+    public loginAdminServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -25,10 +25,8 @@ public class loginServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-	//System.out.println("ok");
-		request.getRequestDispatcher("WEB-INF/pages/index/index.jsp").forward(request, response);
-		
-		
+		response.getWriter().append("Served at: ").append(request.getContextPath());
+		request.getRequestDispatcher("WEB-INF/pages/admin/index.jsp").forward(request, response);
 	}
 
 	/**
