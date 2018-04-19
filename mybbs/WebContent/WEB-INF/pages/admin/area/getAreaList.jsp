@@ -110,7 +110,7 @@ tr.over td {
 			<div class="left_top"></div>
 			<div class="center_top">
 				<div style="float: right; padding-right: 6px">
-					<a class="sel_btn ch_cls" href="">新增</a>&nbsp;
+					<a class="sel_btn ch_cls" href="<%=basePath%>toAreaServlet?flag=new">新增</a>&nbsp;
 				</div>
 			</div>
 			<div class="right_top"></div>
@@ -136,11 +136,9 @@ tr.over td {
 									<td width="16%">${area.info }</td>
 									<td width="16%">${area.plateNum }</td>
 									<td width="20%" style="border-right: none"><a
-										
 										href="<%=basePath %>adminpost/toGetPlatePost?pid=${area.id}">查看板块</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										<a  href="toChangePlate?id=${area.id}">修改</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										<a  href="deletePlate?id=${area.id}">删除</a>
-									</td>
+										<a href="toAreaServlet?id=${area.id}&flag=update">修改</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										<a href="deletePlate?id=${area.id}">删除</a></td>
 								</tr>
 							</c:forEach>
 

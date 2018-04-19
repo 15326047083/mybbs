@@ -9,20 +9,19 @@ import javax.servlet.http.HttpServletResponse;
 import com.mybbs.po.Area;
 import com.mybbs.service.CommonService;
 import com.mybbs.service.impl.CommonServiceImpl;
-import com.mybbs.vo.CommonPages;
 
 import util.SQLUtil;
 
 /**
- * Servlet implementation class getAreaListServlet
+ * Servlet implementation class toNewAreaServlet
  */
-public class getAreaListServlet extends HttpServlet {
+public class toAreaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public getAreaListServlet() {
+    public toAreaServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,23 +31,20 @@ public class getAreaListServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		int nowPages=Integer.parseInt(request.getParameter("nowPages"));
-		CommonService<Area> commonService =new CommonServiceImpl<Area>();
-		Area area =new Area();
-		int count=commonService.count(SQLUtil.firstCountSql, area);
-		int allPages=count/20;
-		if(count%20!=0)
-			allPages++;
-		CommonPages<Area> commonPages=new CommonPages<Area>();
-		commonPages.setCommonList(commonService.getAllList(area, SQLUtil.getListFirstSql, SQLUtil.getListSecondSql, nowPages));
-		commonPages.setCount(count);
-		commonPages.setPages(nowPages);
+		String flag= request.getParameter("flag");
+		if(flag!=null&&"new".equals(flag)) {
+			request.getRequestDispatcher("WEB-INF/pages/admin/area/newOrUpdateArea.jsp").forward(request, response);
+		}
+		if(flag!=null&&"update".equals(flag)) {
+			int id=Integer.parseInt(request.getParameter("id"));
+			CommonService<Area> commonService =new CommonServiceImpl<Area>();
+			Area area =new Area();
+			area.setId(id);
+			area=commonService.getById(area, SQLUtil.getByIdFirstSql, SQLUtil.getByIdSecondSql);
+			request.setAttribute("area", area);
+			request.getRequestDispatcher("WEB-INF/pages/admin/area/newOrUpdateArea.jsp").forward(request, response);
+		}
 		
-		commonPages.setTotalpages(allPages);
-		commonPages.setLimit(1);
-		request.setAttribute("commonPages", commonPages);
-		request.setAttribute("nowPages", nowPages);
-		request.getRequestDispatcher("WEB-INF/pages/admin/area/getAreaList.jsp").forward(request, response);
 	}
 
 	/**

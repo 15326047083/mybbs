@@ -49,4 +49,24 @@
     <servlet-name>getAreaListServlet</servlet-name>
     <url-pattern>/getAreaListServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>toAreaServlet</display-name>
+    <servlet-name>toAreaServlet</servlet-name>
+    <servlet-class>com.mybbs.servlet.admin.toAreaServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>toAreaServlet</servlet-name>
+    <url-pattern>/toAreaServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>newAreaServlet</display-name>
+    <servlet-name>newAreaServlet</servlet-name>
+    <servlet-class>com.mybbs.servlet.admin.newAreaServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>newAreaServlet</servlet-name>
+    <url-pattern>/newAreaServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
