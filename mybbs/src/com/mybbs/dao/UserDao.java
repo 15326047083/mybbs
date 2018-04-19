@@ -9,6 +9,6 @@ public interface UserDao {
 	void deleteUser(User user);
 	void getUserById(int id);
 	
-	
+	int sas();
 	void getAllUser();
 }

@@ -35,4 +35,10 @@ public class UserDaoImpl implements UserDao{
 		
 	}
 
+	@Override
+	public int sas() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }
