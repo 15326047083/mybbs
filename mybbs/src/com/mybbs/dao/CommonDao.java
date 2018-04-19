@@ -11,4 +11,5 @@ public interface CommonDao<T> {
 	T getById(T common, String sql);
 
 	List<T> getAllList(T common, String sql);
+	
 }
