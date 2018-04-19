@@ -15,10 +15,10 @@ public class Post {
 	private String title;
 	private String info;
 	private String time;
-	private String flag;// 是否被管理员删除 0为没删 1为以删除
+	private int flag;// 是否被管理员删除 0为没删 1为以删除
 	private int photonum;// 照片数量 默认-1；
 
-	public Post(int id, int userId, int plateId, String title, String info, String time, String flag, int photonum) {
+	public Post(int id, int userId, int plateId, String title, String info, String time, int flag, int photonum) {
 		// super();
 		this.id = id;
 		this.userId = userId;
@@ -84,11 +84,11 @@ public class Post {
 		this.time = time;
 	}
 
-	public String getFlag() {
+	public int getFlag() {
 		return flag;
 	}
 
-	public void setFlag(String flag) {
+	public void setFlag(int flag) {
 		this.flag = flag;
 	}
 

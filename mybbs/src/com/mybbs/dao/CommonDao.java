@@ -1,8 +1,14 @@
 package com.mybbs.dao;
 
+import java.util.List;
+
 public interface CommonDao<T> {
 
-	void newCommon(T common, String sql);
+	void saveOrUpdate(T common, String sql);
 
-	void updateCommon(T common, String sql);
+	void delete(int id, String sql);
+
+	T getById(T common, String sql);
+
+	List<T> getAllList(T common, String sql);
 }

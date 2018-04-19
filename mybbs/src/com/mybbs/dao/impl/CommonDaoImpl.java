@@ -5,17 +5,29 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.mybbs.dao.CommonDao;
 
 import util.DButil;
 
+/**
+ * 通用DAO层 包含增删改查功能
+ * 
+ * @author leiyuan
+ *
+ * @param <T>
+ */
 public class CommonDaoImpl<T> implements CommonDao<T> {
 
 	private Connection connection = null;
-	private PreparedStatement preparedStatement;
-	private ResultSet resultSet;
+	private PreparedStatement preparedStatement = null;
+	private ResultSet resultSet = null;
 
+	/**
+	 * 获取数据库连接
+	 */
 	public CommonDaoImpl() {
 		try {
 			connection = DButil.getInstance().getConnetion();
@@ -25,23 +37,29 @@ public class CommonDaoImpl<T> implements CommonDao<T> {
 		}
 	}
 
+	/**
+	 * 新增或修改操作
+	 */
 	@Override
-	public void newCommon(T common, String sql) {
+	public void saveOrUpdate(T common, String sql) {
 		// TODO Auto-generated method stub
 		try {
 			preparedStatement = connection.prepareStatement(sql);
 			Class<?> clazz = Class.forName(common.getClass().getName());
 			Field[] fields = clazz.getDeclaredFields();// 根据Class对象获得属性 私有的也可以获得
-			System.out.println(fields.length);
+			int size = fields.length;
 			int i = 1;
 			for (Field f : fields) {
 				f.setAccessible(true);
 				String typeName = f.getType().getSimpleName();
 				String name = f.getName();
-				if ("id".equals(name))
+				if ("id".equals(name)) {
+					int id = (int) f.get(common);
+					if (id != 0) {
+						preparedStatement.setInt(size, id);
+					}
 					continue;
-				else {
-					System.out.println(f.get(common));
+				} else {
 					if ("String".equals(typeName)) {
 						preparedStatement.setString(i, (String) f.get(common));
 					} else if ("int".equals(typeName)) {
@@ -53,6 +71,8 @@ public class CommonDaoImpl<T> implements CommonDao<T> {
 				}
 			}
 			preparedStatement.execute();
+			this.closeDB();
+
 		} catch (ClassNotFoundException | SQLException | IllegalArgumentException | IllegalAccessException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -60,10 +80,127 @@ public class CommonDaoImpl<T> implements CommonDao<T> {
 
 	}
 
-	@Override
-	public void updateCommon(T common, String sql) {
-		// TODO Auto-generated method stub
+	/**
+	 * 删除方法
+	 */
+	public void delete(int id, String sql) {
+		try {
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setInt(1, id);
+			preparedStatement.execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		this.closeDB();
+	}
 
+	/**
+	 * 根据id获取详细信息
+	 */
+	public T getById(T common, String sql) {
+		try {
+			preparedStatement = connection.prepareStatement(sql);
+			Class<?> clazz = Class.forName(common.getClass().getName());
+			Field[] fields = clazz.getDeclaredFields();// 根据Class对象获得属性 私有的也可以获得
+			int id = 0;
+			for (Field f : fields) {
+				f.setAccessible(true);
+				String name = f.getName();
+				if ("id".equals(name)) {
+					id = (int) f.get(common);
+					break;
+				}
+			}
+			preparedStatement.setInt(1, id);
+			resultSet = preparedStatement.executeQuery();
+			while (resultSet.next()) {
+				for (Field f : fields) {
+					f.setAccessible(true);
+					String typeName = f.getType().getSimpleName();
+					String name = f.getName();
+					if ("String".equals(typeName)) {
+						f.set(common, resultSet.getString(name));
+					} else if ("int".equals(typeName)) {
+						f.set(common, resultSet.getInt(name));
+					} else if ("long".equals(typeName)) {
+						f.set(common, resultSet.getLong(name));
+					}
+				}
+			}
+			this.closeAllDB();
+		} catch (SQLException | ClassNotFoundException | IllegalArgumentException | IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return common;
+	}
+
+	/**
+	 * 获取所有列表
+	 */
+	@Override
+	public List<T> getAllList(T common, String sql) {
+		// TODO Auto-generated method stub
+		List<T> result = new ArrayList<T>();
+		try {
+			preparedStatement = connection.prepareStatement(sql);
+			Class<?> clazz = Class.forName(common.getClass().getName());
+			Field[] fields = clazz.getDeclaredFields();// 根据Class对象获得属性 私有的也可以获得
+			resultSet = preparedStatement.executeQuery();
+			@SuppressWarnings("unchecked")
+			Class<T> cl = (Class<T>) common.getClass();
+			while (resultSet.next()) {
+				common = cl.newInstance();
+				for (Field f : fields) {
+					f.setAccessible(true);
+					String typeName = f.getType().getSimpleName();
+					String name = f.getName();
+					if ("String".equals(typeName)) {
+						f.set(common, resultSet.getString(name));
+					} else if ("int".equals(typeName)) {
+						f.set(common, resultSet.getInt(name));
+					} else if ("long".equals(typeName)) {
+						f.set(common, resultSet.getLong(name));
+					}
+				}
+
+				result.add(common);
+			}
+			this.closeAllDB();
+		} catch (SQLException | ClassNotFoundException | IllegalArgumentException | IllegalAccessException
+				| InstantiationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	/**
+	 * 关闭通道
+	 */
+	public void closeAllDB() {
+		try {
+			connection.close();
+			preparedStatement.close();
+			resultSet.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * 关闭通道
+	 */
+	public void closeDB() {
+		try {
+			connection.close();
+			preparedStatement.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }

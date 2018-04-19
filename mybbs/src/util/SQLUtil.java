@@ -24,4 +24,8 @@ public class SQLUtil {
 	public static String deletePlate = "delete from plate where id=?";
 	public static String deletePost = "delete from post where id=?";
 	public static String deleteReply = "delete from reply where id=?";
+	public static String getAreaById = "select * from area where id=?";
+	public static String getPlateById = "select * from plate where id=?";
+	public static String getPlateList = "select * from plate";
+	public static String getAreaList = "select * from area";
 }
