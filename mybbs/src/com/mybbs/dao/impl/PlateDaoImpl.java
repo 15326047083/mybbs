@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.mybbs.dao.PlateDao;
-import com.mybbs.vo.UserAndPlate;
+import com.mybbs.vo.vUserAndPlate;
 
 
 import util.DButil;
@@ -49,13 +49,13 @@ public class PlateDaoImpl implements PlateDao{
 	 * 查找全部列表 以及版主信息
 	 */
 	@Override
-	public List<UserAndPlate> getAllList() {
-		List<UserAndPlate> list =new ArrayList<UserAndPlate>();
+	public List<vUserAndPlate> getAllList() {
+		List<vUserAndPlate> list =new ArrayList<vUserAndPlate>();
 		try {
 			preparedStatement=connection.prepareStatement("select user.id uid ,user.name uname,email,plate.id pid,plate.name pname,info,postnum,areaid from user,plate where user.id=plate.id");
 			resultSet = preparedStatement.executeQuery();
 			while (resultSet.next()) {
-				UserAndPlate ueUserAndPlate = new UserAndPlate();
+				vUserAndPlate ueUserAndPlate = new vUserAndPlate();
 				ueUserAndPlate.setUserId(resultSet.getInt("uid"));
 				ueUserAndPlate.setPlateId(resultSet.getInt("pid"));
 				ueUserAndPlate.setAreaId(resultSet.getInt("areaid"));

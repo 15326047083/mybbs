@@ -110,7 +110,7 @@ tr.over td {
 			<div class="left_top"></div>
 			<div class="center_top">
 				<div style="float: right; padding-right: 6px">
-					<a class="sel_btn ch_cls" href="<%=basePath%>toAreaServlet?flag=new">新增</a>&nbsp;
+					<a class="sel_btn ch_cls" href="<%=basePath%>toPlateServlet?flag=new">新增</a>&nbsp;
 				</div>
 			</div>
 			<div class="right_top"></div>
@@ -122,23 +122,29 @@ tr.over td {
 					<table cellspacing="0px" cellpadding="0px">
 						<thead>
 							<tr>
-								<th width="16%">区域名称</th>
-								<th width="16%">区域简介</th>
-								<th width="16%">版块数量</th>
-								<th width="20%" style="border-right: none">操作</th>
+								<th width="10%">版块名称</th>
+								<th width="10%">所属区域</th>
+								<th width="20%">版块简介</th>
+								<th width="10%">版主昵称</th>
+								<th width="16%">版主邮箱</th>
+								<th width="10%">帖子数量</th>
+								<th style="border-right: none">操作</th>
 							</tr>
 						</thead>
 						<tbody>
-							<c:forEach var="area" items="${commonPages.commonList }"
+							<c:forEach var="userAndPlate" items="${commonPages.commonList }"
 								varStatus="loop">
 								<tr>
-									<td width="16%">${area.name }</td>
-									<td width="16%">${area.info }</td>
-									<td width="16%">${area.plateNum }</td>
-									<td width="20%" style="border-right: none"><a
-										href="<%=basePath %>adminpost/toGetPlatePost?pid=${area.id}">查看板块</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										<a href="toAreaServlet?id=${area.id}&flag=update">修改</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										<a href="deletePlate?id=${area.id}">删除</a></td>
+									<td >${userAndPlate.plateName }</td>
+									<td>${userAndPlate.areaName }</td>
+									<td>${userAndPlate.info }</td>
+									<td >${userAndPlate.userName }</td>
+									<td >${userAndPlate.email }</td>
+									<td >${userAndPlate.postNum }</td>
+									<td style="border-right: none"><a
+										href="<%=basePath %>adminpost/toGetPlatePost?pid=${userAndPlate.plateId}">查看帖子</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										<a href="toAreaServlet?id=${userAndPlate.plateId}&flag=update">修改</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										<a href="deletePlate?id=${userAndPlate.plateId}">删除</a></td>
 								</tr>
 							</c:forEach>
 
@@ -147,11 +153,11 @@ tr.over td {
 				</div>
 				<div align="right">
 					<a class="sel_btn ch_cls"
-						href="<%=basePath%>getAreaListServlet?nowPages=1">首页</a>
+						href="<%=basePath%>getPlateListServlet?nowPages=1">首页</a>
 					<c:choose>
 						<c:when test="${nowPages!=1 }">
 							<a class="sel_btn ch_cls"
-								href="<%=basePath%>getAreaListServlet?nowPages=${nowPages-1}">上一页</a>
+								href="<%=basePath%>getPlateListServlet?nowPages=${nowPages-1}">上一页</a>
 						</c:when>
 						<c:otherwise>
 							<a class="sel_btn ch_cls" href="javascript:return false;"
@@ -163,7 +169,7 @@ tr.over td {
 					<c:choose>
 						<c:when test="${nowPages!=commonPages.totalpages }">
 							<a class="sel_btn ch_cls"
-								href="<%=basePath%>getAreaListServlet?nowPages=${nowPages+1}">下一页</a>
+								href="<%=basePath%>getPlateListServlet?nowPages=${nowPages+1}">下一页</a>
 						</c:when>
 						<c:otherwise>
 							<a class="sel_btn ch_cls" href="javascript:return false;"
@@ -172,7 +178,7 @@ tr.over td {
 						</c:otherwise>
 					</c:choose>
 					<a class="sel_btn ch_cls"
-						href="<%=basePath%>getAreaListServlet?nowPages=${commonPages.totalpages}">尾页</a>
+						href="<%=basePath%>getPlateListServlet?nowPages=${commonPages.totalpages}">尾页</a>
 				</div>
 			</div>
 		</div>

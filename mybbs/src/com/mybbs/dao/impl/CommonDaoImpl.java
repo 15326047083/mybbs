@@ -143,7 +143,12 @@ public class CommonDaoImpl<T> implements CommonDao<T> {
 		try {
 			Class<?> clazz = Class.forName(common.getClass().getName());
 			Field[] fields = clazz.getDeclaredFields();// 根据Class对象获得属性 私有的也可以获得
-			preparedStatement = connection.prepareStatement(firstSql + common.getClass().getSimpleName() + secondSql);
+			String className=common.getClass().getSimpleName();
+			if("v".equals(className.substring(0,1))) {
+				preparedStatement = connection.prepareStatement(firstSql + secondSql);
+			}else {
+				preparedStatement = connection.prepareStatement(firstSql + className + secondSql);
+			}
 			preparedStatement.setInt(1, (pages - 1) * 20);
 			resultSet = preparedStatement.executeQuery();
 			@SuppressWarnings("unchecked")
@@ -197,7 +202,12 @@ public class CommonDaoImpl<T> implements CommonDao<T> {
 	public int count(String firstSql, T common) {
 		int allNum = 0;
 		try {
-			preparedStatement = connection.prepareStatement(firstSql + common.getClass().getSimpleName());
+			String className=common.getClass().getSimpleName();
+			if("v".equals(className.substring(0,1))) {
+				preparedStatement = connection.prepareStatement(firstSql);
+			}else {
+				preparedStatement = connection.prepareStatement(firstSql + className);
+			}
 			resultSet = preparedStatement.executeQuery();
 			while (resultSet.next()) {
 				allNum = resultSet.getInt(1);

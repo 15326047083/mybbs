@@ -6,14 +6,14 @@ import java.util.List;
 import com.mybbs.dao.PlateDao;
 import com.mybbs.dao.impl.PlateDaoImpl;
 import com.mybbs.service.PlateService;
-import com.mybbs.vo.UserAndPlate;
+import com.mybbs.vo.vUserAndPlate;
 
 public class PlateServiceImpl implements PlateService{
 
 	@Override
-	public List<UserAndPlate> getAllList() {
+	public List<vUserAndPlate> getAllList() {
 		// TODO Auto-generated method stub
-		List<UserAndPlate> list =new ArrayList<UserAndPlate>();
+		List<vUserAndPlate> list =new ArrayList<vUserAndPlate>();
 		PlateDao plateDao =new PlateDaoImpl();
 		list=plateDao.getAllList();
 		return list;

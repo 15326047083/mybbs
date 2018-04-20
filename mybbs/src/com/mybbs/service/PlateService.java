@@ -2,8 +2,8 @@ package com.mybbs.service;
 
 import java.util.List;
 
-import com.mybbs.vo.UserAndPlate;
+import com.mybbs.vo.vUserAndPlate;
 
 public interface PlateService {
-	public List<UserAndPlate> getAllList();
+	public List<vUserAndPlate> getAllList();
 }

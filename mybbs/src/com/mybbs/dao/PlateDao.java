@@ -2,11 +2,11 @@ package com.mybbs.dao;
 
 import java.util.List;
 
-import com.mybbs.vo.UserAndPlate;
+import com.mybbs.vo.vUserAndPlate;
 
 public interface PlateDao {
 	/**
 	 * 查找全部列表 以及版主信息
 	 */
-	public List<UserAndPlate> getAllList();
+	public List<vUserAndPlate> getAllList();
 }

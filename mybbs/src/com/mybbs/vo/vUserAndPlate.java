@@ -1,6 +1,6 @@
 package com.mybbs.vo;
 
-public class UserAndPlate {
+public class vUserAndPlate {
 	private int userId;
 	private String userName;
 	private String email;
@@ -9,15 +9,25 @@ public class UserAndPlate {
 	private String info;
 	private int areaId;
 	private int postNum;
+	private String areaName;
 	
-	public UserAndPlate(){
+	public vUserAndPlate(){
 		
 	}
 	
-	
 
-	public UserAndPlate(int userId, String userName, String email, int plateId, String plateName, String info,
-			int areaId, int postNum) {
+	public String getAreaName() {
+		return areaName;
+	}
+
+
+	public void setAreaName(String areaName) {
+		this.areaName = areaName;
+	}
+
+
+	public vUserAndPlate(int userId, String userName, String email, int plateId, String plateName, String info,
+			int areaId, int postNum, String areaName) {
 		super();
 		this.userId = userId;
 		this.userName = userName;
@@ -27,7 +37,9 @@ public class UserAndPlate {
 		this.info = info;
 		this.areaId = areaId;
 		this.postNum = postNum;
+		this.areaName = areaName;
 	}
+
 
 
 
@@ -45,8 +57,9 @@ public class UserAndPlate {
 
 	@Override
 	public String toString() {
-		return "UserAndPlate [userId=" + userId + ", userName=" + userName + ", email=" + email + ", plateId=" + plateId
-				+ ", plateName=" + plateName + ", info=" + info + ", areaId=" + areaId + ", postNum=" + postNum + "]";
+		return "vUserAndPlate [userId=" + userId + ", userName=" + userName + ", email=" + email + ", plateId="
+				+ plateId + ", plateName=" + plateName + ", info=" + info + ", areaId=" + areaId + ", postNum="
+				+ postNum + ", areaName=" + areaName + "]";
 	}
 
 
