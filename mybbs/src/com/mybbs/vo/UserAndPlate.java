@@ -6,6 +6,7 @@ public class UserAndPlate {
 	private String email;
 	private int plateId;
 	private String plateName;
+	private String info;
 	private int areaId;
 	private int postNum;
 	
@@ -14,24 +15,38 @@ public class UserAndPlate {
 	}
 	
 	
-	
-	public UserAndPlate(int userId, String userName, String email, int plateId, String plateName, int areaId,
-			int postNum) {
+
+	public UserAndPlate(int userId, String userName, String email, int plateId, String plateName, String info,
+			int areaId, int postNum) {
 		super();
 		this.userId = userId;
 		this.userName = userName;
 		this.email = email;
 		this.plateId = plateId;
 		this.plateName = plateName;
+		this.info = info;
 		this.areaId = areaId;
 		this.postNum = postNum;
 	}
 
 
+
+	public String getInfo() {
+		return info;
+	}
+
+
+
+	public void setInfo(String info) {
+		this.info = info;
+	}
+
+
+
 	@Override
 	public String toString() {
 		return "UserAndPlate [userId=" + userId + ", userName=" + userName + ", email=" + email + ", plateId=" + plateId
-				+ ", plateName=" + plateName + ", areaId=" + areaId + ", postNum=" + postNum + "]";
+				+ ", plateName=" + plateName + ", info=" + info + ", areaId=" + areaId + ", postNum=" + postNum + "]";
 	}
 
 

@@ -1,12 +1,9 @@
-package com.mybbs.dao;
+package com.mybbs.service;
 
 import java.util.List;
 
 import com.mybbs.vo.UserAndPlate;
 
-public interface PlateDao {
-	/**
-	 * 查找全部列表 以及版主信息
-	 */
+public interface PlateService {
 	public List<UserAndPlate> getAllList();
 }
