@@ -14,6 +14,11 @@
 <title>Insert title here</title>
 </head>
 <body style="background: #edf6fa;">
+	<c:if test="${bj==1 }">
+		<script type="text/javascript">
+			alert("修改成功");
+		</script>
+	</c:if>
 	<c:choose>
 		<c:when test="${area.id>0 }">
 			<form action="<%=basePath%>updateAreaServlet" method="post">
@@ -31,7 +36,7 @@
 		<li>区域简介</li>
 		<li><input type="text" name="info" value="${area.info }">
 			<input type="hidden" value="${area.plateNum }" name="plateNum">
-		</li>
+			<input type="hidden" value="${area.id }" name="id"></li>
 	</ul>
 	<input type="submit" value="提交">
 	</form>

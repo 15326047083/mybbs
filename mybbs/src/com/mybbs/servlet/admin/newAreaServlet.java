@@ -31,8 +31,8 @@ public class newAreaServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String name = request.getParameter("name");
-		String info =request.getParameter("info");
+		String name =  new String(request.getParameter("name").getBytes("iso-8859-1"), "utf-8");
+		String info =new String(request.getParameter("info").getBytes("iso-8859-1"), "utf-8");
 		
 		Area area =new Area();
 		CommonService<Area> commonService= new CommonServiceImpl<Area>();
