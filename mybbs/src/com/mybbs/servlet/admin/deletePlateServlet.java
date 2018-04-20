@@ -6,6 +6,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.mybbs.po.Area;
+import com.mybbs.po.Plate;
+import com.mybbs.service.CommonService;
+import com.mybbs.service.impl.CommonServiceImpl;
+
+import util.SQLUtil;
+
 /**
  * Servlet implementation class deletePlateServlet
  */
@@ -25,7 +32,22 @@ public class deletePlateServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		int plateId= Integer.parseInt(request.getParameter("id"));
+		int postNum=Integer.parseInt(request.getParameter("postNum"));
+		CommonService<Plate> commonService = new CommonServiceImpl<Plate>();
+		Plate plate =new Plate();
+		String script=null;
+		//可删
+		if(postNum<=0) {
+			commonService.delete(plateId, SQLUtil.deletePlate);
+			script="ok";
+		}else
+		{
+			//不可删
+			script="not delete";
+		}
+		commonService.closeDB();
+		response.sendRedirect("getPlateListServlet?nowPages=1&script="+script);
 	}
 
 	/**

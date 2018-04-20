@@ -42,6 +42,8 @@ public class getPlateListServlet extends HttpServlet {
 			areaId=" and areaId="+request.getParameter("areaId");
 			aId= " where areaId="+request.getParameter("areaId");
 			request.setAttribute("flag", 0);
+			String id=request.getParameter("areaId");
+			request.setAttribute("areaId", "&areaId="+id);
 		}
 		vUserAndPlate v= new vUserAndPlate();
 		int count=commonService.count("select count(*) from plate"+aId, v);
@@ -50,13 +52,26 @@ public class getPlateListServlet extends HttpServlet {
 			allPages++;
 		
 		CommonPages<vUserAndPlate> commonPages=new CommonPages<vUserAndPlate>();
-		
 		commonPages.setCommonList(commonService.getAllList(v,"select user.id userId ,user.name userName,email,plate.id plateId,plate.name plateName,plate.info info,area.name areaName,postNum,areaId from user,plate,area where user.id=plate.userId and areaId=area.id"+areaId," limit ?,20", nowPages));
 		commonPages.setCount(count);
 		commonPages.setPages(nowPages);
 		commonPages.setTotalpages(allPages);
 		commonPages.setLimit(1);
 		commonService.closeDB();
+		
+		if("not delete".equals(request.getParameter("script"))) {
+			String script="	<script type=\"text/javascript\">\r\n" + 
+					"		alert(\"该版块尚有帖子存在，不可进行删除操作！！！\");\r\n" + 
+					"	</script>";
+			request.setAttribute("script", script);
+		}
+		if("ok".equals(request.getParameter("script"))) {
+			String script="	<script type=\"text/javascript\">\r\n" + 
+					"		alert(\"删除成功！！！\");\r\n" + 
+					"	</script>";
+			request.setAttribute("script", script);
+		}
+		
 		request.setAttribute("commonPages", commonPages);
 		request.setAttribute("nowPages", nowPages);
 		request.getRequestDispatcher("WEB-INF/pages/admin/plate/getPlateList.jsp").forward(request, response);

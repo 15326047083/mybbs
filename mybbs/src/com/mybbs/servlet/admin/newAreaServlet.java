@@ -43,8 +43,8 @@ public class newAreaServlet extends HttpServlet {
 		area.setName(name);
 		area.setInfo(info);
 		area.setPlateNum(0);
-		commonService.closeDB();
 		commonService.saveOrUpdate(area, SQLUtil.newArea);
+		commonService.closeDB();
 		response.sendRedirect("getAreaListServlet?nowPages="+allPages);
 	}
 

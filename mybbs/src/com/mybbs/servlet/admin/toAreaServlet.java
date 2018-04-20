@@ -33,6 +33,7 @@ public class toAreaServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		String flag= request.getParameter("flag");
 		if(flag!=null&&"new".equals(flag)) {
+			request.setAttribute("str", "新增");
 			request.getRequestDispatcher("WEB-INF/pages/admin/area/newOrUpdateArea.jsp").forward(request, response);
 		}
 		if(flag!=null&&"update".equals(flag)) {
@@ -42,6 +43,7 @@ public class toAreaServlet extends HttpServlet {
 			area.setId(id);
 			area=commonService.getById(area, SQLUtil.getByIdFirstSql, SQLUtil.getByIdSecondSql);
 			request.setAttribute("area", area);
+			request.setAttribute("str", "修改");
 			request.getRequestDispatcher("WEB-INF/pages/admin/area/newOrUpdateArea.jsp").forward(request, response);
 		}
 		
