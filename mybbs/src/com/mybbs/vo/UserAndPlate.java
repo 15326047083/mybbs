@@ -3,6 +3,7 @@ package com.mybbs.vo;
 public class UserAndPlate {
 	private int userId;
 	private String userName;
+	private String email;
 	private int plateId;
 	private String plateName;
 	private int areaId;
@@ -13,22 +14,34 @@ public class UserAndPlate {
 	}
 	
 	
-	public UserAndPlate(int userId, String userName, int plateId, String plateName, int areaId, int postNum) {
+	
+	public UserAndPlate(int userId, String userName, String email, int plateId, String plateName, int areaId,
+			int postNum) {
 		super();
 		this.userId = userId;
 		this.userName = userName;
+		this.email = email;
 		this.plateId = plateId;
 		this.plateName = plateName;
 		this.areaId = areaId;
 		this.postNum = postNum;
 	}
-	
-	
-	
+
+
 	@Override
 	public String toString() {
-		return "UserAndPlate [userId=" + userId + ", userName=" + userName + ", plateId=" + plateId + ", plateName="
-				+ plateName + ", areaId=" + areaId + ", postNum=" + postNum + "]";
+		return "UserAndPlate [userId=" + userId + ", userName=" + userName + ", email=" + email + ", plateId=" + plateId
+				+ ", plateName=" + plateName + ", areaId=" + areaId + ", postNum=" + postNum + "]";
+	}
+
+
+	public String getEmail() {
+		return email;
+	}
+
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 

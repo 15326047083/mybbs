@@ -42,6 +42,7 @@ public class updateAreaServlet extends HttpServlet {
 		area.setPlateNum(plateNum);
 		CommonService<Area> commonService=new CommonServiceImpl<Area>();
 		commonService.saveOrUpdate(area, SQLUtil.updateArea);
+		commonService.closeDB();
 		request.setAttribute("area", area);
 		request.setAttribute("bj", 1);
 		request.getRequestDispatcher("WEB-INF/pages/admin/area/newOrUpdateArea.jsp").forward(request, response);

@@ -46,6 +46,7 @@ public class getAreaListServlet extends HttpServlet {
 		
 		commonPages.setTotalpages(allPages);
 		commonPages.setLimit(1);
+		commonService.closeDB();
 		request.setAttribute("commonPages", commonPages);
 		request.setAttribute("nowPages", nowPages);
 		request.getRequestDispatcher("WEB-INF/pages/admin/area/getAreaList.jsp").forward(request, response);
