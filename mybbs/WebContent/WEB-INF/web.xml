@@ -289,4 +289,5 @@
     <servlet-name>deleteUserServlet</servlet-name>
     <url-pattern>/deleteUserServlet</url-pattern>
   </servlet-mapping>
+  
 </web-app>
