@@ -8,6 +8,8 @@ import com.mybbs.dao.CommonDao;
 import com.mybbs.dao.impl.CommonDaoImpl;
 import com.mybbs.po.Area;
 import com.mybbs.po.Plate;
+import com.mybbs.service.CommonService;
+import com.mybbs.service.impl.CommonServiceImpl;
 import com.mybbs.vo.CommonPages;
 
 import util.SQLUtil;
@@ -77,5 +79,15 @@ public class LeiyuanTest {
 		commonPages.setTotalpages(totalpages);
 		System.out.println(commonPages.toString());
 		cDao.closeDB();
+	}
+
+	/**
+	 * 测试通过Dao获取所有列表
+	 */
+	@Test
+	public void testQueryAll() {
+		CommonService<Area> commonService = new CommonServiceImpl<Area>();
+		Area area = new Area();
+		System.out.println(commonService.queryAll(area, SQLUtil.getListFirstSql));
 	}
 }

@@ -51,4 +51,10 @@ public class CommonServiceImpl<T> implements CommonService<T> {
 		return commonDao.count(firstSql, common);
 	}
 
+	@Override
+	public List<T> queryAll(T common, String firstSql) {
+		// TODO Auto-generated method stub
+		return commonDao.queryAll(common, firstSql);
+	}
+
 }

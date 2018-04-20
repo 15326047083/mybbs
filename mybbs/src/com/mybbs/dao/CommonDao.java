@@ -16,4 +16,5 @@ public interface CommonDao<T> {
 
 	int count(String firstSql, T common);
 
+	List<T> queryAll(T common, String firstSql);
 }

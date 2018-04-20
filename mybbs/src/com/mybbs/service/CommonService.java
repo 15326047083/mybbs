@@ -15,4 +15,6 @@ public interface CommonService<T> {
 	void closeDB();
 
 	int count(String firstSql, T common);
+
+	List<T> queryAll(T common, String firstSql);
 }
