@@ -289,5 +289,14 @@
     <servlet-name>deleteUserServlet</servlet-name>
     <url-pattern>/deleteUserServlet</url-pattern>
   </servlet-mapping>
-  
+  <servlet>
+    <description></description>
+    <display-name>newUserServlet</display-name>
+    <servlet-name>newUserServlet</servlet-name>
+    <servlet-class>com.mybbs.servlet.user.newUserServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>newUserServlet</servlet-name>
+    <url-pattern>/newUserServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
