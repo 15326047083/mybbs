@@ -8,6 +8,7 @@ import com.mybbs.dao.CommonDao;
 import com.mybbs.dao.impl.CommonDaoImpl;
 import com.mybbs.po.Area;
 import com.mybbs.po.Plate;
+import com.mybbs.po.User;
 import com.mybbs.service.CommonService;
 import com.mybbs.service.impl.CommonServiceImpl;
 import com.mybbs.vo.CommonPages;
@@ -24,13 +25,31 @@ public class LeiyuanTest {
 		/**
 		 * 当传入数据中包含id且id值不为0则表示update否则表示新增
 		 */
-		CommonDao<Area> commonDao = new CommonDaoImpl<Area>();
-		for (int i = 0; i < 150; i++) {
-			Area u = new Area();
-			u.setInfo("小宝贝" + i);
+		// CommonDao<User> commonDao = new CommonDaoImpl<User>();
+		// for (int i = 0; i < 52; i++) {
+		// User u = new User();
+		// u.setName("雷园" + i);
+		// u.setAge(1);
+		// u.setBirthday("asda");
+		// u.setEmail("asdsad");
+		// u.setPassword("asdasd");
+		// u.setPlateId(1);
+		// u.setPower(-1);
+		// u.setSex(1);
+		// u.setTime(0);
+		// commonDao.saveOrUpdate(u, SQLUtil.newUser);
+		// }
+		// commonDao.closeDB();
+
+		CommonDao<Plate> commonDao = new CommonDaoImpl<Plate>();
+		for (int i = 0; i < 52; i++) {
+			Plate u = new Plate();
 			u.setName("雷园" + i);
-			u.setPlateNum(0);
-			commonDao.saveOrUpdate(u, SQLUtil.newArea);
+			u.setAreaId(1);
+			u.setInfo(i+"");
+			u.setUserId(i);
+			u.setpostNum(-1);
+			commonDao.saveOrUpdate(u, SQLUtil.newPlate);
 		}
 		commonDao.closeDB();
 	}

@@ -11,7 +11,7 @@ public class SQLUtil {
 	public static String newArea = "insert into area values(null,?,?,?)";
 	public static String newUser = "insert into user values(null,?,?,?,?,?,?,?,?,?)";
 	public static String newDiscuss = "insert into discuss values(null,?,?,?,?,?)";
-	public static String newPlate = "insert into plate values(null,?,?,?,?)";
+	public static String newPlate = "insert into plate values(null,?,?,?,?,?)";
 	public static String newPost = "insert into post values(null,?,?,?,?,?,?,?)";
 	public static String newReply = "insert into reply values(null,?,?,?,?)";
 	public static String updateArea = "update area set name =?,info=?,plateNum=? where id=?";
