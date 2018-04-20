@@ -299,4 +299,14 @@
     <servlet-name>newUserServlet</servlet-name>
     <url-pattern>/newUserServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>sendEmailServlet</display-name>
+    <servlet-name>sendEmailServlet</servlet-name>
+    <servlet-class>com.mybbs.servlet.user.sendEmailServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>sendEmailServlet</servlet-name>
+    <url-pattern>/sendEmailServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
