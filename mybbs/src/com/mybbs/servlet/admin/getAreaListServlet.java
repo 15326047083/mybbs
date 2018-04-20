@@ -49,6 +49,18 @@ public class getAreaListServlet extends HttpServlet {
 		commonService.closeDB();
 		request.setAttribute("commonPages", commonPages);
 		request.setAttribute("nowPages", nowPages);
+		if("not delete".equals(request.getParameter("script"))) {
+			String script="	<script type=\"text/javascript\">\r\n" + 
+					"		alert(\"该区域尚有版块存在，不可进行删除操作！！！\");\r\n" + 
+					"	</script>";
+			request.setAttribute("script", script);
+		}
+		if("ok".equals(request.getParameter("script"))) {
+			String script="	<script type=\"text/javascript\">\r\n" + 
+					"		alert(\"删除成功！！！\");\r\n" + 
+					"	</script>";
+			request.setAttribute("script", script);
+		}
 		request.getRequestDispatcher("WEB-INF/pages/admin/area/getAreaList.jsp").forward(request, response);
 	}
 

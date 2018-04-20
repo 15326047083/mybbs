@@ -105,12 +105,20 @@ tr.over td {
 
 
 <body style="background: #edf6fa;">
+	<h2 style="color: gray">
+		&nbsp;&nbsp;&nbsp;<a href="index.jsp">主页</a> >
+		<c:if test="${flag==0}">
+			<a href="<%=basePath%>getAreaListServlet?nowPages=1">区域管理</a> >
+		</c:if>
+		<a>版块管理</a>
+	</h2>
 	<div class="table_div">
 		<div class="div_clear">
 			<div class="left_top"></div>
 			<div class="center_top">
 				<div style="float: right; padding-right: 6px">
-					<a class="sel_btn ch_cls" href="<%=basePath%>toPlateServlet?flag=new">新增</a>&nbsp;
+					<a class="sel_btn ch_cls"
+						href="<%=basePath%>toPlateServlet?flag=new">新增</a>&nbsp;
 				</div>
 			</div>
 			<div class="right_top"></div>
@@ -135,12 +143,12 @@ tr.over td {
 							<c:forEach var="userAndPlate" items="${commonPages.commonList }"
 								varStatus="loop">
 								<tr>
-									<td >${userAndPlate.plateName }</td>
+									<td>${userAndPlate.plateName }</td>
 									<td>${userAndPlate.areaName }</td>
 									<td>${userAndPlate.info }</td>
-									<td >${userAndPlate.userName }</td>
-									<td >${userAndPlate.email }</td>
-									<td >${userAndPlate.postNum }</td>
+									<td>${userAndPlate.userName }</td>
+									<td>${userAndPlate.email }</td>
+									<td>${userAndPlate.postNum }</td>
 									<td style="border-right: none"><a
 										href="<%=basePath %>adminpost/toGetPlatePost?pid=${userAndPlate.plateId}">查看帖子</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										<a href="toAreaServlet?id=${userAndPlate.plateId}&flag=update">修改</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -153,11 +161,11 @@ tr.over td {
 				</div>
 				<div align="right">
 					<a class="sel_btn ch_cls"
-						href="<%=basePath%>getPlateListServlet?nowPages=1">首页</a>
+						href="<%=basePath%>getPlateListServlet?nowPages=1&areaId=${commonPages.commonList[0].areaId}">首页</a>
 					<c:choose>
 						<c:when test="${nowPages!=1 }">
 							<a class="sel_btn ch_cls"
-								href="<%=basePath%>getPlateListServlet?nowPages=${nowPages-1}">上一页</a>
+								href="<%=basePath%>getPlateListServlet?nowPages=${nowPages-1}&areaId=${commonPages.commonList[0].areaId}">上一页</a>
 						</c:when>
 						<c:otherwise>
 							<a class="sel_btn ch_cls" href="javascript:return false;"
@@ -169,7 +177,7 @@ tr.over td {
 					<c:choose>
 						<c:when test="${nowPages!=commonPages.totalpages }">
 							<a class="sel_btn ch_cls"
-								href="<%=basePath%>getPlateListServlet?nowPages=${nowPages+1}">下一页</a>
+								href="<%=basePath%>getPlateListServlet?nowPages=${nowPages+1}&areaId=${commonPages.commonList[0].areaId}">下一页</a>
 						</c:when>
 						<c:otherwise>
 							<a class="sel_btn ch_cls" href="javascript:return false;"
@@ -178,7 +186,7 @@ tr.over td {
 						</c:otherwise>
 					</c:choose>
 					<a class="sel_btn ch_cls"
-						href="<%=basePath%>getPlateListServlet?nowPages=${commonPages.totalpages}">尾页</a>
+						href="<%=basePath%>getPlateListServlet?nowPages=${commonPages.totalpages}&areaId=${commonPages.commonList[0].areaId}">尾页</a>
 				</div>
 			</div>
 		</div>

@@ -31,20 +31,27 @@ public class getPlateListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		int nowPages=Integer.parseInt(request.getParameter("nowPages"));
+		String areaId;
+		String aId;
 		CommonService<vUserAndPlate> commonService =new CommonServiceImpl<vUserAndPlate>();
+		if(request.getParameter("areaId")==null) {
+			areaId="";
+			aId="";
+			request.setAttribute("flag", 1);
+		}else {
+			areaId=" and areaId="+request.getParameter("areaId");
+			aId= " where areaId="+request.getParameter("areaId");
+			request.setAttribute("flag", 0);
+		}
 		vUserAndPlate v= new vUserAndPlate();
-		int count=commonService.count("select count(*) from plate", v);
+		int count=commonService.count("select count(*) from plate"+aId, v);
 		int allPages=count/20;
 		if(count%20!=0)
 			allPages++;
-		String areaId;
+		
 		CommonPages<vUserAndPlate> commonPages=new CommonPages<vUserAndPlate>();
-		if(request.getParameter("areaId")==null) {
-			areaId="";
-		}else {
-			areaId=" and areaId="+request.getParameter("areaId");
-		}
-		commonPages.setCommonList(commonService.getAllList(v,"select user.id userId ,user.name userName,email,plate.id plateId,plate.name plateName,plate.info info,area.name areaName,postNum,areaId from user,plate,area where user.id=plate.id and areaId=area.id"+areaId," limit ?,20", nowPages));
+		
+		commonPages.setCommonList(commonService.getAllList(v,"select user.id userId ,user.name userName,email,plate.id plateId,plate.name plateName,plate.info info,area.name areaName,postNum,areaId from user,plate,area where user.id=plate.userId and areaId=area.id"+areaId," limit ?,20", nowPages));
 		commonPages.setCount(count);
 		commonPages.setPages(nowPages);
 		commonPages.setTotalpages(allPages);

@@ -105,12 +105,19 @@ tr.over td {
 
 
 <body style="background: #edf6fa;">
+	<h2 style="color: gray">
+		&nbsp;&nbsp;&nbsp;<a href="index.jsp">主页</a> > <a>区域管理</a>
+	</h2>
+	${script}
 	<div class="table_div">
 		<div class="div_clear">
+
 			<div class="left_top"></div>
 			<div class="center_top">
+
 				<div style="float: right; padding-right: 6px">
-					<a class="sel_btn ch_cls" href="<%=basePath%>toAreaServlet?flag=new">新增</a>&nbsp;
+					<a class="sel_btn ch_cls"
+						href="<%=basePath%>toAreaServlet?flag=new">新增</a>&nbsp;
 				</div>
 			</div>
 			<div class="right_top"></div>
@@ -136,9 +143,10 @@ tr.over td {
 									<td width="16%">${area.info }</td>
 									<td width="16%">${area.plateNum }</td>
 									<td width="20%" style="border-right: none"><a
-										href="<%=basePath %>adminpost/toGetPlatePost?pid=${area.id}">查看板块</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										href="<%=basePath %>getPlateListServlet?areaId=${area.id}&nowPages=1">查看板块</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										<a href="toAreaServlet?id=${area.id}&flag=update">修改</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										<a href="deletePlate?id=${area.id}">删除</a></td>
+										<a
+										href="deleteAreaServlet?id=${area.id}&plateNum=${area.plateNum }">删除</a></td>
 								</tr>
 							</c:forEach>
 
