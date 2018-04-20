@@ -279,4 +279,14 @@
     <servlet-name>getReplyListServlet</servlet-name>
     <url-pattern>/getReplyListServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>deleteUserServlet</display-name>
+    <servlet-name>deleteUserServlet</servlet-name>
+    <servlet-class>com.mybbs.servlet.admin.deleteUserServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>deleteUserServlet</servlet-name>
+    <url-pattern>/deleteUserServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

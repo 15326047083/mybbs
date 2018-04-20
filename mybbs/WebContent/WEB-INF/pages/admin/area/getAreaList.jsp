@@ -110,7 +110,7 @@ tr.over td {
 			<div class="left_top"></div>
 			<div class="center_top">
 				<div style="float: right; padding-right: 6px">
-					<a class="sel_btn ch_cls" href="<%=basePath%>toAreaServlet?flag=new">新增</a>&nbsp;
+					<a class="sel_btn ch_cls" href="<%=basePath%>toAreaServlet?flag=new&">新增</a>&nbsp;
 				</div>
 			</div>
 			<div class="right_top"></div>
