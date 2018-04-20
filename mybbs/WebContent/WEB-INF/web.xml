@@ -309,4 +309,14 @@
     <servlet-name>sendEmailServlet</servlet-name>
     <url-pattern>/sendEmailServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>toUserServlet</display-name>
+    <servlet-name>toUserServlet</servlet-name>
+    <servlet-class>com.mybbs.servlet.user.toUserServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>toUserServlet</servlet-name>
+    <url-pattern>/toUserServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

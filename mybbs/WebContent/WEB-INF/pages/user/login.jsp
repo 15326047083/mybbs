@@ -94,9 +94,8 @@
 								<button type="submit" class="btn">Sign in!</button>
 							</form>
 							<div align="center">
-								<a href="<%=basePath%>user/toNewUser">立即注册</a> <a
-									href="<%=basePath%>user/toFindPassword">忘记密码</a> <a
-									href="<%=basePath%>nipost/toIndex">匿名模式</a>
+								<a href="<%=basePath%>toUserServlet?flag=new">立即注册</a> <a
+									href="<%=basePath%>toUserServlet?flag=find">忘记密码</a>
 							</div>
 						</div>
 					</div>

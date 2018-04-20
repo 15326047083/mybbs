@@ -158,10 +158,18 @@
 								<input type="hidden" id="sure" name="surecode" value="${code}" />
 
 								<div class="form-group">
-									<label class="sr-only" for="form-username">Email</label> <input
-										type="email" name="email" placeholder="E-mail..."
-										class="form-username form-control" id="form-username"
-										id="email" onblur="username(this.value)" value="${user.email}">
+									<label class="sr-only" for="form-password">Email</label> <input
+										type="email" name="email" placeholder=" E-mail..."
+										class="form-password form-control" id="form-password"
+										style="height: 50px" id="email" onblur="username(this.value)"
+										value="${user.email}">
+								</div>
+
+								<div class="form-group">
+									<label class="sr-only" for="form-password">Name</label> <input
+										type="text" name="name" placeholder=" Name..."
+										class="form-password form-control" id="form-password"
+										style="height: 50px" id="email" value="${user.name}">
 								</div>
 
 								<div class="form-group">
@@ -170,25 +178,36 @@
 										class="form-password form-control" id="form-password"
 										value="${user.password}">
 								</div>
+
+								<div class="form-group">
+									<label class="sr-only" for="form-password">Age</label> <input
+										type="text" name="age" placeholder="Age..."
+										class="form-password form-control" id="form-password"
+										value="${user.age}">
+								</div>
+
 								<div class="form-group">
 									<label class="sr-only" for="form-password">Sex</label> <select
 										name="sex" class="form-password form-control"
-										id="form-password">
-										<option value="男">男</option>
-										<option value="女">女</option>
+										style="height: 50px" id="form-password">
+										<option value="0">男</option>
+										<option value="1">女</option>
 									</select>
 								</div>
+
 								<div class="form-group">
 									<label class="sr-only" for="form-password">Birthday</label> <input
 										type="date" name="birthday" placeholder="Birthday..."
 										class="form-password form-control" id="form-password"
-										value="${user.birthday}">
+										style="height: 50px" value="${user.birthday}">
 								</div>
+
 								<div class="form-group">
 									<label class="sr-only" for="form-password">Code</label> <input
 										type="text" name="code" placeholder="Code..."
 										class="form-password form-control" id="form-password">
 								</div>
+
 								<div align="center">
 									<input id="btnSendCode" type="button" onclick="sendMessage()"
 										value="发送验证码" class="btn" />
