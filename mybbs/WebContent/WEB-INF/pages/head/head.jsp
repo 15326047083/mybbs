@@ -30,7 +30,7 @@
 					<ul>
 						<li><a href=""
 							class="active">首页</a></li>
-						<li><a href="">发帖</a></li>
+						<li><a href="<%=basePath%>toPostServlet">发帖</a></li>
 						<li><a href="">帖子总览</a></li>
 						<li><a
 							href="">发言记录</a></li>

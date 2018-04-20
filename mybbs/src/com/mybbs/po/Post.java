@@ -18,6 +18,9 @@ public class Post {
 	private int flag;// 是否被管理员删除 0为没删 1为以删除
 	private int photonum;// 照片数量 默认-1；
 
+	public Post() {
+		
+	}
 	public Post(int id, int userId, int plateId, String title, String info, String time, int flag, int photonum) {
 		// super();
 		this.id = id;
