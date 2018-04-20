@@ -17,7 +17,7 @@ public class User {
 	private String birthday;
 	private int plateId;// 喜欢的板块ID
 	private long time;// 禁言时间
-	private int power;// 判断用户是否是管理员 默认权限-1 -1为普通用户 0为管理员用户 大于0以后代表板块ID
+	private int power;// 判断用户是否是管理员 默认权限-1 -1为普通用户 0为管理员用户
 
 	public User() {
 

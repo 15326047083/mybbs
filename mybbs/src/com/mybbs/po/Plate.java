@@ -13,6 +13,7 @@ public class Plate {
 	private String info;
 	private int areaId;
 	private int postNum;
+	private int userId;
 
 	public Plate() {
 
@@ -21,16 +22,17 @@ public class Plate {
 	@Override
 	public String toString() {
 		return "Plate [id=" + id + ", name=" + name + ", info=" + info + ", areaId=" + areaId + ", postNum=" + postNum
-				+ "]";
+				+ ", userId=" + userId + "]";
 	}
 
-	public Plate(int id, String name, String info, int areaId, int postNum) {
+	public Plate(int id, String name, String info, int areaId, int postNum, int userId) {
 		// super();
 		this.id = id;
 		this.name = name;
 		this.info = info;
 		this.areaId = areaId;
 		this.postNum = postNum;
+		this.userId = userId;
 	}
 
 	public int getId() {
@@ -71,6 +73,14 @@ public class Plate {
 
 	public void setpostNum(int plateNum) {
 		this.postNum = plateNum;
+	}
+
+	public int getUserId() {
+		return userId;
+	}
+
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 
 }
