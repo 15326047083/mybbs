@@ -3,8 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%
 	String path = request.getContextPath();
-	String basePath = request.getScheme() + "://"
-			+ request.getServerName() + ":" + request.getServerPort()
+	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
 <!doctype html>
@@ -21,19 +20,17 @@
 <script
 	src="<%=request.getContextPath()%>/js/head/plugin/bootstrap/js/bootstrap.min.js"></script>
 <title>Insert title here</title>
-</head> 
+</head>
 <body>
 	<div class="w_header">
 		<div class="container">
 			<div class="w_header_top">
 				<span class="w_header_nav">
 					<ul>
-						<li><a href=""
-							class="active">首页</a></li>
+						<li><a href="" class="active">首页</a></li>
 						<li><a href="<%=basePath%>toPostServlet">发帖</a></li>
 						<li><a href="">帖子总览</a></li>
-						<li><a
-							href="">发言记录</a></li>
+						<li><a href="">发言记录</a></li>
 						<li><a href="">我的帖子</a></li>
 						<li><a href="">个人信息</a></li>
 						<li><a href="">退出登录</a></li>
@@ -42,12 +39,10 @@
 				<div class="w_search">
 
 					<div class="w_searchbox">
-						<form action=""
-							method="post">
-							<input type="hidden" name="path"
-								value="" />
-							<input type="text" name="queryStr" placeholder="search" /> <input
-								type="submit" value="搜索" />
+						<form action="" method="post">
+							<input type="hidden" name="path" value="" /> <input type="text"
+								name="queryStr" placeholder="search" /> <input type="submit"
+								value="搜索" />
 						</form>
 					</div>
 				</div>

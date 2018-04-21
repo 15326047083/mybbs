@@ -8,7 +8,6 @@ import com.mybbs.dao.CommonDao;
 import com.mybbs.dao.impl.CommonDaoImpl;
 import com.mybbs.po.Area;
 import com.mybbs.po.Plate;
-import com.mybbs.po.User;
 import com.mybbs.service.CommonService;
 import com.mybbs.service.impl.CommonServiceImpl;
 import com.mybbs.vo.CommonPages;
@@ -46,7 +45,7 @@ public class LeiyuanTest {
 			Plate u = new Plate();
 			u.setName("雷园" + i);
 			u.setAreaId(1);
-			u.setInfo(i+"");
+			u.setInfo(i + "");
 			u.setUserId(i);
 			u.setpostNum(-1);
 			commonDao.saveOrUpdate(u, SQLUtil.newPlate);
