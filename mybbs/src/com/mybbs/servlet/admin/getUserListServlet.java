@@ -41,7 +41,7 @@ public class getUserListServlet extends HttpServlet {
 		if(count%20!=0)
 			allPages++;
 		CommonPages<User> commonPages=new CommonPages<User>();
-		commonPages.setCommonList(commonService.getAllList(area, SQLUtil.getListFirstSql, SQLUtil.getListSecondSql, nowPages));
+		commonPages.setCommonList(commonService.getAllList(user, SQLUtil.getListFirstSql, SQLUtil.getListSecondSql, nowPages));
 		commonPages.setCount(count);
 		commonPages.setPages(nowPages);
 		
@@ -51,6 +51,7 @@ public class getUserListServlet extends HttpServlet {
 		request.setAttribute("commonPages", commonPages);
 		request.setAttribute("nowPages", nowPages);
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		request.getRequestDispatcher("WEB-INF/pages/admin/user/getUserList.jsp").forward(request, response);
 	}
 
 	/**
