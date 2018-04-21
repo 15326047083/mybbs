@@ -154,7 +154,7 @@ tr.over td {
 									<td style="border-right: none">
 										<a href="toAreaServlet?id=${area.id}&flag=update">修改</a>&nbsp;&nbsp;&nbsp;
 										<a
-										href="deleteAreaServlet?id=${area.id}&plateNum=${area.plateNum }">删除</a></td>
+										href="deleteUserServlet?id=${user.id}">删除</a></td>
 								</tr>
 							</c:forEach>
 
