@@ -55,7 +55,7 @@
 					target="rightFrame">区域管理</a><i></i></li>
 				<li><cite></cite><a href="<%=basePath%>getPlateListServlet?nowPages=1"
 					target="rightFrame">板块管理</a><i></i></li>
-				<li><cite></cite><a href=""
+				<li><cite></cite><a href="<%=basePath%>getUserListServlet?nowPages=1"
 					target="rightFrame">用户管理</a><i></i></li>
 			</ul>
 		</dd>
