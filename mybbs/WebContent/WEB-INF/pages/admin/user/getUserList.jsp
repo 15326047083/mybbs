@@ -131,29 +131,28 @@ tr.over td {
 						<thead>
 							<tr>
 								<th width="10%">用户名称</th>
-								<th width="15%">用户邮箱</th>
+								<th width="10%">用户邮箱</th>
 								<th width="10%">用户性别</th>
 								<th width="10%">用户年龄</th>
 								<th width="20%">用户生日</th>
 								<th width="15%">喜欢的板块</th>
-								<th width="20%">发帖时间</th>
-								<th width="30%" style="border-right: none">操作</th>
+								<th width="15%">发帖时间</th>
+								<th width="10%" style="border-right: none">操作</th>
 							</tr>
 						</thead>
 						<tbody>
 							<c:forEach var="user" items="${commonPages.commonList }"
 								varStatus="loop">
 								<tr>
-									<td width="10%">${user.name}</td>
-									<td width="15%">${user.email}</td>
-									<td width="10%">${user.sex}</td>
-									<td width="10%">${user.age }</td>
-									<td width="20%">${user.birthday}</td>
-									<td width="15%">${plate.name}</td>
-									<td width="20%">${user.time}</td>
-									<td width="30%" style="border-right: none"><a
-										href="<%=basePath %>getUserListServlet?areaId=${user.id}&nowPages=1">查看用户</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										<a href="toAreaServlet?id=${area.id}&flag=update">修改</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									<td>${user.name}</td>
+									<td>${user.email}</td>
+									<td>${user.sex}</td>
+									<td>${user.age }</td>
+									<td>${user.birthday}</td>
+									<td>${plate.name}</td>
+									<td>${user.time}</td>
+									<td style="border-right: none">
+										<a href="toAreaServlet?id=${area.id}&flag=update">修改</a>&nbsp;&nbsp;&nbsp;
 										<a
 										href="deleteAreaServlet?id=${area.id}&plateNum=${area.plateNum }">删除</a></td>
 								</tr>
