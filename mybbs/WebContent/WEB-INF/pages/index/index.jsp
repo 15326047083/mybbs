@@ -11,7 +11,7 @@
 </head>
 
 <body>
-
+${script }
 	<div class="w_container">
 		<div class="container">
 			<div class="row w_main_row">
