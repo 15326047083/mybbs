@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
@@ -102,94 +103,23 @@ tr.over td {
 </style>
 <title>Insert title here</title>
 </head>
-
-
 <body style="background: #edf6fa;">
 	<h2 style="color: gray">
-		&nbsp;&nbsp;&nbsp;<a href="index.jsp">主页</a> > 
-		<a href="<%=basePath%>getUserListServlet?nowPages=1">用户管理</a>
+		&nbsp;&nbsp;&nbsp;<a href="index.jsp">主页</a> > <a href="<%=basePath%>getUserListServlet?nowPages=1">用户管理</a>
 	</h2>
-	${script}
-	<div class="table_div">
-		<div class="div_clear">
-
-			<div class="left_top"></div>
-			<div class="center_top">
-
-				
-			</div>
-			<div class="right_top"></div>
-		</div>
-		<div class="div_clear">
-			<div class="left_center"></div>
-			<div class="center_center">
-				<div class="table_content">
-					<table cellspacing="0px" cellpadding="0px">
-						<thead>
-							<tr>
-								<th width="10%">用户名称</th>
-								<th width="10%">用户邮箱</th>
-								<th width="10%">用户性别</th>
-								<th width="10%">用户年龄</th>
-								<th width="20%">用户生日</th>
-								<th width="10%">禁言状态</th>
-							
-								<th width="30%" style="border-right: none">操作</th>
-							</tr>
-						</thead>
-						<tbody>
-							<c:forEach var="user" items="${commonPages.commonList }"
-								varStatus="loop">
-								<tr>
-									<td>${user.name}</td>
-									<td>${user.email}</td>
-									<td>${user.sex}</td>
-									<td>${user.age }</td>
-									<td>${user.birthday}</td>
-									<td>${user.time}</td>
-									
-									<td style="border-right: none">
-										<a href="updateUserServlet?id=${user.id}">修改</a>&nbsp;
-										<a href="toAreaServlet?id=${area.id}&flag=update">禁言</a>&nbsp;
-										<a
-										href="deleteUserServlet?id=${user.id}">删除</a></td>
-								</tr>
-							</c:forEach>
-
-						</tbody>
-					</table>
-				</div>
-				<div align="right">
-					<a class="sel_btn ch_cls"
-						href="<%=basePath%>getUserListServlet?nowPages=1">首页</a>
-					<c:choose>
-						<c:when test="${nowPages!=1 }">
-							<a class="sel_btn ch_cls"
-								href="<%=basePath%>getUserListServlet?nowPages=${nowPages-1}">上一页</a>
-						</c:when>
-						<c:otherwise>
-							<a class="sel_btn ch_cls" href="javascript:return false;"
-								onclick="return false;" style="cursor: default;"><i
-								class="edit" style="opacity: 0.2"></i>上一页</a>
-						</c:otherwise>
-					</c:choose>
-					<a> ${nowPages}</a>/<a>${commonPages.totalpages} </a>
-					<c:choose>
-						<c:when test="${nowPages!=commonPages.totalpages }">
-							<a class="sel_btn ch_cls"
-								href="<%=basePath%>getUserListServlet?nowPages=${nowPages+1}">下一页</a>
-						</c:when>
-						<c:otherwise>
-							<a class="sel_btn ch_cls" href="javascript:return false;"
-								onclick="return false;" style="cursor: default;"><i
-								class="edit" style="opacity: 0.2"></i>下一页</a>
-						</c:otherwise>
-					</c:choose>
-					<a class="sel_btn ch_cls"
-						href="<%=basePath%>getUserListServlet?nowPages=${commonPages.totalpages}">尾页</a>
-				</div>
-			</div>
-		</div>
-	</div>
+	<c:if test="${bj==1 }">
+		<script type="text/javascript">
+			alert("修改成功");
+		</script>
+	</c:if>
+	<form action="<%=basePath%>updateUserServlet" method="post">
+		用户名称<input type="text" name="name" value="${user.name }">
+		用户邮箱<input type="text" name= "email" value="${user.email }">
+		用户性别<input type="text" name="sex" value="${user.sex }">
+		用户年龄<input type="text" name="age" value="${user.age}">
+		用户生日<input type="date" name ="birthday" value="${user.birthday }">
+		
+		<input type="submit" value="提交" />
+	</form>
 </body>
 </html>
