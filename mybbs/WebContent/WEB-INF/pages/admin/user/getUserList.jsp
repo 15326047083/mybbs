@@ -106,18 +106,15 @@ tr.over td {
 
 <body style="background: #edf6fa;">
 	<h2 style="color: gray">
-		&nbsp;&nbsp;&nbsp;<a href="index.jsp">主页</a> > 
-		<a href="<%=basePath%>getUserListServlet?nowPages=1">用户管理</a>
+		&nbsp;&nbsp;&nbsp;<a href="index.jsp">主页</a> > <a
+			href="<%=basePath%>getUserListServlet?nowPages=1">用户管理</a>
 	</h2>
 	${script}
 	<div class="table_div">
 		<div class="div_clear">
 
 			<div class="left_top"></div>
-			<div class="center_top">
-
-				
-			</div>
+			<div class="center_top"></div>
 			<div class="right_top"></div>
 		</div>
 		<div class="div_clear">
@@ -132,9 +129,9 @@ tr.over td {
 								<th width="10%">用户性别</th>
 								<th width="10%">用户年龄</th>
 								<th width="20%">用户生日</th>
-								<th width="10%">禁言状态</th>
-							
-								<th width="30%" style="border-right: none">操作</th>
+								<th width="30%">禁言状态</th>
+
+								<th width="10%" style="border-right: none">操作</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -146,12 +143,25 @@ tr.over td {
 									<td>${user.sex}</td>
 									<td>${user.age }</td>
 									<td>${user.birthday}</td>
-									<td>${user.time}</td>
-									
-									<td style="border-right: none">
-										<a href="updateUserServlet?id=${user.id}">修改</a>&nbsp;
-										<a href="toAreaServlet?id=${area.id}&flag=update">禁言</a>&nbsp;
-										<a
+									<td><c:choose>
+											<c:when test="${user.time==0 }">
+												<form action="bannedUserSpeakServlet?id=${user.id}"
+													method="post">
+													<input type="date" name="time">&nbsp;&nbsp;&nbsp; <input
+														type="submit" value="禁言">
+												</form>
+											</c:when>
+											<c:otherwise>	
+											
+												<form action="bannedUserSpeakServlet?id=${user.id}&time=0" method="post">
+												${user.time}&nbsp;&nbsp;&nbsp;
+												<input type="submit" value="解除禁言">
+												</form>
+											</c:otherwise>
+										</c:choose></td>
+
+									<td style="border-right: none"><a
+										href="updateUserServlet?id=${user.id}">修改</a>&nbsp; <a
 										href="deleteUserServlet?id=${user.id}">删除</a></td>
 								</tr>
 							</c:forEach>
