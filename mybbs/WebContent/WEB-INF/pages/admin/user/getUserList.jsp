@@ -188,7 +188,7 @@ tr.over td {
 						</c:otherwise>
 					</c:choose>
 					<a class="sel_btn ch_cls"
-						href="<%=basePath%>getAreaListServlet?nowPages=${commonPages.totalpages}">尾页</a>
+						href="<%=basePath%>getUserListServlet?nowPages=${commonPages.totalpages}">尾页</a>
 				</div>
 			</div>
 		</div>
