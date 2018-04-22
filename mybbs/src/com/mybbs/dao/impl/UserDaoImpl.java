@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.mybbs.dao.UserDao;
+import com.mybbs.po.User;
 
 import util.DButil;
 
@@ -58,6 +59,32 @@ public class UserDaoImpl implements UserDao {
 			e.printStackTrace();
 		}
 
+	}
+
+	@Override
+	public User getUserByEmail(String email) {
+		// TODO Auto-generated method stub
+		User user = new User();
+		try {
+			preparedStatement = connection.prepareStatement("select * from user where email='" + email + "'");
+			resultSet = preparedStatement.executeQuery();
+			while (resultSet.next()) {
+				user.setAge(resultSet.getInt("age"));
+				user.setBirthday(resultSet.getString("birthday"));
+				user.setEmail(resultSet.getString("email"));
+				user.setId(resultSet.getInt("id"));
+				user.setName(resultSet.getString("name"));
+				user.setPassword(resultSet.getString("password"));
+				user.setPlateId(resultSet.getInt("plateId"));
+				user.setPower(resultSet.getInt("power"));
+				user.setSex(resultSet.getInt("sex"));
+				user.setTime(resultSet.getLong("time"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return user;
 	}
 
 }

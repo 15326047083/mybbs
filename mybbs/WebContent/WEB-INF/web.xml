@@ -319,4 +319,14 @@
     <servlet-name>toUserServlet</servlet-name>
     <url-pattern>/toUserServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>findUserServlet</display-name>
+    <servlet-name>findUserServlet</servlet-name>
+    <servlet-class>com.mybbs.servlet.user.findUserServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>findUserServlet</servlet-name>
+    <url-pattern>/findUserServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
