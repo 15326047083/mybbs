@@ -3,8 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%
 	String path = request.getContextPath();
-	String basePath = request.getScheme() + "://"
-			+ request.getServerName() + ":" + request.getServerPort()
+	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
 <!doctype html>
@@ -59,8 +58,8 @@
 			req = new ActiveXObject("Microsoft.XMLHTTP");
 		}
 		if (req) {
-			var url = "http://localhost:8080/moyifan/user/" + email
-					+ "/registerUserName";
+			var url = "http://localhost:8080/mybbs/sendEmailServlet?bj=0&email"
+					+ email;
 			req.open("post", url, true);
 			req.setRequestHeader("Content-Type",
 					"application/x-www-form-urlencoded");
@@ -76,8 +75,8 @@
 			req = new ActiveXObject("Microsoft.XMLHTTP");
 		}
 		if (req) {
-			var url = "http://localhost:8080/moyifan/user/" + email
-					+ "/sendCode";
+			var url = "http://localhost:8080/mybbs/sendEmailServlet?bj=1&email="
+					+ email;
 			req.open("post", url, true);
 			req.setRequestHeader("Content-Type",
 					"application/x-www-form-urlencoded");
@@ -156,14 +155,15 @@
 							</div>
 						</div>
 						<div class="form-bottom">
-							<form action="<%=basePath%>user/findPassword" method="post"
+							<form action="<%=basePath%>findUserServlet" method="post"
 								class="login-form">
 								<input type="hidden" id="sure" name="surecode" value="${code}" />
 								<div class="form-group">
-									<label class="sr-only" for="form-username">Username</label> <input
-										type="text" name="email" placeholder="E-mail..."
+									<label class="sr-only" for="form-username">E-mail</label> <input
+										type="email" name="email" placeholder="   E-mail..."
 										class="form-username form-control" id="form-username"
-										id="email" onblur="username(this.value)">
+										style="height: 50px" id="email" onblur="username(this.value)"
+										value="${user.email}">
 								</div>
 								<div class="form-group">
 									<label class="sr-only" for="form-password">Password</label> <input
