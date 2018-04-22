@@ -17,6 +17,18 @@
 	<div class="col-lg-3 col-md-3 w_main_right">
 		<div class="panel panel-default">
 			<div class="panel-heading">
+				<h3 class="panel-title">全部区域</h3>
+			</div>
+			<div class="panel-body">
+				<div class="labelList">
+				
+						<a class="label label-default" href=""></a>
+				
+				</div>
+			</div>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-heading">
 				<h3 class="panel-title">全部板块</h3>
 			</div>
 			<div class="panel-body">
@@ -27,7 +39,6 @@
 				</div>
 			</div>
 		</div>
-
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<h3 class="panel-title">随机推荐</h3>
