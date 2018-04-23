@@ -16,13 +16,10 @@
 				<div class="col-lg-9 col-md-9 w_main_left">
 
 					<%@ include file="../head/left.jsp"%>
-					<div class="panel-heading">
-								<h3 class="panel-title">${titleName}</h3>
-					</div>
 
 					<div class="panel panel-default">
 						<div class="panel-heading">
-							<h3 class="panel-title">${plate.name}${title}</h3>
+							<h3 class="panel-title">${titleName}</h3>
 						</div>
 
 						<div class="panel-body">
