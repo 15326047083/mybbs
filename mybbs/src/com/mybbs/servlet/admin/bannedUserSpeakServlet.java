@@ -39,7 +39,7 @@ public class bannedUserSpeakServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		// response.getWriter().append("Served at: ").append(request.getContextPath());
 		String time = request.getParameter("time");
-		System.out.println(time);
+	//	System.out.println(time);
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		
 		try {
@@ -47,14 +47,18 @@ public class bannedUserSpeakServlet extends HttpServlet {
 			long ts = date.getTime();
 			CommonService<User> commonService = new CommonServiceImpl<User>();
 			User user = new User();
+			//获取user ID 并赋值
+			user.setId(Integer.parseInt(request.getParameter("id")));
+			
 			user = commonService.getById(user, SQLUtil.getByIdFirstSql,SQLUtil.getByIdSecondSql);
 			
 			user.setTime(ts);
 			
 			commonService.saveOrUpdate(user, SQLUtil.updateUser);
 			commonService.closeDB();
-			request.setAttribute("user", user);
-			request.getRequestDispatcher("WEB-INF/pages/admin/user/getUserList.jsp").forward(request, response);
+		//	request.setAttribute("user", user);
+		//	request.getRequestDispatcher("WEB-INF/pages/admin/user/getUserList.jsp?nowPages=1").forward(request, response);
+			response.sendRedirect("getUserListServlet?nowPages=1");
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
