@@ -26,25 +26,28 @@ ${script }
 
 							<!--文章列表开始-->
 							<div class="contentList">
-							<%-- 	<c:forEach var="post" items="${list}" varStatus="loop">
+						<c:forEach var="post" items="${commonPages.commonList}"
+									varStatus="loop">
 									<div class="panel panel-default">
 										<div class="panel-body">
 
 											<h4>
-												<a class="title"
-													href="<%=basePath%>post/${post.id}/toPost/${user.userId}">${post.title}</a>
+												<a class="title" href="<%=basePath%>getPostServlet?postId=${post.id}">${post.title}</a>
+												<c:if test="${bj==1}">
+													<a href="" style="float: right">删除帖子</a>
+												</c:if>
 											</h4>
-											<p class="overView">${post.content}</p>
-											<p>
-												<span class="count"><i
-													class="glyphicon glyphicon-user"></i><a href="#">${userList[loop.count-1].email}</a></span><span
+											<p class="overView">
+											<span class="count"><i
+													class="glyphicon glyphicon-user"></i>${post.userName} </span>
+													<span
 													class="count"><i class="glyphicon glyphicon-time"></i>${post.time}</span>
-											</p>
+													<a style="color:#FF6347;"> ${post.plateName}</a></p>
+
 
 										</div>
 									</div>
-								</c:forEach> --%>
-
+								</c:forEach>
 							</div>
 							<!--文章列表结束-->
 

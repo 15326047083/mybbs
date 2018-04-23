@@ -16,6 +16,9 @@
 				<div class="col-lg-9 col-md-9 w_main_left">
 
 					<%@ include file="../head/left.jsp"%>
+					<div class="panel-heading">
+								<h3 class="panel-title">${titleName}</h3>
+					</div>
 
 					<div class="panel panel-default">
 						<div class="panel-heading">
@@ -32,24 +35,25 @@
 										<div class="panel-body">
 
 											<h4>
-												<a class="title" href="<%=basePath%>getPostServlet?postId=${post.id}">${post.title}</a>
+												<a class="title"
+													href="<%=basePath%>getPostServlet?postId=${post.id}">${post.title}</a>
 												<c:if test="${bj==1}">
 													<a href="" style="float: right">删除帖子</a>
 												</c:if>
 											</h4>
 											<p class="overView">
-											<span class="count"><i
-													class="glyphicon glyphicon-user"></i>${post.userName} </span>
-													<span
+												<span class="count"><i
+													class="glyphicon glyphicon-user"></i>${post.userName} </span> <span
 													class="count"><i class="glyphicon glyphicon-time"></i>${post.time}</span>
-													<a style="color:#FF6347;"> ${post.plateName}</a></p>
+												<a style="color: #FF6347;"> ${post.plateName}</a>
+											</p>
 
 
 										</div>
 									</div>
 								</c:forEach>
 								<div align="right">
-									<a class="span6 offset2 bm30" 
+									<a class="span6 offset2 bm30"
 										href="<%=basePath%>getPostListServlet?nowPages=1">首页</a>
 									<c:choose>
 										<c:when test="${nowPages!=1 }">

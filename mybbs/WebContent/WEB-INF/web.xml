@@ -339,4 +339,14 @@
     <servlet-name>updateUserServlet</servlet-name>
     <url-pattern>/updateUserServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>myPostServlet</display-name>
+    <servlet-name>myPostServlet</servlet-name>
+    <servlet-class>com.mybbs.servlet.post.myPostServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>myPostServlet</servlet-name>
+    <url-pattern>/myPostServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

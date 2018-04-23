@@ -1,4 +1,4 @@
-package com.mybbs.servlet;
+package com.mybbs.servlet.post;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -14,15 +14,15 @@ import com.mybbs.vo.CommonPages;
 import com.mybbs.vo.vUserAndPost;
 
 /**
- * Servlet implementation class loginServlet
+ * Servlet implementation class myPostServlet
  */
-public class loginServlet extends HttpServlet {
+public class myPostServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public loginServlet() {
+    public myPostServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -36,26 +36,27 @@ public class loginServlet extends HttpServlet {
 		User user = new User();
 		user = (User) session.getAttribute("userSession");
 		
+		int nowPages=Integer.parseInt(request.getParameter("nowPages"));
 		CommonService<vUserAndPost> commonService =new CommonServiceImpl<vUserAndPost>();
 		vUserAndPost v =new vUserAndPost();
-		String sql="select post.id id,post.userId,user.name userName,post.plateId,plate.name plateName,title,post.info info,post.time time,photoNum from user,post,plate where user.id=post.userId and plate.id=post.plateId";
+		String sql="select post.id id,post.userId,user.name userName,post.plateId,plate.name plateName,title,post.info info,post.time time,photoNum from user,post,plate where user.id=post.userId and plate.id=post.plateId and user.id="+user.getId();
 		int count=commonService.count(sql, v);
 		int allPages=count/20;
 		if(count%20!=0)
 			allPages++;
 		CommonPages<vUserAndPost> commonPages=new CommonPages<vUserAndPost>();
-		commonPages.setCommonList(commonService.getAllList(v,sql," order by post.id desc limit ?,10", 1));
+		commonPages.setCommonList(commonService.getAllList(v,sql," order by post.id desc limit ?,20", nowPages));
 		commonPages.setCount(count);
-		commonPages.setPages(1);
+		commonPages.setPages(nowPages);
 		
 		commonPages.setTotalpages(allPages);
 		commonPages.setLimit(1);
 		commonService.closeDB();
 		//System.out.println(commonPages.toString());
 		request.setAttribute("commonPages", commonPages);
-		request.setAttribute("nowPages", 1);
-		request.getRequestDispatcher("WEB-INF/pages/index/index.jsp").forward(request, response);
-		
+		request.setAttribute("nowPages", nowPages);
+		request.setAttribute("titleName", "我的帖子");
+		request.getRequestDispatcher("WEB-INF/pages/post/getPostList.jsp").forward(request, response);
 		
 	}
 

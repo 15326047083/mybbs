@@ -44,7 +44,7 @@ public class getPostListServlet extends HttpServlet {
 		if(count%20!=0)
 			allPages++;
 		CommonPages<vUserAndPost> commonPages=new CommonPages<vUserAndPost>();
-		commonPages.setCommonList(commonService.getAllList(v,sql," limit ?,20", nowPages));
+		commonPages.setCommonList(commonService.getAllList(v,sql," order by post.id desc limit ?,20", nowPages));
 		commonPages.setCount(count);
 		commonPages.setPages(nowPages);
 		
@@ -54,6 +54,7 @@ public class getPostListServlet extends HttpServlet {
 		//System.out.println(commonPages.toString());
 		request.setAttribute("commonPages", commonPages);
 		request.setAttribute("nowPages", nowPages);
+		request.setAttribute("titleName", "全部帖子");
 		request.getRequestDispatcher("WEB-INF/pages/post/getPostList.jsp").forward(request, response);
 	}
 
