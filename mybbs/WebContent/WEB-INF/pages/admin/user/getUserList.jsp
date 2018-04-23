@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" import="java.util.Date" import="com.mybbs.po.User"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
@@ -147,15 +148,16 @@ tr.over td {
 											<c:when test="${user.time==0 }">
 												<form action="bannedUserSpeakServlet?id=${user.id}"
 													method="post">
-													<input type="date" name="time">&nbsp;&nbsp;&nbsp; <input
-														type="submit" value="禁言">
+													<input type="date" name="time">&nbsp;&nbsp;&nbsp;
+												<input class="sel_btn ch_cls" type="submit" value="禁言">
 												</form>
 											</c:when>
 											<c:otherwise>	
 											
 												<form action="bannedUserSpeakServlet?id=${user.id}&time=0" method="post">
-												${user.time}&nbsp;&nbsp;&nbsp;
-												<input type="submit" value="解除禁言">
+												&nbsp;&nbsp;&nbsp;
+												
+												 禁言中&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input class="sel_btn ch_cls" type="submit" value="解除禁言">
 												</form>
 											</c:otherwise>
 										</c:choose></td>
