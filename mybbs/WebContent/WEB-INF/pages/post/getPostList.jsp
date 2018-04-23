@@ -32,12 +32,17 @@
 										<div class="panel-body">
 
 											<h4>
-												<a class="title" href="<%=basePath%>getPost">${post.title}</a>
+												<a class="title" href="<%=basePath%>getPostServlet?postId=${post.id}">${post.title}</a>
 												<c:if test="${bj==1}">
 													<a href="" style="float: right">删除帖子</a>
 												</c:if>
 											</h4>
-											<p class="overView">${post.time}</p>
+											<p class="overView">
+											<span class="count"><i
+													class="glyphicon glyphicon-user"></i>${post.userName} </span>
+													<span
+													class="count"><i class="glyphicon glyphicon-time"></i>${post.time}</span>
+													<a style="color:#FF6347;"> ${post.plateName}</a></p>
 
 
 										</div>
