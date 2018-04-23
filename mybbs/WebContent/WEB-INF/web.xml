@@ -349,4 +349,14 @@
     <servlet-name>myPostServlet</servlet-name>
     <url-pattern>/myPostServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>getPostServlet</display-name>
+    <servlet-name>getPostServlet</servlet-name>
+    <servlet-class>com.mybbs.servlet.post.getPostServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>getPostServlet</servlet-name>
+    <url-pattern>/getPostServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

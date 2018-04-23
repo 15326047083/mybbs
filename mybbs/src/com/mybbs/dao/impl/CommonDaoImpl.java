@@ -100,8 +100,14 @@ public class CommonDaoImpl<T> implements CommonDao<T> {
 		try {
 			Class<?> clazz = Class.forName(common.getClass().getName());
 			Field[] fields = clazz.getDeclaredFields();// 根据Class对象获得属性 私有的也可以获得
-			preparedStatement = connection.prepareStatement(firstSql + common.getClass().getSimpleName() + secondSql);
-			int id = 0;
+			
+			String className=common.getClass().getSimpleName();
+			if("v".equals(className.substring(0,1))) {
+				preparedStatement = connection.prepareStatement(firstSql + secondSql);
+			}else {
+				preparedStatement = connection.prepareStatement(firstSql + common.getClass().getSimpleName() + secondSql);
+			}
+				int id = 0;
 			for (Field f : fields) {
 				f.setAccessible(true);
 				String name = f.getName();
