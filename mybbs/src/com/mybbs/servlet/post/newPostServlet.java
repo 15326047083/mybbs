@@ -58,7 +58,10 @@ public class newPostServlet extends HttpServlet {
 		post.setPhotonum(-1);
 		post.setFlag(0);
 		CommonService<Post> commonService = new CommonServiceImpl<Post>();
-		commonService.saveOrUpdate(post, SQLUtil.newPost);
+		String sql="update plate set postNum=postNum+1 where id ="+plateId;
+		commonService.saveOrUpdate(post, SQLUtil.newPost,sql);
+		commonService.closeDB();
+		response.sendRedirect("myPostServlet?nowPages=1");
 	}
 
 	/**

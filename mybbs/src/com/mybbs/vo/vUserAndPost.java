@@ -8,6 +8,7 @@ public class vUserAndPost {
 	private int plateId;
 	private String title;
 	private String info;
+	private int flag;
 	private String time;
 
 	private int photoNum;// 照片数量 默认-1；
@@ -18,26 +19,38 @@ public class vUserAndPost {
 
 	@Override
 	public String toString() {
-		return "vUserAndPost [id=" + id + ", userId=" + userId + ", userName=" + userName + ", plateId=" + plateId
-				+ ", title=" + title + ", info=" + info + ", time=" + time + ", photoNum=" + photoNum + "]";
+		return "vUserAndPost [id=" + id + ", userId=" + userId + ", userName=" + userName + ", plateName=" + plateName
+				+ ", plateId=" + plateId + ", title=" + title + ", info=" + info + ", flag=" + flag + ", time=" + time
+				+ ", photoNum=" + photoNum + "]";
 	}
 
-	public vUserAndPost(int id, int userId, String userName, int plateId, String title, String info, String time,
-			int photoNum,String plateName) {
+
+
+	public vUserAndPost(int id, int userId, String userName, String plateName, int plateId, String title, String info,
+			int flag, String time, int photoNum) {
 		super();
 		this.id = id;
 		this.userId = userId;
 		this.userName = userName;
+		this.plateName = plateName;
 		this.plateId = plateId;
 		this.title = title;
 		this.info = info;
+		this.flag = flag;
 		this.time = time;
 		this.photoNum = photoNum;
-		this.plateName=plateName;
 	}
 
 	public int getId() {
 		return id;
+	}
+
+	public int getFlag() {
+		return flag;
+	}
+
+	public void setFlag(int flag) {
+		this.flag = flag;
 	}
 
 	public void setId(int id) {

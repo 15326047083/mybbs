@@ -7,14 +7,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-import com.mybbs.po.Post;
-
 import com.mybbs.service.CommonService;
 import com.mybbs.service.impl.CommonServiceImpl;
 import com.mybbs.vo.CommonPages;
 import com.mybbs.vo.vUserAndPost;
 
-import util.SQLUtil;
 
 /**
  * Servlet implementation class getPostListServlet
@@ -38,7 +35,7 @@ public class getPostListServlet extends HttpServlet {
 		int nowPages=Integer.parseInt(request.getParameter("nowPages"));
 		CommonService<vUserAndPost> commonService =new CommonServiceImpl<vUserAndPost>();
 		vUserAndPost v =new vUserAndPost();
-		String sql="select post.id id,post.userId,user.name userName,post.plateId,plate.name plateName,title,post.info info,post.time time,photoNum from user,post,plate where user.id=post.userId and plate.id=post.plateId and flag=0";
+		String sql="select post.id id,post.userId,user.name userName,post.plateId,post.flag flag,plate.name plateName,title,post.info info,post.time time,photoNum from user,post,plate where user.id=post.userId and plate.id=post.plateId and flag=0";
 		int count=commonService.count(sql, v);
 		int allPages=count/20;
 		if(count%20!=0)
@@ -55,6 +52,7 @@ public class getPostListServlet extends HttpServlet {
 		request.setAttribute("commonPages", commonPages);
 		request.setAttribute("nowPages", nowPages);
 		request.setAttribute("titleName", "全部帖子");
+		
 		request.getRequestDispatcher("WEB-INF/pages/post/getPostList.jsp").forward(request, response);
 	}
 

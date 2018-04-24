@@ -15,15 +15,22 @@
 				<div class="col-lg-9 col-md-9 w_main_left">
 					<div class="panel panel-default">
 						<div class="panel-heading">
-							<h3 class="panel-title">${post.title}(作者~~~${post.userName})</h3>
+							<h3>${post.title}</h3>
+							<hr>
+							<p class="overView">
+								<span class="count"><i class="glyphicon glyphicon-user"></i>${post.userName}
+								</span> <span class="count"><i class="glyphicon glyphicon-time"></i>${post.time}</span>
+								<a style="color: #FF6347;"> ${post.plateName}</a>
+							</p>
 						</div>
 
 						<div class="panel-body">
 
+
 							<!--文章列表开始-->
 							<div style="float: left;">${post.info}</div>
 
-						<%-- 	<c:if test="${post.photoNum>=0}">
+							<%-- 	<c:if test="${post.photoNum>=0}">
 								<c:forEach var="x" begin="0" end="${post.photoNum}" step="1">
 									<br />
 									<br />
@@ -44,7 +51,7 @@
 							<div class="panel-heading">
 								<h3 class="panel-title">发表评论</h3>
 							</div>
-						<%-- 	<div class="panel-body">
+							<%-- 	<div class="panel-body">
 								<input name="postId" value="${post.id}" type="hidden" /> <input
 									name="userId" value="${post.userId}" type="hidden" />
 								<textarea rows="6" name="info"
@@ -114,7 +121,9 @@
 			var input = document.createElement('textarea'); //创建input节点
 			input.setAttribute('rows', '6'); //定义类型是文本输
 			input.setAttribute('name', 'info'); //定义类型是文本输入
-			input.setAttribute('style', 'float: left; height: 30px; margin: 0px 0px 11px; width: 536px; height: 132px;'); //定义类型是文本输
+			input
+					.setAttribute('style',
+							'float: left; height: 30px; margin: 0px 0px 11px; width: 536px; height: 132px;'); //定义类型是文本输
 			document.getElementById(id).appendChild(input); //添加到form中显示
 			var input = document.createElement('input'); //创建input节点
 			input.setAttribute('type', 'submit'); //定义类型是文本输

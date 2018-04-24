@@ -39,7 +39,7 @@ public class myPostServlet extends HttpServlet {
 		int nowPages=Integer.parseInt(request.getParameter("nowPages"));
 		CommonService<vUserAndPost> commonService =new CommonServiceImpl<vUserAndPost>();
 		vUserAndPost v =new vUserAndPost();
-		String sql="select post.id id,post.userId,user.name userName,post.plateId,plate.name plateName,title,post.info info,post.time time,photoNum from user,post,plate where user.id=post.userId and plate.id=post.plateId and user.id="+user.getId();
+		String sql="select post.id id,post.userId,user.name userName,post.plateId,plate.name plateName,title,post.info info,post.flag flag,post.time time,photoNum from user,post,plate where user.id=post.userId and plate.id=post.plateId and user.id="+user.getId();
 		int count=commonService.count(sql, v);
 		int allPages=count/20;
 		if(count%20!=0)
@@ -53,6 +53,14 @@ public class myPostServlet extends HttpServlet {
 		commonPages.setLimit(1);
 		commonService.closeDB();
 		//System.out.println(commonPages.toString());
+		//判断可否删除
+		if("ok".equals(request.getParameter("script"))) {
+			String script="	<script type=\"text/javascript\">\r\n" + 
+					"		alert(\"删除成功！！！\");\r\n" + 
+					"	</script>";
+			request.setAttribute("script", script);
+		}
+		
 		request.setAttribute("commonPages", commonPages);
 		request.setAttribute("nowPages", nowPages);
 		request.setAttribute("titleName", "我的帖子");

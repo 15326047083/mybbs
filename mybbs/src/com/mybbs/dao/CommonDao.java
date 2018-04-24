@@ -5,6 +5,7 @@ import java.util.List;
 public interface CommonDao<T> {
 
 	void saveOrUpdate(T common, String sql);
+	void saveOrUpdate(T common, String sql,String secondSql);
 
 	void delete(int id, String sql);
 

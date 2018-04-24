@@ -4,8 +4,9 @@ import java.util.List;
 
 public interface CommonService<T> {
 
+	
+	void saveOrUpdate(T common, String sql,String secondSql);
 	void saveOrUpdate(T common, String sql);
-
 	void delete(int id, String sql);
 
 	T getById(T common, String firstSql, String secondSql);

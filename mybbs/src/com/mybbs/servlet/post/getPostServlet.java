@@ -38,7 +38,7 @@ public class getPostServlet extends HttpServlet {
 		CommonService<vUserAndPost> commonService =new CommonServiceImpl<vUserAndPost>();
 		vUserAndPost v =new vUserAndPost();
 		v.setId(postId);
-		String sql="select post.id id,post.userId,user.name userName,post.plateId,plate.name plateName,title,post.info info,post.time time,photoNum from user,post,plate where user.id=post.userId and plate.id=post.plateId";
+		String sql="select post.id id,post.userId,user.name userName,post.plateId,plate.name plateName,title,post.info info,post.time time,photoNum,post.flag flag from user,post,plate where user.id=post.userId and plate.id=post.plateId";
 		v=commonService.getById(v, sql, " and post.id=?");
 		commonService.closeDB();
 		request.setAttribute("post", v);

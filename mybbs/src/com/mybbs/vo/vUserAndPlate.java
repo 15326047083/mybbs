@@ -16,16 +16,6 @@ public class vUserAndPlate {
 	}
 	
 
-	public String getAreaName() {
-		return areaName;
-	}
-
-
-	public void setAreaName(String areaName) {
-		this.areaName = areaName;
-	}
-
-
 	public vUserAndPlate(int userId, String userName, String email, int plateId, String plateName, String info,
 			int areaId, int postNum, String areaName) {
 		super();
@@ -40,6 +30,15 @@ public class vUserAndPlate {
 		this.areaName = areaName;
 	}
 
+
+	public String getAreaName() {
+		return areaName;
+	}
+
+
+	public void setAreaName(String areaName) {
+		this.areaName = areaName;
+	}
 
 
 

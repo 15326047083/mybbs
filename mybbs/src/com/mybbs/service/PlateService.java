@@ -6,4 +6,5 @@ import com.mybbs.vo.vUserAndPlate;
 
 public interface PlateService {
 	public List<vUserAndPlate> getAllList();
+	public void lessPostNum (int id);
 }

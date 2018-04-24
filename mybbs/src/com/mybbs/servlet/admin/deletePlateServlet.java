@@ -7,7 +7,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.mybbs.po.Plate;
+import com.mybbs.service.AreaService;
 import com.mybbs.service.CommonService;
+import com.mybbs.service.impl.AreaServiceImpl;
 import com.mybbs.service.impl.CommonServiceImpl;
 
 import util.SQLUtil;
@@ -36,10 +38,16 @@ public class deletePlateServlet extends HttpServlet {
 		int plateId = Integer.parseInt(request.getParameter("id"));
 		int postNum = Integer.parseInt(request.getParameter("postNum"));
 		CommonService<Plate> commonService = new CommonServiceImpl<Plate>();
+		Plate plate =new Plate();
+		plate.setId(plateId);
+		plate=commonService.getById(plate, SQLUtil.getByIdFirstSql, SQLUtil.getByIdSecondSql);
+		int areaId=plate.getAreaId();
 		String script = null;
+		AreaService areaService =new AreaServiceImpl();
 		// 可删
 		if (postNum <= 0) {
 			commonService.delete(plateId, SQLUtil.deletePlate);
+			areaService.lessPlateNum(areaId);
 			script = "ok";
 		} else {
 			// 不可删

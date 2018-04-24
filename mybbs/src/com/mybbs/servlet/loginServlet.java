@@ -38,7 +38,7 @@ public class loginServlet extends HttpServlet {
 		
 		CommonService<vUserAndPost> commonService =new CommonServiceImpl<vUserAndPost>();
 		vUserAndPost v =new vUserAndPost();
-		String sql="select post.id id,post.userId,user.name userName,post.plateId,plate.name plateName,title,post.info info,post.time time,photoNum from user,post,plate where user.id=post.userId and plate.id=post.plateId and flag=0";
+		String sql="select post.id id,post.userId,user.name userName,post.plateId,post.flag flag,plate.name plateName,title,post.info info,post.time time,photoNum from user,post,plate where user.id=post.userId and plate.id=post.plateId and flag=0";
 		int count=commonService.count(sql, v);
 		int allPages=count/20;
 		if(count%20!=0)

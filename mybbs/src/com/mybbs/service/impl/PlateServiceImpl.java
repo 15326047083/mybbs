@@ -19,4 +19,11 @@ public class PlateServiceImpl implements PlateService{
 		return list;
 	}
 
+	@Override
+	public void lessPostNum(int id) {
+		// TODO Auto-generated method stub
+		PlateDao plateDao =new PlateDaoImpl();
+		plateDao.lessPostNum(id);
+	}
+
 }

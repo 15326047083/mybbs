@@ -57,4 +57,10 @@ public class CommonServiceImpl<T> implements CommonService<T> {
 		return commonDao.queryAll(common, firstSql);
 	}
 
+	@Override
+	public void saveOrUpdate(T common, String sql, String secondSql) {
+		// TODO Auto-generated method stub
+		commonDao.saveOrUpdate(common, sql,secondSql);
+	}
+
 }

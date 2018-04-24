@@ -9,4 +9,8 @@ public interface PlateDao {
 	 * 查找全部列表 以及版主信息
 	 */
 	public List<vUserAndPlate> getAllList();
+	/**
+	 * PostNum -1
+	 */
+	public void lessPostNum (int id);
 }

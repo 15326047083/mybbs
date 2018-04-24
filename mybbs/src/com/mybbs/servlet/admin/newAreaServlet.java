@@ -36,14 +36,15 @@ public class newAreaServlet extends HttpServlet {
 		
 		Area area =new Area();
 		CommonService<Area> commonService= new CommonServiceImpl<Area>();
+		area.setName(name);
+		area.setInfo(info);
+		area.setPlateNum(0);
+		commonService.saveOrUpdate(area, SQLUtil.newArea);//ceshi
 		int count=commonService.count(SQLUtil.firstCountSql, area);
 		int allPages=count/20;
 		if(count%20!=0)
 			allPages++;		
-		area.setName(name);
-		area.setInfo(info);
-		area.setPlateNum(0);
-		commonService.saveOrUpdate(area, SQLUtil.newArea);
+		
 		commonService.closeDB();
 		response.sendRedirect("getAreaListServlet?nowPages="+allPages);
 	}

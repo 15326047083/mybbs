@@ -73,5 +73,18 @@ public class PlateDaoImpl implements PlateDao{
 		}
 		return list;
 	}
+	@Override
+	public void lessPostNum(int id) {
+		// TODO Auto-generated method stub
+		try {
+			preparedStatement=connection.prepareStatement("update plate set postNum=postNum-1 where id=?");
+			preparedStatement.setInt(1, id);
+			preparedStatement.execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
 
 }

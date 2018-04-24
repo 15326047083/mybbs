@@ -38,17 +38,19 @@ public class newPlateServlet extends HttpServlet {
 		int userId =Integer.parseInt(request.getParameter("userId"));
 		int postNum =Integer.parseInt(request.getParameter("postNum"));
 		Plate plate =new Plate();
+		
 		CommonService<Plate> commonService= new CommonServiceImpl<Plate>();
-		int count=commonService.count(SQLUtil.firstCountSql, plate);
-		int allPages=count/20;
-		if(count%20!=0)
-			allPages++;		
 		plate.setAreaId(areaId);
 		plate.setInfo(info);
 		plate.setName(name);
 		plate.setpostNum(postNum);
 		plate.setUserId(userId);
 		commonService.saveOrUpdate(plate, SQLUtil.newPlate);
+		int count=commonService.count(SQLUtil.firstCountSql, plate);
+		int allPages=count/20;
+		if(count%20!=0)
+			allPages++;		
+		
 		//areaNum ++
 		CommonService<Area> acommonService= new CommonServiceImpl<Area>();
 		Area area = new Area();
