@@ -41,14 +41,15 @@ public class LeiyuanTest {
 		// commonDao.closeDB();
 
 		CommonDao<Plate> commonDao = new CommonDaoImpl<Plate>();
-		for (int i = 0; i < 52; i++) {
+		for (int i = 3; i < 52; i++) {
 			Plate u = new Plate();
+			u.setId(i);
 			u.setName("雷园" + i);
 			u.setAreaId(1);
 			u.setInfo(i + "");
-			u.setUserId(i);
+			u.setUserId(1);
 			u.setpostNum(-1);
-			commonDao.saveOrUpdate(u, SQLUtil.newPlate);
+			commonDao.saveOrUpdate(u, SQLUtil.updatePlate);
 		}
 		commonDao.closeDB();
 	}

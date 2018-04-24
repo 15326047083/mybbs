@@ -153,7 +153,7 @@ ${script }
 									<td>${userAndPlate.email }</td>
 									<td>${userAndPlate.postNum }</td>
 									<td style="border-right: none"><a
-										href="<%=basePath %>adminPostListServlet?plateId=${userAndPlate.plateId}">查看帖子</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										href="<%=basePath %>adminPostListServlet?plateId=${userAndPlate.plateId}&nowPages=1">查看帖子</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										<a href="<%=basePath %>toPlateServlet?id=${userAndPlate.plateId}&flag=update">修改</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										<a href="<%=basePath %>deletePlateServlet?id=${userAndPlate.plateId}&postNum=${userAndPlate.postNum}">删除</a></td>
 								</tr>

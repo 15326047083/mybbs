@@ -164,7 +164,7 @@ tr.over td {
 												<form action="bannedUserSpeakServlet?id=${user.id}&time=0" method="post">
 												&nbsp;&nbsp;&nbsp;
 												
-												 <td align="center">禁言中</td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+												 <td style="color: red" align="center">禁言中</td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 												 <td align="center"><input class="sel_btn ch_cls" type="submit" value="解除禁言"></td>
 												</form>
 											</c:otherwise>

@@ -51,7 +51,16 @@ public class loginServlet extends HttpServlet {
 		commonPages.setTotalpages(allPages);
 		commonPages.setLimit(1);
 		commonService.closeDB();
-		//System.out.println(commonPages.toString());
+	
+		if("1".equals(request.getParameter("bj"))) {
+		
+			String sd=request.getParameter("sd");
+			String script="<script type=\"text/javascript\">\r\n" + 
+					"	alert(\"您已被禁言到"+sd+"，请联系管理员！！\")\r\n" + 
+					"</script>";
+			request.setAttribute("script",script);
+		}
+		
 		request.setAttribute("commonPages", commonPages);
 		request.setAttribute("nowPages", 1);
 		request.getRequestDispatcher("WEB-INF/pages/index/index.jsp").forward(request, response);

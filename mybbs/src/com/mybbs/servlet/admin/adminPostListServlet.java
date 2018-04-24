@@ -6,6 +6,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.mybbs.service.CommonService;
+import com.mybbs.service.impl.CommonServiceImpl;
+import com.mybbs.vo.CommonPages;
+import com.mybbs.vo.vUserAndPost;
+
 /**
  * Servlet implementation class adminPostListServlet
  */
@@ -25,7 +30,28 @@ public class adminPostListServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		int plateId=Integer.parseInt(request.getParameter("plateId"));
+		int nowPages=Integer.parseInt(request.getParameter("nowPages"));
+		CommonService<vUserAndPost> commonService =new CommonServiceImpl<vUserAndPost>();
+		
+		vUserAndPost v =new vUserAndPost();
+		String sql="select post.id id,post.userId,user.name userName,post.plateId,post.flag flag,plate.name plateName,title,post.info info,post.time time,photoNum from user,post,plate where user.id=post.userId and plate.id=post.plateId and post.plateId="+plateId;
+		int count=commonService.count(sql, v);
+		int allPages=count/20;
+		if(count%20!=0)
+			allPages++;
+		CommonPages<vUserAndPost> commonPages=new CommonPages<vUserAndPost>();
+		commonPages.setCommonList(commonService.getAllList(v,sql," order by post.id desc limit ?,20", nowPages));
+		commonPages.setCount(count);
+		commonPages.setPages(nowPages);
+		
+		commonPages.setTotalpages(allPages);
+		commonPages.setLimit(1);
+		commonService.closeDB();
+		//System.out.println(commonPages.toString());
+		request.setAttribute("commonPages", commonPages);
+		request.setAttribute("nowPages", nowPages);
+		request.getRequestDispatcher("WEB-INF/pages/admin/post/getPostList.jsp").forward(request, response);
 	}
 
 	/**

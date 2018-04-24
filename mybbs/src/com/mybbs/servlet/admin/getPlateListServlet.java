@@ -43,7 +43,7 @@ public class getPlateListServlet extends HttpServlet {
 			aId= " where areaId="+request.getParameter("areaId");
 			request.setAttribute("flag", 0);
 			String id=request.getParameter("areaId");
-			request.setAttribute("areaId", "&areaId="+id);
+			request.setAttribute("areaId", "&areaId="+id); //判断areaId
 		}
 		vUserAndPlate v= new vUserAndPlate();
 		int count=commonService.count("select count(*) from plate"+aId, v);
