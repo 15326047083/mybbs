@@ -141,7 +141,14 @@ tr.over td {
 								<tr>
 									<td>${user.name}</td>
 									<td>${user.email}</td>
-									<td>${user.sex}</td>
+									<c:choose>
+										<c:when test="${user.sex==0 }">
+												<td>男</td>		
+										</c:when>
+										<c:otherwise>
+											<td>女</td>
+										</c:otherwise>
+									</c:choose>
 									<td>${user.age }</td>
 									<td>${user.birthday}</td>
 									<c:choose>
