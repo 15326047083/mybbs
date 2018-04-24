@@ -35,7 +35,8 @@
 						<hr>
 
 					</article>
-					<form class="row" action="<%=basePath%>updateUserServlet?${userSession.id}"	method="post">
+					<form class="row" action="<%=basePath%>updateUserServlet"
+						method="post">
 						<!--   图片  enctype="multipart/form-data" -->
 
 						<div class="span2">
@@ -43,35 +44,35 @@
 						</div>
 						<div class="span6">
 							<input type="text" name="name" class="required input-xlarge"
-								value="${user.name }">
+								value="${userSession.name }">
 						</div>
 						<div class="span2">
 							<label for="name">用户邮箱</label>
 						</div>
 						<div class="span6">
 							<input type="text" name="name" class="required input-xlarge"
-								value="${user.email }">
+								value="${userSession.email }">
 						</div>
 						<div class="span2">
 							<label for="name">用户性别</label>
 						</div>
 						<div class="span6">
 							<input type="text" name="name" class="required input-xlarge"
-								value="${user.sex }">
+								value="${userSession.sex }">
 						</div>
 						<div class="span2">
 							<label for="name">用户年龄</label>
 						</div>
 						<div class="span6">
 							<input type="text" name="name" class="required input-xlarge"
-								value="${user.age }">
+								value="${userSession.age }">
 						</div>
 						<div class="span2">
 							<label for="name">用户生日</label>
 						</div>
 						<div class="span6">
-							<input type="text" name="name" class="required input-xlarge"
-								value="${user.birthday }">
+							<input type="date" name="name" class="required input-xlarge"
+								value="${userSession.birthday }">
 						</div>
 
 						<div class="span6 offset2 bm30">
@@ -79,32 +80,29 @@
 								class="btn btn-inverse"> <img src="images/loading.gif"
 								id="contact-loader" alt="Loading...">
 						</div>
-
-
 					</form>
-					<!--左侧开始-->
-					<%@ include file="../head/right.jsp"%>
 				</div>
+				<!--左侧开始-->
+				<%@ include file="../head/right.jsp"%>
 			</div>
 		</div>
-	</div>	
-		<div class="w_foot">
-			<div class="w_foot_copyright">
-				Copyright &copy; 2017-2020, www.genban.org. All Rights Reserved. <span>|</span>
-				<a target="_blank" href="http://www.miitbeian.gov.cn/"
-					rel="nofollow">皖ICP备17002922号</a>
-			</div>
+	</div>
+	<div class="w_foot">
+		<div class="w_foot_copyright">
+			Copyright &copy; 2017-2020, www.genban.org. All Rights Reserved. <span>|</span>
+			<a target="_blank" href="http://www.miitbeian.gov.cn/" rel="nofollow">皖ICP备17002922号</a>
 		</div>
-		<script type="text/javascript">
-			function add() {
-				var input = document.createElement('input'); //创建input节点
-				input.setAttribute('type', 'file'); //定义类型是文本输
-				input.setAttribute('name', 'file'); //定义类型是文本输入
-				input.setAttribute('onchange', 'add()'); //定义类型是文本输入
-				document.getElementById('form').appendChild(input); //添加到form中显示
-				var br = document.createElement('br');
-				document.getElementById('form').appendChild(br);
-			}
-		</script>
+	</div>
+	<script type="text/javascript">
+		function add() {
+			var input = document.createElement('input'); //创建input节点
+			input.setAttribute('type', 'file'); //定义类型是文本输
+			input.setAttribute('name', 'file'); //定义类型是文本输入
+			input.setAttribute('onchange', 'add()'); //定义类型是文本输入
+			document.getElementById('form').appendChild(input); //添加到form中显示
+			var br = document.createElement('br');
+			document.getElementById('form').appendChild(br);
+		}
+	</script>
 </body>
 </html>

@@ -29,8 +29,8 @@ public class toUserServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		if ("new".equals(request.getParameter("flag"))) {
 			request.getRequestDispatcher("WEB-INF/pages/user/new.jsp").forward(request, response);
-		} else if ("uodate".equals(request.getParameter("flag"))) {
-
+		} else if ("update".equals(request.getParameter("flag"))) {
+			request.getRequestDispatcher("WEB-INF/pages/user/update.jsp").forward(request, response);
 		} else if ("find".equals(request.getParameter("flag"))) {
 			request.getRequestDispatcher("WEB-INF/pages/user/find.jsp").forward(request, response);
 		} else {
