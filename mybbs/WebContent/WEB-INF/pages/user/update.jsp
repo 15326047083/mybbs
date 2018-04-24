@@ -51,15 +51,17 @@
 							<label for="name">用户邮箱</label>
 						</div>
 						<div class="span6">
-							<input type="text" name="emil" class="required input-xlarge"
+							<input type="text" name="email" class="required input-xlarge"
 								value="${userSession.email }">
 						</div>
 						<div class="span2">
 							<label for="name">用户性别</label>
 						</div>
 						<div class="span6">
-							<input type="text" name="sex" class="required input-xlarge"
-								value="${userSession.sex }">
+							<input type="radio" name="sex" class="required input-xlarge"
+								value="0">男
+								<input type="radio" name="sex" class="required input-xlarge"
+								value="1">女
 						</div>
 						<div class="span2">
 							<label for="name">用户年龄</label>

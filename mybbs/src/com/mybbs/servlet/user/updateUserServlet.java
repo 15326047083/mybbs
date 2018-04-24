@@ -41,11 +41,13 @@ public class updateUserServlet extends HttpServlet {
 		user = (User) session.getAttribute("userSession");
 		int id = Integer.parseInt(request.getParameter("id"));
 		String name = new String(request.getParameter("name").getBytes("iso-8859-1"), "utf-8");
+		String email= request.getParameter("email");
 		int sex = Integer.parseInt(request.getParameter("sex"));
 		int age = Integer.parseInt(request.getParameter("age"));
 		String birthday = new String(request.getParameter("birthday").getBytes("iso-8859-1"), "utf-8");
 		user.setId(id);
 		user.setName(name);
+		user.setEmail(email);
 		user.setSex(sex);
 		user.setAge(age);
 		user.setBirthday(birthday);
