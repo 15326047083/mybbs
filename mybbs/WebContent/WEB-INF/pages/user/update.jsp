@@ -31,75 +31,80 @@
 			<div class="row w_main_row">
 				<div class="col-lg-9 col-md-9 w_main_left">
 					<article class="type-page hentry clearfix">
-						<h1 class="post-title">查看个人信息</h1>
+						<h1 class="post-title">修改个人信息</h1>
 						<hr>
-						<p style="color: red">发表你的帖子，请注意言辞，不然会被版主和管理删除！</p>
-					</article>
-					<form class="row" action="<%=basePath%>updateUserServlet" method="post">
-						<!--   图片  enctype="multipart/form-data" -->
-						
-						<div class="span2">
-							<label for="name">请选择板块</label>
-						</div>
-						<div class="span6">
-							<select name="plateId">
-								<c:forEach var="plate" items="${plateList}">
-									<option value="${plate.id}">${plate.name}</option>
-								</c:forEach>
-							</select>
-						</div>
-						<div class="span2">
-							<label for="name">标题</label>
-						</div>
-						<div class="span6">
-							<input type="text" name="title" class="required input-xlarge"
-								title="Please provide your title">
-						</div>
-						<div class="span2">
-							<label for="name">内容</label>
-						</div>
-						<div class="span6">
-							<textarea name="info" class="required span6" rows="6"
-								title="Please provide your info"></textarea>
-						</div>
-						<div class="span2">
-							<label for="name">添加图片</label>
 
+					</article>
+					<form class="row" action="<%=basePath%>updateUserServlet?${userSession.id}"	method="post">
+						<!--   图片  enctype="multipart/form-data" -->
+
+						<div class="span2">
+							<label for="name">用户姓名</label>
 						</div>
 						<div class="span6">
-							<input type="file" name="file" onchange="add()">
-							<div id="form"></div>
+							<input type="text" name="name" class="required input-xlarge"
+								value="${user.name }">
 						</div>
+						<div class="span2">
+							<label for="name">用户邮箱</label>
+						</div>
+						<div class="span6">
+							<input type="text" name="name" class="required input-xlarge"
+								value="${user.email }">
+						</div>
+						<div class="span2">
+							<label for="name">用户性别</label>
+						</div>
+						<div class="span6">
+							<input type="text" name="name" class="required input-xlarge"
+								value="${user.sex }">
+						</div>
+						<div class="span2">
+							<label for="name">用户年龄</label>
+						</div>
+						<div class="span6">
+							<input type="text" name="name" class="required input-xlarge"
+								value="${user.age }">
+						</div>
+						<div class="span2">
+							<label for="name">用户生日</label>
+						</div>
+						<div class="span6">
+							<input type="text" name="name" class="required input-xlarge"
+								value="${user.birthday }">
+						</div>
+
 						<div class="span6 offset2 bm30">
-							<input type="submit" name="submit" value="发布"
+							<input type="submit" name="submit" value="修改"
 								class="btn btn-inverse"> <img src="images/loading.gif"
 								id="contact-loader" alt="Loading...">
 						</div>
-					</form>
-				</div>
 
-				<!--左侧开始-->
-				<%@ include file="../head/right.jsp"%>
+
+					</form>
+					<!--左侧开始-->
+					<%@ include file="../head/right.jsp"%>
+				</div>
 			</div>
 		</div>
-	</div>
-	<div class="w_foot">
-		<div class="w_foot_copyright">
-			Copyright &copy; 2017-2020, www.genban.org. All Rights Reserved. <span>|</span>
-			<a target="_blank" href="http://www.miitbeian.gov.cn/" rel="nofollow">皖ICP备17002922号</a>
+	</div>	
+		<div class="w_foot">
+			<div class="w_foot_copyright">
+				Copyright &copy; 2017-2020, www.genban.org. All Rights Reserved. <span>|</span>
+				<a target="_blank" href="http://www.miitbeian.gov.cn/"
+					rel="nofollow">皖ICP备17002922号</a>
+			</div>
 		</div>
-	</div>
-	<script type="text/javascript">
-		function add() {
-			var input = document.createElement('input'); //创建input节点
-			input.setAttribute('type', 'file'); //定义类型是文本输
-			input.setAttribute('name', 'file'); //定义类型是文本输入
-			input.setAttribute('onchange', 'add()'); //定义类型是文本输入
-			document.getElementById('form').appendChild(input); //添加到form中显示
-			var br = document.createElement('br');
-			document.getElementById('form').appendChild(br);
-		}
-	</script>
-
+		<script type="text/javascript">
+			function add() {
+				var input = document.createElement('input'); //创建input节点
+				input.setAttribute('type', 'file'); //定义类型是文本输
+				input.setAttribute('name', 'file'); //定义类型是文本输入
+				input.setAttribute('onchange', 'add()'); //定义类型是文本输入
+				document.getElementById('form').appendChild(input); //添加到form中显示
+				var br = document.createElement('br');
+				document.getElementById('form').appendChild(br);
+			}
+		</script>
 </body>
 </html>
