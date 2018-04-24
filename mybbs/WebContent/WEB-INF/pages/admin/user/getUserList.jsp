@@ -130,9 +130,9 @@ tr.over td {
 								<th width="10%">用户性别</th>
 								<th width="10%">用户年龄</th>
 								<th width="20%">用户生日</th>
-								<th width="30%">禁言状态</th>
-
-								<th width="10%" style="border-right: none">操作</th>
+								<th width="18%">禁言状态</th>
+								<th width="11%">禁言操作</th>
+								<th width="11%" style="border-right: none">删除操作</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -144,12 +144,12 @@ tr.over td {
 									<td>${user.sex}</td>
 									<td>${user.age }</td>
 									<td>${user.birthday}</td>
-									<td><c:choose>
+									<c:choose>
 											<c:when test="${user.time==0 }">
 												<form action="bannedUserSpeakServlet?id=${user.id}"
 													method="post">
-													<input type="date" name="time">&nbsp;&nbsp;&nbsp;
-												<input class="sel_btn ch_cls" type="submit" value="禁言">
+													<td ><input type="date" name="time" align="center">&nbsp;&nbsp;&nbsp;</td>
+												<td align="center"><input class="sel_btn ch_cls" type="submit" value="禁言"></td>
 												</form>
 											</c:when>
 											<c:otherwise>	
@@ -157,14 +157,14 @@ tr.over td {
 												<form action="bannedUserSpeakServlet?id=${user.id}&time=0" method="post">
 												&nbsp;&nbsp;&nbsp;
 												
-												 禁言中&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input class="sel_btn ch_cls" type="submit" value="解除禁言">
+												 <td align="center">禁言中</td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+												 <td align="center"><input class="sel_btn ch_cls" type="submit" value="解除禁言"></td>
 												</form>
 											</c:otherwise>
-										</c:choose></td>
+										</c:choose>
 
-									<td style="border-right: none"><a
-										href="updateUserServlet?id=${user.id}">修改</a>&nbsp; <a
-										href="deleteUserServlet?id=${user.id}">删除</a></td>
+									<td style="border-right: none">
+									 <a href="deleteUserServlet?id=${user.id}">删除</a></td>
 								</tr>
 							</c:forEach>
 
