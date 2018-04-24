@@ -1,4 +1,4 @@
-package com.mybbs.servlet.admin;
+package com.mybbs.servlet.user;
 
 import java.io.IOException;
 import java.text.ParseException;

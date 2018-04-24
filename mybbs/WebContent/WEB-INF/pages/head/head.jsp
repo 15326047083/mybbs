@@ -32,7 +32,7 @@
 						<li><a href="<%=basePath%>getPostListServlet?nowPages=1">帖子总览</a></li>
 						<li><a href="">发言记录</a></li>
 						<li><a href="<%=basePath%>myPostServlet?nowPages=1">我的帖子</a></li>
-						<li><a href="">个人信息</a></li>
+						<li><a href="<%=basePath%>updateUserServlet?nowPages=1">个人信息</a></li>
 						<li><a href="">退出登录</a></li>
 					</ul>
 				</span>
