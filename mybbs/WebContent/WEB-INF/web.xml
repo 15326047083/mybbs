@@ -359,4 +359,24 @@
     <servlet-name>getPostServlet</servlet-name>
     <url-pattern>/getPostServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>adminPostListServlet</display-name>
+    <servlet-name>adminPostListServlet</servlet-name>
+    <servlet-class>com.mybbs.servlet.admin.adminPostListServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>adminPostListServlet</servlet-name>
+    <url-pattern>/adminPostListServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>adminGetPostServlet</display-name>
+    <servlet-name>adminGetPostServlet</servlet-name>
+    <servlet-class>com.mybbs.servlet.admin.adminGetPostServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>adminGetPostServlet</servlet-name>
+    <url-pattern>/adminGetPostServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
