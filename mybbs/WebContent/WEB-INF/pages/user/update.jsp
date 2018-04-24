@@ -39,7 +39,7 @@
 						method="post">
 						<!--   图片  enctype="multipart/form-data" -->
 						<input type="hidden" name="id" class="required input-xlarge"
-								value="${userSession.id}">
+							value="${userSession.id}">
 						<div class="span2">
 							<label for="name">用户姓名</label>
 						</div>
@@ -58,10 +58,19 @@
 							<label for="name">用户性别</label>
 						</div>
 						<div class="span6">
-							<input type="radio" name="sex" class="required input-xlarge"
-								value="0">男
-								<input type="radio" name="sex" class="required input-xlarge"
-								value="1">女
+							<!-- <input type="radio" name="sex" class=""
+								value="0">男 <input type="radio" name="sex"
+								class="" value="1"/>女 -->
+							<select name="sex">
+							<c:if test="${userSession.sex==0 }">
+								<option value="0" selected="selected">男</option>
+								<option value="1" >女</option>
+							</c:if>
+								<c:if test="${userSession.sex==1 }">
+								<option value="0">男</option>
+								<option value="1" selected="selected">女</option>
+							</c:if>
+							</select>
 						</div>
 						<div class="span2">
 							<label for="name">用户年龄</label>
