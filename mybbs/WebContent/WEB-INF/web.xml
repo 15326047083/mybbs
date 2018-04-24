@@ -333,7 +333,7 @@
     <description></description>
     <display-name>updateUserServlet</display-name>
     <servlet-name>updateUserServlet</servlet-name>
-    <servlet-class>com.mybbs.servlet.admin.updateUserServlet</servlet-class>
+    <servlet-class>com.mybbs.servlet.user.updateUserServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>updateUserServlet</servlet-name>
