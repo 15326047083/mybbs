@@ -38,7 +38,8 @@
 					<form class="row" action="<%=basePath%>updateUserServlet"
 						method="post">
 						<!--   图片  enctype="multipart/form-data" -->
-
+						<input type="hidden" name="id" class="required input-xlarge"
+								value="${userSession.id}">
 						<div class="span2">
 							<label for="name">用户姓名</label>
 						</div>
@@ -50,28 +51,28 @@
 							<label for="name">用户邮箱</label>
 						</div>
 						<div class="span6">
-							<input type="text" name="name" class="required input-xlarge"
+							<input type="text" name="emil" class="required input-xlarge"
 								value="${userSession.email }">
 						</div>
 						<div class="span2">
 							<label for="name">用户性别</label>
 						</div>
 						<div class="span6">
-							<input type="text" name="name" class="required input-xlarge"
+							<input type="text" name="sex" class="required input-xlarge"
 								value="${userSession.sex }">
 						</div>
 						<div class="span2">
 							<label for="name">用户年龄</label>
 						</div>
 						<div class="span6">
-							<input type="text" name="name" class="required input-xlarge"
+							<input type="text" name="age" class="required input-xlarge"
 								value="${userSession.age }">
 						</div>
 						<div class="span2">
 							<label for="name">用户生日</label>
 						</div>
 						<div class="span6">
-							<input type="date" name="name" class="required input-xlarge"
+							<input type="date" name="birthday" class="required input-xlarge"
 								value="${userSession.birthday }">
 						</div>
 
