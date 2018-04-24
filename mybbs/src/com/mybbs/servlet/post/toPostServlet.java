@@ -42,7 +42,7 @@ public class toPostServlet extends HttpServlet {
 		//存入user到session
 		User user=new User();
 		CommonService<User> ucommonService=new CommonServiceImpl<User>();
-		user.setId(10);
+		user.setId(1);
 		user=ucommonService.getById(user, SQLUtil.getByIdFirstSql, SQLUtil.getByIdSecondSql);
 		HttpSession session=request.getSession();
 		session.setAttribute("userSession",user);		
