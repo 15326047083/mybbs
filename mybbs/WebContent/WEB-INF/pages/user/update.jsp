@@ -63,11 +63,11 @@
 								class="" value="1"/>女 -->
 							<select name="sex">
 							<c:if test="${userSession.sex==0 }">
-								<option value="0" selected="selected">男</option>
+								<option value="0" selected="selected" >男</option>
 								<option value="1" >女</option>
 							</c:if>
 								<c:if test="${userSession.sex==1 }">
-								<option value="0">男</option>
+								<option value="0" class="required input-xlarge">男</option>
 								<option value="1" selected="selected">女</option>
 							</c:if>
 							</select>
@@ -86,7 +86,16 @@
 							<input type="date" name="birthday" class="required input-xlarge"
 								value="${userSession.birthday }">
 						</div>
-
+						<div class="span2">
+							<label for="name">用户密码</label>
+						</div>
+						<div class="span6">
+							<input type="hidden" name="password1" class="required input-xlarge"
+								value="${userSession.password }">
+							<input type="text" name="password2" class="required input-xlarge"
+								>
+						</div>
+						
 						<div class="span6 offset2 bm30">
 							<input type="submit" name="submit" value="修改"
 								class="btn btn-inverse"> <img src="images/loading.gif"

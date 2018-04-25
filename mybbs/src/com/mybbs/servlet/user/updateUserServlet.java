@@ -45,12 +45,20 @@ public class updateUserServlet extends HttpServlet {
 		int sex = Integer.parseInt(request.getParameter("sex"));
 		int age = Integer.parseInt(request.getParameter("age"));
 		String birthday = new String(request.getParameter("birthday").getBytes("iso-8859-1"), "utf-8");
+		String password1 =request.getParameter("password1");
+		String password2 = request.getParameter("password2");
 		user.setId(id);
 		user.setName(name);
 		user.setEmail(email);
 		user.setSex(sex);
 		user.setAge(age);
 		user.setBirthday(birthday);
+		if("".equals(password2)) {
+			user.setPassword(password1);
+		}else
+		{
+			user.setPassword(password2);
+		}
 		CommonService<User> commonService = new CommonServiceImpl<User>();
 		commonService.saveOrUpdate(user, SQLUtil.updateUser);
 		commonService.closeDB();
