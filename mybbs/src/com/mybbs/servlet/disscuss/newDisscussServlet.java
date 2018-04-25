@@ -33,6 +33,7 @@ public class newDisscussServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		int nowPages=Integer.parseInt(request.getParameter("nowPages"));
 		int postId=Integer.parseInt(request.getParameter("postId"));
 		int userId=Integer.parseInt(request.getParameter("userId"));
 		String dissDussInfo=new String(request.getParameter("dissDussInfo").getBytes("iso-8859-1"), "utf-8");
@@ -45,7 +46,7 @@ public class newDisscussServlet extends HttpServlet {
 		discuss.setPhotoNum(-1);
 		CommonService<Discuss> commonService=new CommonServiceImpl<Discuss>();
 		commonService.saveOrUpdate(discuss, SQLUtil.newDiscuss);
-		response.sendRedirect("getPostServlet?postId="+postId);
+		response.sendRedirect("getPostServlet?postId="+postId+"&nowPages="+nowPages);
 	}
 
 	/**

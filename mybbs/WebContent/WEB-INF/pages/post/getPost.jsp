@@ -7,6 +7,22 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Insert title here</title>
+<!-- Style Sheet-->
+<link rel='stylesheet' id='bootstrap-css-css'
+	href='<%=request.getContextPath()%>/js/index/css/bootstrap5152.css?ver=1.0'
+	type='text/css' media='all' />
+<link rel='stylesheet' id='responsive-css-css'
+	href='<%=request.getContextPath()%>/js/index/css/responsive5152.css?ver=1.0'
+	type='text/css' media='all' />
+<link rel='stylesheet' id='pretty-photo-css-css'
+	href='<%=request.getContextPath()%>/js/index/js/prettyphoto/prettyPhotoaeb9.css?ver=3.1.4'
+	type='text/css' media='all' />
+<link rel='stylesheet' id='main-css-css'
+	href='<%=request.getContextPath()%>/js/index/css/main5152.css?ver=1.0'
+	type='text/css' media='all' />
+<link rel='stylesheet' id='custom-css-css'
+	href='<%=request.getContextPath()%>/js/index/css/custom5152.html?ver=1.0'
+	type='text/css' media='all' />
 </head>
 <body>
 	<div class="w_container">
@@ -45,7 +61,9 @@
 
 						</div>
 					</div>
-					<form action="<%=basePath%>newDisscussServlet" method="post">
+					<form
+						action="<%=basePath%>newDisscussServlet?nowPages=${commonPages.totalpages}"
+						method="post">
 
 						<div class="panel panel-default">
 							<div class="panel-heading">
@@ -56,34 +74,46 @@
 									name="userId" value="${userSession.id}" type="hidden" />
 								<textarea rows="6" name="dissDussInfo"
 									style="margin: 0px 0px 11px; width: 536px; height: 132px;"></textarea>
-								<br /> <input type="submit" value="发表" />
+								<br />
+								<div>
+									<input type="submit" name="submit" value="发布"
+										class="btn btn-inverse"> <img src="images/loading.gif"
+										id="contact-loader" alt="Loading...">
+								</div>
 							</div>
 						</div>
 					</form>
-					<%-- <div class="panel panel-default">
+					<div class="panel panel-default">
 						<div class="panel-heading">
 							<h3 class="panel-title">评论列表</h3>
 						</div>
 						<div class="panel-body">
 							<div class="contentList">
-								<c:forEach var="comments" items="${commentsList}"
+								<c:forEach var="disscuss" items="${commonPages.commonList}"
 									varStatus="loop">
+									${loop.count+(nowPages-1)*20}楼
 									<div class="panel panel-default">
 										<div class="panel-body">
-											<h4>
-												<a class="title">${comments.info}</a>
-												<button onclick="add(${comments.id})">回复</button>
-												<c:if test="${comments.userId==user.userId}">
-													<a
-														href="<%=basePath%>comments/${comments.id}/${post.id}/${user.userId}/deleteComments"
-														style="float: right">删除评论</a>
-												</c:if>
-											</h4>
-											<p>
+										<i
+													class="glyphicon glyphicon-user"></i>
+										<a style="color: blue">${disscuss.userName}</a>
+											<c:if test="${userSession.id==disscuss.userId}">
+											<a style="color: red">(楼主)</a>
+												
+											</c:if>
+											 <a>评论：${disscuss.info}</a>
+											<button class="btn btn-inverse" style="float: right "
+												onclick="add(${comments.id})">回复</button>
+											<%-- <c:if test="${comments.userId==user.userId}">
+												<a
+													href="<%=basePath%>comments/${comments.id}/${post.id}/${user.userId}/deleteComments"
+													style="float: right; color: blue">删除评论</a>
+											</c:if> --%>
+											<%-- <p>
 												<span class="count"><i
 													class="glyphicon glyphicon-user"></i><a href="#">${userList[loop.count-1].email}</a></span>
-											</p>
-											<div style="border: 2px solid;">
+											</p> --%>
+											<%-- <div style="border: 2px solid;">
 												<h4>回复列表</h4>
 												<c:forEach var="r" items="${replylist}" varStatus="l">
 													<c:if test="${comments.id==r.commentsId}">
@@ -97,13 +127,40 @@
 													name="commentsId" type="hidden" value="${comments.id}" />
 												<input name="userId" type="hidden" value="${user.userId}" />
 												<span id="${comments.id}"></span>
-											</form>
+											</form> --%>
 										</div>
 									</div>
 								</c:forEach>
 							</div>
+							<div align="right">
+								<a href="<%=basePath%>getPostServlet?nowPages=1">首页</a>
+								<c:choose>
+									<c:when test="${nowPages!=1 }">
+										<a href="<%=basePath%>getPostServlet?nowPages=${nowPages-1}">上一页</a>
+									</c:when>
+									<c:otherwise>
+										<a href="javascript:return false;" onclick="return false;"
+											style="cursor: default;"><i class="edit"
+											style="opacity: 0.2"></i>上一页</a>
+									</c:otherwise>
+								</c:choose>
+								<a> ${nowPages}</a>/<a>${commonPages.totalpages} </a>
+								<c:choose>
+									<c:when test="${nowPages!=commonPages.totalpages }">
+										<a href="<%=basePath%>getPostServlet?nowPages=${nowPages+1}">下一页</a>
+									</c:when>
+									<c:otherwise>
+										<a href="javascript:return false;" onclick="return false;"
+											style="cursor: default;"><i class="edit"
+											style="opacity: 0.2"></i>下一页</a>
+									</c:otherwise>
+								</c:choose>
+								<a
+									href="<%=basePath%>getPostervlet?nowPages=${commonPages.totalpages}">尾页</a>
+
+							</div>
 						</div>
-					</div> --%>
+					</div>
 				</div>
 				<!--左侧开始-->
 				<%@ include file="../head/right.jsp"%>

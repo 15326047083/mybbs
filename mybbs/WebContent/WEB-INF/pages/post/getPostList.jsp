@@ -32,7 +32,7 @@
 
 											<h4>
 												<a class="title"
-													href="<%=basePath%>getPostServlet?postId=${post.id}">${post.title}</a>
+													href="<%=basePath%>getPostServlet?postId=${post.id}&nowPages=1">${post.title}</a>
 											</h4>
 											<c:if test="${userSession.id==post.userId}">
 												<a href="deletePostServlet?postId=${post.id}"
