@@ -2,8 +2,7 @@
 	contentType="text/html; charset=UTF-8"%>
 <%
 	String path1 = request.getContextPath();
-	String basePath1 = request.getScheme() + "://"
-			+ request.getServerName() + ":" + request.getServerPort()
+	String basePath1 = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
 			+ path1 + "/";
 %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -21,9 +20,9 @@
 			</div>
 			<div class="panel-body">
 				<div class="labelList">
-				
-						<a class="label label-default" href=""></a>
-				
+
+					<a class="label label-default" href="">aa</a>
+
 				</div>
 			</div>
 		</div>
@@ -33,9 +32,9 @@
 			</div>
 			<div class="panel-body">
 				<div class="labelList">
-				
-						<a class="label label-default" href=""></a>
-				
+
+					<a class="label label-default" href=""></a>
+
 				</div>
 			</div>
 		</div>
@@ -45,9 +44,9 @@
 			</div>
 			<div class="panel-body">
 				<ul class="list-unstyled sidebar">
-			
+
 					<li><a href="">title</a></li>
-			
+
 				</ul>
 			</div>
 		</div>

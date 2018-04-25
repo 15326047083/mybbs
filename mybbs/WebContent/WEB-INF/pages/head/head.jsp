@@ -29,12 +29,17 @@
 					<ul>
 						<li><a href="<%=basePath%>loginServlet?nowPages=1"
 							class="active">首页</a></li>
-						<li><a href="<%=basePath%>toPostServlet">发帖</a></li>
 						<li><a href="<%=basePath%>getPostListServlet?nowPages=1">帖子总览</a></li>
-						<li><a href="">发言记录</a></li>
-						<li><a href="<%=basePath%>myPostServlet?nowPages=1">我的帖子</a></li>
-						<li><a href="<%=basePath%>toUserServlet?flag=update">个人信息</a></li>
-						<li><a href="">退出登录</a></li>
+						<c:if test="${userSession.id==-1}">
+							<li><a href="<%=basePath%>toUserServlet">登录</a></li>
+						</c:if>
+						<c:if test="${userSession.id!=-1}">
+							<li><a href="<%=basePath%>toPostServlet">发帖</a></li>
+							<li><a href="">发言记录</a></li>
+							<li><a href="<%=basePath%>myPostServlet?nowPages=1">我的帖子</a></li>
+							<li><a href="<%=basePath%>toUserServlet?flag=update">${userSession.name }</a></li>
+							<li><a href="<%=basePath%>toUserServlet?flag=look">退出登录</a></li>
+						</c:if>
 					</ul>
 				</span>
 				<div class="w_search">

@@ -1,15 +1,23 @@
 package com.mybbs.servlet.user;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.mybbs.po.Area;
 import com.mybbs.po.User;
+import com.mybbs.service.CommonService;
 import com.mybbs.service.UserService;
+import com.mybbs.service.impl.CommonServiceImpl;
 import com.mybbs.service.impl.UserServiceImpl;
+
+import util.SQLUtil;
 
 /**
  * Servlet implementation class loginUserServlet
@@ -43,8 +51,15 @@ public class loginUserServlet extends HttpServlet {
 			String password = request.getParameter("password");
 			if (password.equals(user.getPassword())) {
 				// 登陆成功
+				CommonService<Area> commonService = new CommonServiceImpl<Area>();
+				List<Area> areaList = new ArrayList<Area>();
+				Area area = new Area();
+				areaList = commonService.queryAll(area, SQLUtil.getListFirstSql);
 				HttpSession session = request.getSession();
+				session.invalidate();
+				session = request.getSession();
 				session.setAttribute("userSession", user);
+				session.setAttribute("areaListSession", areaList);
 				response.sendRedirect("loginServlet");
 			} else {
 				// 用户名或密码错误
