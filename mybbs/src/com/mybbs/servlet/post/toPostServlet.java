@@ -52,13 +52,9 @@ public class toPostServlet extends HttpServlet {
 		//转化时间
 		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//这个是你要转成后的时间的格式
 		String sd = sdf.format(new Date(Long.parseLong(String.valueOf(user.getTime()))));   // 时间戳转换成时间
+		//被禁言
 		if(user.getTime()>nowDate) {
-			/*String script="<script type=\"text/javascript\">\r\n" + 
-					"	alert(\"您已被禁言到"+sd+"，请联系管理员！！\")\r\n" + 
-					"</script>";*/
-			//request.setAttribute("script", script);
-			//request.getRequestDispatcher("WEB-INF/pages/index/index.jsp").forward(request, response);
-			response.sendRedirect("loginServlet?bj=1&sd="+sd);
+			response.sendRedirect("loginServlet?bj=1&sd="+sd);  
 		}
 		else {
 			user.setTime(0);

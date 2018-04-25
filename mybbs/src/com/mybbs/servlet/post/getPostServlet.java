@@ -42,6 +42,11 @@ public class getPostServlet extends HttpServlet {
 		v=commonService.getById(v, sql, " and post.id=?");
 		commonService.closeDB();
 		request.setAttribute("post", v);
+		
+		//get评论类表
+		
+		
+		
 		request.getRequestDispatcher("WEB-INF/pages/post/getPost.jsp").forward(request, response);
 	}
 

@@ -105,7 +105,7 @@ tr.over td {
 
 
 <body style="background: #edf6fa;">
-
+${script }
 	<h2 style="color: gray">
 		&nbsp;&nbsp;&nbsp;<a href="index.jsp">主页</a> >
 		<a href="<%=basePath%>getPlateListServlet?nowPages=1">版块管理</a> > <a>帖子管理</a>
@@ -138,7 +138,7 @@ tr.over td {
 										href="<%=basePath %>adminGetPostServlet?postId=${post.id}">查看</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 									<c:choose>
 										<c:when test="${post.flag==0 }">
-										<a href="<%=basePath %>adminDeletePostServlet?postId=${userAndPlate.plateId}">删除</a></td>
+										<a href="<%=basePath %>adminDeletePostServlet?postId=${post.id}">删除</a></td>
 										</c:when>
 										<c:when test="${post.flag==1 }">
 										<a style="color: gray">删除</a>

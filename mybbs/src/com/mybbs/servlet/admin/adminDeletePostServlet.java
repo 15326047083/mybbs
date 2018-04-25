@@ -39,11 +39,12 @@ public class adminDeletePostServlet extends HttpServlet {
 		post.setId(postId);
 		post=commonService.getById(post, SQLUtil.getByIdFirstSql, SQLUtil.getByIdSecondSql);
 		int plateId=post.getPlateId();
-		commonService.delete(postId, SQLUtil.deletePost);
+		post.setFlag(1);
+	//	System.out.println(post.toString());
+		commonService.saveOrUpdate(post, SQLUtil.updatePost);
 		commonService.closeDB();
-		//myPostServlet?nowPages=1
 		String script = "ok";
-		response.sendRedirect("myPostServlet?nowPages=1&script="+script);
+		response.sendRedirect("adminPostListServlet?nowPages=1&script="+script+"&plateId="+plateId);
 	}
 
 	/**

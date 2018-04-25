@@ -48,6 +48,13 @@ public class adminPostListServlet extends HttpServlet {
 		commonPages.setTotalpages(allPages);
 		commonPages.setLimit(1);
 		commonService.closeDB();
+		//判断是否删除
+		if("ok".equals(request.getParameter("script"))) {
+			String script="	<script type=\"text/javascript\">\r\n" + 
+					"		alert(\"删除成功！！！\");\r\n" + 
+					"	</script>";
+			request.setAttribute("script", script);
+		}
 		//System.out.println(commonPages.toString());
 		request.setAttribute("commonPages", commonPages);
 		request.setAttribute("nowPages", nowPages);

@@ -118,15 +118,25 @@ tr.over td {
 			<div class="center_center">
 				<div class="table_content">
 					<h2>&nbsp;&nbsp;&nbsp;&nbsp;${post.title}</h2>
+					<c:if test="${post.flag==1 }">
+						<a style="color: red">&nbsp;&nbsp;&nbsp;&nbsp;${post.title}（因违规已被管理员删除）</a>
+					</c:if>
 					<div align="left">
 						<p style="color: gray">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;作者:${post.userName }&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;发帖时间:${post.time }</p>
-					</div><hr>
-					<div >
+					</div>
+					<hr>
+					<div>
 						<p>${post.info}</p>
 					</div>
 
 				</div>
-
+				<div align="right">
+					<c:if test="${post.flag==0 }">
+						<a href="<%=basePath %>adminDeletePostServlet?postId=${post.id}">
+							<button>删除</button>
+						</a>
+					</c:if>
+				</div>
 			</div>
 		</div>
 	</div>

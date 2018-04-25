@@ -45,19 +45,19 @@
 
 						</div>
 					</div>
-					<form action="<%=basePath%>comments/newComments" method="post">
+					<form action="<%=basePath%>newDisscussServlet" method="post">
 
 						<div class="panel panel-default">
 							<div class="panel-heading">
 								<h3 class="panel-title">发表评论</h3>
 							</div>
-							<%-- 	<div class="panel-body">
+							<div class="panel-body">
 								<input name="postId" value="${post.id}" type="hidden" /> <input
-									name="userId" value="${post.userId}" type="hidden" />
-								<textarea rows="6" name="info"
+									name="userId" value="${userSession.id}" type="hidden" />
+								<textarea rows="6" name="dissDussInfo"
 									style="margin: 0px 0px 11px; width: 536px; height: 132px;"></textarea>
 								<br /> <input type="submit" value="发表" />
-							</div> --%>
+							</div>
 						</div>
 					</form>
 					<%-- <div class="panel panel-default">
