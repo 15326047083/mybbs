@@ -32,7 +32,7 @@ ${script }
 										<div class="panel-body">
 
 											<h4>
-												<a class="title" href="<%=basePath%>getPostServlet?postId=${post.id}">${post.title}</a>
+												<a class="title" href="<%=basePath%>getPostServlet?postId=${post.id}&nowPages=1">${post.title}</a>
 												<c:if test="${bj==1}">
 													<a href="" style="float: right">删除帖子</a>
 												</c:if>

@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.mybbs.po.Area;
+import com.mybbs.po.Plate;
 import com.mybbs.po.User;
 import com.mybbs.service.CommonService;
 import com.mybbs.service.impl.CommonServiceImpl;
@@ -56,9 +57,29 @@ public class toUserServlet extends HttpServlet {
 			List<Area> areaList = new ArrayList<Area>();
 			Area area = new Area();
 			areaList = commonService.queryAll(area, SQLUtil.getListFirstSql);
+			//get plate
+			List<Plate> plateList =new ArrayList<Plate>();
+			CommonService<Plate> pcommonService = new CommonServiceImpl<Plate>();
+			Plate plate=new Plate();
+			plateList=pcommonService.getAllList(plate, SQLUtil.getListFirstSql, " limit ?", 2);
+			session.setAttribute("plateListSession", plateList);
+			
+			commonService.closeDB();
+			pcommonService.closeDB();
 			session.setAttribute("areaListSession", areaList);
 			response.sendRedirect("loginServlet");
-		} else {
+		} 
+		else if("area".equals(request.getParameter("flag"))){
+			int areaId=Integer.parseInt(request.getParameter("areaId"));
+			List<Plate> plateList =new ArrayList<Plate>();
+			CommonService<Plate> pcommonService = new CommonServiceImpl<Plate>();
+			Plate plate=new Plate();
+			plateList=pcommonService.getAllList(plate, SQLUtil.getListFirstSql, " where postNum <>? and areaId="+areaId, -2);
+			HttpSession session = request.getSession();
+			session.setAttribute("plateListSession", plateList);
+			response.sendRedirect("loginServlet");
+		}
+		else {
 			request.getRequestDispatcher("WEB-INF/pages/user/login.jsp").forward(request, response);
 		}
 	}

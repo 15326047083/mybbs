@@ -39,13 +39,12 @@ public class toPostServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		//存入user到session
+		//拿到user到session
 		User user=new User();
 		CommonService<User> ucommonService=new CommonServiceImpl<User>();
-		user.setId(1);
-		user=ucommonService.getById(user, SQLUtil.getByIdFirstSql, SQLUtil.getByIdSecondSql);
+		
 		HttpSession session=request.getSession();
-		session.setAttribute("userSession",user);		
+		user=(User)session.getAttribute("userSession");	
 		
 		//判断是否被禁言
 		long nowDate =new Date().getTime();

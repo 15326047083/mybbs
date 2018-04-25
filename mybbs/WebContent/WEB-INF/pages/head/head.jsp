@@ -37,21 +37,21 @@
 							<li><a href="<%=basePath%>toPostServlet">发帖</a></li>
 							<li><a href="">发言记录</a></li>
 							<li><a href="<%=basePath%>myPostServlet?nowPages=1">我的帖子</a></li>
-							<li><a href="<%=basePath%>toUserServlet?flag=update">${userSession.name }</a></li>
+							<li><a href="<%=basePath%>toUserServlet?flag=update">个人信息</a></li>
 							<li><a href="<%=basePath%>toUserServlet?flag=look">退出登录</a></li>
 						</c:if>
 					</ul>
 				</span>
-				<div class="w_search">
-
+				<div align="left" class="w_search">
 					<div class="w_searchbox">
 						<form action="" method="post">
 							<input type="hidden" name="path" value="" /> <input type="text"
 								name="queryStr" placeholder="search" /> <input type="submit"
 								value="搜索" />
 						</form>
-					</div>
+					</div>			
 				</div>
+				
 			</div>
 		</div>
 	</div>
