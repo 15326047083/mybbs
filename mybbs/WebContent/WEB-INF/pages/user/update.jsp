@@ -52,7 +52,7 @@
 						</div>
 						<div class="span6">
 							<input type="text" name="email" class="required input-xlarge"
-								value="${userSession.email }">
+								value="${userSession.email }" readonly="readonly">
 						</div>
 						<div class="span2">
 							<label for="name">用户性别</label>
