@@ -16,7 +16,14 @@
 	<div class="col-lg-3 col-md-3 w_main_right">
 		<div class="panel panel-default">
 			<div class="panel-body">
-				<h3 style="color: red" class="panel-title">欢迎您：${userSession.name }</h3>
+				<c:choose>
+					<c:when test="${userSession.id==-1}">
+						<h3 style="color: red" class="panel-title">登录后有更多体验哦 亲！</h3>
+					</c:when>
+					<c:otherwise>
+						<h3 style="color: red" class="panel-title">欢迎您：${userSession.name }</h3>
+					</c:otherwise>
+				</c:choose>
 			</div>
 		</div>
 		<div class="panel panel-default">
@@ -26,7 +33,8 @@
 			<div class="panel-body">
 				<div class="labelList">
 					<c:forEach varStatus="loop" var="area" items="${areaListSession }">
-						<a href="<%=basePath1 %>toUserServlet?flag=area&areaId=${area.id}" class="label label-default"
+						<a href="<%=basePath1 %>toUserServlet?flag=area&areaId=${area.id}"
+							class="label label-default"
 							style="background-color:rgb(${loop.count*30},${loop.count*10},${255-loop.count*30})">${area.name }</a>
 					</c:forEach>
 				</div>
@@ -40,7 +48,8 @@
 			<div class="panel-body">
 				<div class="labelList">
 
-					<c:forEach varStatus="loop" var="plate" items="${plateListSession }">
+					<c:forEach varStatus="loop" var="plate"
+						items="${plateListSession }">
 						<a href="<%=basePath1 %>" class="label label-default"
 							style="background-color:rgb(${loop.count*5},80,${255-loop.count*5})">${plate.name }</a>
 					</c:forEach>

@@ -61,6 +61,7 @@
 
 						</div>
 					</div>
+					<c:if test="${userSession.id!=-1 }">
 					<form
 						action="<%=basePath%>newDisscussServlet?nowPages=${commonPages.totalpages}"
 						method="post">
@@ -83,6 +84,7 @@
 							</div>
 						</div>
 					</form>
+					</c:if>
 					<div class="panel panel-default">
 						<div class="panel-heading">
 							<h3 class="panel-title">评论列表</h3>
@@ -94,16 +96,18 @@
 									${loop.count+(nowPages-1)*20}楼
 									<div class="panel panel-default">
 										<div class="panel-body">
-										<i
-													class="glyphicon glyphicon-user"></i>
-										<a style="color: blue">${disscuss.userName}</a>
-											<c:if test="${userSession.id==disscuss.userId}">
-											<a style="color: red">(楼主)</a>
-												
+											<i class="glyphicon glyphicon-user"></i> <a
+												style="color: blue">${disscuss.userName}</a>
+											<c:if test="${post.userId==disscuss.userId}">
+												<a style="color: red">(楼主)</a>
 											</c:if>
-											 <a>评论：${disscuss.info}</a>
-											<button class="btn btn-inverse" style="float: right "
+
+											<a>评论：${disscuss.info}</a> <a
+												style="color: gray; font-size: 9px"><br>
+											<i class="glyphicon glyphicon-time"></i>${disscuss.time }</a>
+											<button class="btn btn-inverse" style="float: right"
 												onclick="add(${comments.id})">回复</button>
+
 											<%-- <c:if test="${comments.userId==user.userId}">
 												<a
 													href="<%=basePath%>comments/${comments.id}/${post.id}/${user.userId}/deleteComments"
