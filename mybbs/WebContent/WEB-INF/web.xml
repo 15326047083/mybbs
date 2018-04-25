@@ -379,4 +379,14 @@
     <servlet-name>adminGetPostServlet</servlet-name>
     <url-pattern>/adminGetPostServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>adminDeletePostServlet</display-name>
+    <servlet-name>adminDeletePostServlet</servlet-name>
+    <servlet-class>com.mybbs.servlet.admin.adminDeletePostServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>adminDeletePostServlet</servlet-name>
+    <url-pattern>/adminDeletePostServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

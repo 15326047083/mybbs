@@ -51,6 +51,7 @@ public class adminPostListServlet extends HttpServlet {
 		//System.out.println(commonPages.toString());
 		request.setAttribute("commonPages", commonPages);
 		request.setAttribute("nowPages", nowPages);
+		request.setAttribute("plateId", plateId);
 		request.getRequestDispatcher("WEB-INF/pages/admin/post/getPostList.jsp").forward(request, response);
 	}
 

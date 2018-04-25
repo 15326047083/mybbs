@@ -107,79 +107,26 @@ tr.over td {
 <body style="background: #edf6fa;">
 
 	<h2 style="color: gray">
-		&nbsp;&nbsp;&nbsp;<a href="index.jsp">主页</a> >
-		<a href="<%=basePath%>getPlateListServlet?nowPages=1">版块管理</a> > <a>帖子管理</a>
+		&nbsp;&nbsp;&nbsp;<a href="index.jsp">主页</a> > <a
+			href="javascript:history.back(2)">版块管理</a> > <a
+			href="javascript:history.back(1)">帖子管理</a> > <a>帖子详情</a>
 	</h2>
 	<div class="table_div">
-		
+
 		<div class="div_clear">
 			<div class="left_center"></div>
 			<div class="center_center">
 				<div class="table_content">
-					<table cellspacing="0px" cellpadding="0px">
-						<thead>
-							<tr>
-								<th >帖子名称</th>
-								<th width="15%">作者昵称</th>
-								<th width="20%">发表时间</th>
-								<th width="20%" style="border-right: none">操作</th>
-							</tr>
-						</thead>
-						<tbody>
-							<c:forEach var="post" items="${commonPages.commonList }"
-								varStatus="loop">
-								<tr>
-									<td>${post.title }
-									<c:if test="${post.flag==1 }"><a style="color: red">（因违规已被管理员删除）</a></c:if>
-									</td>
-									<td>${post.userName }</td>
-									<td>${post.time }</td>
-									<td style="border-right: none"><a
-										href="<%=basePath %>adminGetPostServlet?postId=${post.id}">查看</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									<c:choose>
-										<c:when test="${post.flag==0 }">
-										<a href="<%=basePath %>adminDeletePostServlet?postId=${userAndPlate.plateId}">删除</a></td>
-										</c:when>
-										<c:when test="${post.flag==1 }">
-										<a style="color: gray">删除</a>
-										</c:when>
-									</c:choose>
-										
-								</tr>
-							</c:forEach>
+					<h2>&nbsp;&nbsp;&nbsp;&nbsp;${post.title}</h2>
+					<div align="left">
+						<p style="color: gray">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;作者:${post.userName }&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;发帖时间:${post.time }</p>
+					</div><hr>
+					<div >
+						<p>${post.info}</p>
+					</div>
 
-						</tbody>
-					</table>
 				</div>
-				<div align="right">
-					<a class="sel_btn ch_cls"
-						href="<%=basePath%>adminPostListServlet?nowPages=1&plateId=${plateId}">首页</a>
-					<c:choose>
-						<c:when test="${nowPages!=1 }">
-							<a class="sel_btn ch_cls"
-								href="<%=basePath%>adminPostListServlet?nowPages=${nowPages-1}&plateId=${plateId}">上一页</a>
-						</c:when>
-						<c:otherwise>
-							<a class="sel_btn ch_cls" href="javascript:return false;"
-								onclick="return false;" style="cursor: default;"><i
-								class="edit" style="opacity: 0.2"></i>上一页</a>
-						</c:otherwise>
-					</c:choose>
-					<a> ${nowPages}</a>/<a>${commonPages.totalpages} </a>
-					<c:choose>
-						<c:when test="${nowPages!=commonPages.totalpages }">
-							<a class="sel_btn ch_cls"
-								href="<%=basePath%>adminPostListServlet?nowPages=${nowPages+1}&plateId=${plateId}">下一页</a>
-						</c:when>
-						<c:otherwise>
-							<a class="sel_btn ch_cls" href="javascript:return false;"
-								onclick="return false;" style="cursor: default;"><i
-								class="edit" style="opacity: 0.2"></i>下一页</a>
-						</c:otherwise>
-					</c:choose>
-					<a class="sel_btn ch_cls"
-						href="<%=basePath%>adminPostListServlet?nowPages=${commonPages.totalpages}&plateId=${plateId}">尾页</a>
-				</div>
+
 			</div>
 		</div>
 	</div>
