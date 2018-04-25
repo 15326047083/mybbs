@@ -389,4 +389,14 @@
     <servlet-name>adminDeletePostServlet</servlet-name>
     <url-pattern>/adminDeletePostServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>loginUserServlet</display-name>
+    <servlet-name>loginUserServlet</servlet-name>
+    <servlet-class>com.mybbs.servlet.user.loginUserServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>loginUserServlet</servlet-name>
+    <url-pattern>/loginUserServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

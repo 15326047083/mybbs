@@ -78,7 +78,7 @@
 								class="login-form">
 								<div class="form-group">
 									<label class="sr-only" for="form-username">Username</label> <input
-										type="text" name="email" placeholder="E-mail..."
+										type="email" name="email" placeholder="E-mail..."
 										class="form-username form-control" id="form-username">
 								</div>
 								<div class="form-group">
