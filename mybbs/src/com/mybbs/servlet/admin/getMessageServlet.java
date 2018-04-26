@@ -18,43 +18,49 @@ import util.SQLUtil;
  */
 public class getMessageServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public getMessageServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public getMessageServlet() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		int nowPages=Integer.parseInt(request.getParameter("nowPages"));
-		CommonService<Message> commonService =new CommonServiceImpl<Message>();
+		// response.getWriter().append("Served at: ").append(request.getContextPath());
+		int nowPages = Integer.parseInt(request.getParameter("nowPages"));
+		CommonService<Message> commonService = new CommonServiceImpl<Message>();
 		Message message = new Message();
-		int count=commonService.count(SQLUtil.firstCountSql, message);
-		int allPages=count/20;
-		if(count%20!=0)
+		int count = commonService.count(SQLUtil.firstCountSql, message);
+		int allPages = count / 20;
+		if (count % 20 != 0)
 			allPages++;
-		CommonPages<Message> commonPages=new CommonPages<Message>();
-		commonPages.setCommonList(commonService.getAllList(message, SQLUtil.getListFirstSql, SQLUtil.getListSecondSql, nowPages));
+		CommonPages<Message> commonPages = new CommonPages<Message>();
+		commonPages.setCommonList(
+				commonService.getAllList(message, SQLUtil.getListFirstSql, SQLUtil.getListSecondSql, nowPages));
 		commonPages.setCount(count);
 		commonPages.setPages(nowPages);
-		
 		commonPages.setTotalpages(allPages);
 		commonPages.setLimit(1);
 		commonService.closeDB();
 		request.setAttribute("commonPages", commonPages);
+		request.setAttribute("nowPages", nowPages);
+		request.getRequestDispatcher("WEB-INF/pages/admin/message/getMessageList.jsp").forward(request, response);
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}

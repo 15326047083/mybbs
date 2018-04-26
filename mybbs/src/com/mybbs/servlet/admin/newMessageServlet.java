@@ -40,10 +40,10 @@ public class newMessageServlet extends HttpServlet {
 		// ").append(request.getContextPath());String info =
 		// request.getParameter("info");
 		String info = new String(request.getParameter("info").getBytes("iso-8859-1"), "utf-8");
-		Date day=new Date();    
-		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");   
+		Date day = new Date();
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 		String createdate = df.format(day);
-		info = createdate + info ;
+		info = info + "      发布时间(" + createdate + ")";
 		Message message = new Message();
 		message.setInfo(info);
 		CommonService<Message> commonService = new CommonServiceImpl<Message>();

@@ -126,7 +126,7 @@ tr.over td {
 						<thead>
 							<tr>
 								<th width="50%">公告内容</th>
-								
+
 								<th width="20%" style="border-right: none">删除操作</th>
 							</tr>
 						</thead>
@@ -135,10 +135,10 @@ tr.over td {
 								varStatus="loop">
 								<tr>
 									<td>${message.info}</td>
-									
-											
-									<td style="border-right: none">
-									 <a href="deleteUserServlet?id=${message.id}">删除</a></td>
+
+
+									<td style="border-right: none"><a
+										href="deleteUserServlet?id=${message.id}">删除</a></td>
 								</tr>
 							</c:forEach>
 
@@ -147,11 +147,11 @@ tr.over td {
 				</div>
 				<div align="right">
 					<a class="sel_btn ch_cls"
-						href="<%=basePath%>getUserListServlet?nowPages=1">首页</a>
+						href="<%=basePath%>getMessageServlet?nowPages=1">首页</a>
 					<c:choose>
 						<c:when test="${nowPages!=1 }">
 							<a class="sel_btn ch_cls"
-								href="<%=basePath%>getUserListServlet?nowPages=${nowPages-1}">上一页</a>
+								href="<%=basePath%>getMessageServlet?nowPages=${nowPages-1}">上一页</a>
 						</c:when>
 						<c:otherwise>
 							<a class="sel_btn ch_cls" href="javascript:return false;"
@@ -163,7 +163,7 @@ tr.over td {
 					<c:choose>
 						<c:when test="${nowPages!=commonPages.totalpages }">
 							<a class="sel_btn ch_cls"
-								href="<%=basePath%>getUserListServlet?nowPages=${nowPages+1}">下一页</a>
+								href="<%=basePath%>getMessageServlet?nowPages=${nowPages+1}">下一页</a>
 						</c:when>
 						<c:otherwise>
 							<a class="sel_btn ch_cls" href="javascript:return false;"
@@ -172,7 +172,7 @@ tr.over td {
 						</c:otherwise>
 					</c:choose>
 					<a class="sel_btn ch_cls"
-						href="<%=basePath%>getUserListServlet?nowPages=${commonPages.totalpages}">尾页</a>
+						href="<%=basePath%>getMessageServlet?nowPages=${commonPages.totalpages}">尾页</a>
 				</div>
 			</div>
 		</div>
