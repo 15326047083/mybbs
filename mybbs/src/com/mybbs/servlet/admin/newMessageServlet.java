@@ -1,6 +1,9 @@
 package com.mybbs.servlet.admin;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -37,7 +40,10 @@ public class newMessageServlet extends HttpServlet {
 		// ").append(request.getContextPath());String info =
 		// request.getParameter("info");
 		String info = new String(request.getParameter("info").getBytes("iso-8859-1"), "utf-8");
-		System.out.println(info);
+		Date day=new Date();    
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");   
+		String createdate = df.format(day);
+		info = createdate + info ;
 		Message message = new Message();
 		message.setInfo(info);
 		CommonService<Message> commonService = new CommonServiceImpl<Message>();

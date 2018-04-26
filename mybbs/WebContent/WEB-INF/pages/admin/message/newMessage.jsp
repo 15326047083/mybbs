@@ -106,7 +106,7 @@ tr.over td {
 <body style="background: #edf6fa;">
 	<h2 style="color: gray">
 		&nbsp;&nbsp;&nbsp;<a href="index.jsp">主页</a> > <a
-			href="<%=basePath%>newMessageServlet?nowPages=1">发送公告</a> >
+			href="<%=basePath%>newMessageServlet">发送公告</a> >
 	</h2>
 
 	<form action="<%=basePath%>newMessageServlet" method="post">
