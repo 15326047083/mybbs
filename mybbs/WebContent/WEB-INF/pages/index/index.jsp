@@ -42,7 +42,7 @@ ${script }
 													class="glyphicon glyphicon-user"></i>${post.userName} </span>
 													<span
 													class="count"><i class="glyphicon glyphicon-time"></i>${post.time}</span>
-													<a style="color:#FF6347;"> ${post.plateName}</a></p>
+													<a href="<%=basePath%>getPostListByPlateIdServlet?nowPages=1&plateId=${post.plateId}" style="color:#FF6347;"> ${post.plateName}</a></p>
 
 
 										</div>
