@@ -110,7 +110,7 @@
 
 
 											<div class="panel panel-default"
-												style="width: 750px; float: right;">
+												style="width: 750px; float: right;" id="reply${disscuss.id}">
 												<h4>回复列表</h4>
 												<c:forEach var="r" items="${replyList}" varStatus="l">
 
@@ -122,8 +122,8 @@
 															<a style="color: red">(楼主)</a>
 														</c:if>
 															的回复：${r.info}
-												<a style="color: gray; font-size: 9px"><br> <i
-															class="glyphicon glyphicon-time"></i>${r.time }</a>
+												<br> <i
+															class="glyphicon glyphicon-time"></i>${r.time }
 													</c:if>
 												</c:forEach>
 											</div>
@@ -133,10 +133,10 @@
 												onclick="add(${disscuss.id})">说点什么. . .</button>
 
 
-											<form id="form">
+											<form id="${disscuss.id}">
 												<input name="discussId" type="hidden" value="${disscuss.id}" />
 												<input name="userId" type="hidden" value="${userSession.id}" />
-												<span id="${disscuss.id}"></span>
+												<span id="span${disscuss.id}"></span>
 											</form>
 										</div>
 									</div>
@@ -193,10 +193,11 @@
 			var input = document.createElement('textarea'); //创建input节点
 			input.setAttribute('rows', '6'); //定义类型是文本输
 			input.setAttribute('name', 'info'); //定义类型是文本输入
+			input.setAttribute('id', 'info'+formId); //定义类型是文本输入
 			input
 					.setAttribute('style',
 							'float: left; height: 30px; margin: 0px 0px 11px; width: 536px; height: 132px;'); //定义类型是文本输
-			document.getElementById(id).appendChild(input); //添加到form中显示
+			document.getElementById('span'+id).appendChild(input); //添加到form中显示
 			var input = document.createElement('input'); //创建input节点
 			input.setAttribute('type', 'button'); //定义类型是文本输
 			input.setAttribute('value', '确定'); //定义类型是文本输
@@ -204,27 +205,50 @@
 			input.setAttribute('style', 'Float:left;height:30px'); //定义类型是文本输
 			input.setAttribute('id', 'save-btn'); //定义类型是文本输onclick="add(${disscuss.id})"
 			input.setAttribute('onclick', 'submitReply()'); //定义类型是文本输onclick="add(${disscuss.id})"
-			document.getElementById(id).appendChild(input); //添加到form中显示
+			document.getElementById('span'+id).appendChild(input); //添加到form中显示
 		}
 	</script>
 	<script type="text/javascript">
 	function submitReply() {
+        var hr=document.createElement('hr');
+        hr.setAttribute('style', 'height: 1px; border: none; border-top: 1px dashed gray;'); //定义类型是文本输
+		document.getElementById('reply'+formId).appendChild(hr); //添加到form中显示
+		var textNode=document.createTextNode("${userSession.name}"+"的回复："+document.getElementById('info'+formId).value);
+		document.getElementById('reply'+formId).appendChild(textNode); //添加到form中显示
+		var br=document.createElement('br');
+		document.getElementById('reply'+formId).appendChild(br); //添加到form中显示
+		var i=document.createElement('i');
+        i.setAttribute('class', 'glyphicon glyphicon-time'); //定义类型是文本输
+		document.getElementById('reply'+formId).appendChild(i); //添加到form中显示
+		var date = new Date();
+	    var seperator1 = "-";
+	    var seperator2 = ":";
+	    var month = date.getMonth() + 1;
+	    var strDate = date.getDate();
+	    if (month >= 1 && month <= 9) {
+	        month = "0" + month;
+	    }
+	    if (strDate >= 0 && strDate <= 9) {
+	        strDate = "0" + strDate;
+	    }
+	    var currentdate = document.createTextNode(date.getFullYear() + seperator1 + month + seperator1 + strDate
+	            + " " + date.getHours() + seperator2 + date.getMinutes()
+	            + seperator2 + date.getSeconds());
+		document.getElementById('reply'+formId).appendChild(currentdate); //添加到form中显示
         $.ajax({ 
             type: 'post', 
-		    url:'localhost:8080/mybbs/toUserServlet?flag=look',  
+            data:$('#'+formId).serialize(),
+		    url:'toUserServlet?flag=look',  
             dataType:"json",
             async:true,
-            success: function (data) {
-        		alert(formId);
-                if("fail"!=data){
-            		alert(formId);
-                }else{
-            		alert(formId);
-                }
+            success: function () {
             },
             error:function()
             {
-                alert("获取数据出错!");
+        		document.getElementById('span'+formId).parentNode.removeChild(document.getElementById('span'+formId)); //添加到form中显示
+                var span=document.createElement('span');
+                span.setAttribute('id', 'span'+formId); //定义类型是文本输
+        		document.getElementById(formId).appendChild(span); //添加到form中显示
             },            
         });
 	}
