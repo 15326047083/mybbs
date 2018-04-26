@@ -65,7 +65,7 @@ public class loginUserServlet extends HttpServlet {
 				CommonService<Plate> pcommonService = new CommonServiceImpl<Plate>();
 				Plate plate = new Plate();
 				plateList = pcommonService.getAllList(plate, SQLUtil.getListFirstSql, " limit ?", 2);
-				session.setAttribute("plateListSession", plateList);
+				session.setAttribute("plateListSession", plateList); 
 				/**
 				 * 获取最新的公告
 				 */
