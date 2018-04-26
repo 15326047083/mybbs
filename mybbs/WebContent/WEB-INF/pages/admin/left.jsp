@@ -67,7 +67,7 @@
 				<li><cite></cite><a href="<%=basePath%>jumpServlet?flag=message"
 					target="rightFrame">发送公告</a><i></i></li>
 				<li><cite></cite><a
-					href="" target="rightFrame">已发公告</a><i></i></li>
+					href="<%=basePath%>getMessageServlet?nowPages=1" target="rightFrame">已发公告</a><i></i></li>
 			</ul>
 		</dd>
 
