@@ -399,4 +399,24 @@
     <servlet-name>loginUserServlet</servlet-name>
     <url-pattern>/loginUserServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>getMessageServlet</display-name>
+    <servlet-name>getMessageServlet</servlet-name>
+    <servlet-class>com.mybbs.servlet.admin.getMessageServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>getMessageServlet</servlet-name>
+    <url-pattern>/getMessageServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>newMessageServlet</display-name>
+    <servlet-name>newMessageServlet</servlet-name>
+    <servlet-class>com.mybbs.servlet.admin.newMessageServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>newMessageServlet</servlet-name>
+    <url-pattern>/newMessageServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

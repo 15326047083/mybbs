@@ -64,7 +64,7 @@
 					src="<%=request.getContextPath()%>/js/admin/images/leftico01.png" /></span>公告管理
 			</div>
 			<ul class="menuson">
-				<li><cite></cite><a href=""
+				<li><cite></cite><a href="<%=basePath%>jumpServlet?flag=message"
 					target="rightFrame">发送公告</a><i></i></li>
 				<li><cite></cite><a
 					href="" target="rightFrame">已发公告</a><i></i></li>
