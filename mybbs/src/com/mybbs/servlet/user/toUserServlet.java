@@ -16,6 +16,8 @@ import com.mybbs.po.Plate;
 import com.mybbs.po.User;
 import com.mybbs.service.CommonService;
 import com.mybbs.service.impl.CommonServiceImpl;
+import com.mybbs.vo.CommonPages;
+import com.mybbs.vo.vUserAndPost;
 
 import util.SQLUtil;
 
@@ -87,7 +89,36 @@ public class toUserServlet extends HttpServlet {
 					" where postNum <>? and areaId=" + areaId, -2);
 			HttpSession session = request.getSession();
 			session.setAttribute("plateListSession", plateList);
-			response.sendRedirect("loginServlet");
+			
+			//area下的帖子
+			int nowPages=Integer.parseInt(request.getParameter("nowPages"));
+			CommonService<vUserAndPost> commonService =new CommonServiceImpl<vUserAndPost>();
+			vUserAndPost v =new vUserAndPost();
+			String sql="select post.id id,post.userId,user.name userName,post.plateId,post.flag flag,plate.name plateName,title,post.info info,post.time time,photoNum from user,post,plate where user.id=post.userId and plate.id=post.plateId and flag=0 and plate.areaId="+areaId;
+			int count=commonService.count(sql, v);
+			int allPages=count/20;
+			if(count%20!=0)
+				allPages++;
+			CommonPages<vUserAndPost> commonPages=new CommonPages<vUserAndPost>();
+			commonPages.setCommonList(commonService.getAllList(v,sql," order by post.id desc limit ?,20", nowPages));
+			commonPages.setCount(count);
+			commonPages.setPages(nowPages);
+			
+			commonPages.setTotalpages(allPages);
+			commonPages.setLimit(1);
+		
+			//拿到area名字
+			CommonService<Area> acommonService = new CommonServiceImpl<Area>();
+			Area area=new Area();
+			area.setId(areaId);
+			area=acommonService.getById(area, SQLUtil.getByIdFirstSql, SQLUtil.getByIdSecondSql);
+			String areaName=area.getName();
+			commonService.closeDB();
+			request.setAttribute("commonPages", commonPages);
+			request.setAttribute("nowPages", nowPages);
+			request.setAttribute("titleName", areaName+" 区域下的全部帖子");
+			
+			request.getRequestDispatcher("WEB-INF/pages/post/getPostList.jsp").forward(request, response);
 		} else {
 			request.getRequestDispatcher("WEB-INF/pages/user/login.jsp").forward(request, response);
 		}

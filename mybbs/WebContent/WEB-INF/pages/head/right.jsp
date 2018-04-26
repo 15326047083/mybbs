@@ -33,7 +33,7 @@
 			<div class="panel-body">
 				<div class="labelList">
 					<c:forEach varStatus="loop" var="area" items="${areaListSession }">
-						<a href="<%=basePath1 %>toUserServlet?flag=area&areaId=${area.id}"
+						<a href="<%=basePath1 %>toUserServlet?flag=area&areaId=${area.id}&nowPages=1"
 							class="label label-default"
 							style="background-color:rgb(${loop.count*30},${loop.count*10},${255-loop.count*30})">${area.name }</a>
 					</c:forEach>
@@ -50,7 +50,7 @@
 
 					<c:forEach varStatus="loop" var="plate"
 						items="${plateListSession }">
-						<a href="<%=basePath1 %>" class="label label-default"
+						<a href="<%=basePath1 %>getPostListByPlateIdServlet?nowPages=1&plateId=${plate.id}" class="label label-default"
 							style="background-color:rgb(${loop.count*5},80,${255-loop.count*5})">${plate.name }</a>
 					</c:forEach>
 
