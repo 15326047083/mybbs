@@ -47,6 +47,7 @@ public class toUserServlet extends HttpServlet {
 		} else if ("find".equals(request.getParameter("flag"))) {
 			request.getRequestDispatcher("WEB-INF/pages/user/find.jsp").forward(request, response);
 		} else if ("look".equals(request.getParameter("flag"))) {
+			System.out.println(1212121);
 			HttpSession session = request.getSession();
 			session.invalidate();
 			session = request.getSession();

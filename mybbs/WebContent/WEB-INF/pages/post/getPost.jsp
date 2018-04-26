@@ -107,15 +107,16 @@
 											<a>评论：${disscuss.info}</a> <a
 												style="color: gray; font-size: 9px"><br> <i
 												class="glyphicon glyphicon-time"></i>${disscuss.time }</a>
-											
 
-											<div class="panel panel-default" style="width: 750px;float: right;" >				
+
+											<div class="panel panel-default"
+												style="width: 750px; float: right;">
 												<h4>回复列表</h4>
 												<c:forEach var="r" items="${replyList}" varStatus="l">
 
 													<c:if test="${disscuss.id==r.discussId}">
 														<hr
-															style="height: 1px; border: none; border-top: 1px dashed gray ;">
+															style="height: 1px; border: none; border-top: 1px dashed gray;">
 															${r.userName}
 																<c:if test="${post.userId==r.userId}">
 															<a style="color: red">(楼主)</a>
@@ -124,28 +125,30 @@
 												<a style="color: gray; font-size: 9px"><br> <i
 															class="glyphicon glyphicon-time"></i>${r.time }</a>
 													</c:if>
-												</c:forEach>									
+												</c:forEach>
 											</div>
-											
-											<button style="float: right;border: none;border-radius:20px;font-weight:bold;color:red;"
-												onclick="add(${comments.id})">说点什么. . . </button>
-										
-										
-											<%-- 	<form action="<%=basePath%>reply/newReply" method="post">
-												<input name="postId" type="hidden" value="${post.id}" /> <input
-													name="commentsId" type="hidden" value="${comments.id}" />
-												<input name="userId" type="hidden" value="${user.userId}" />
-												<span id="${comments.id}"></span>
-											</form>  --%>
+
+											<button
+												style="float: right; border: none; border-radius: 20px; font-weight: bold; color: red;"
+												onclick="add(${disscuss.id})">说点什么. . .</button>
+
+
+											<form id="form">
+												<input name="discussId" type="hidden" value="${disscuss.id}" />
+												<input name="userId" type="hidden" value="${userSession.id}" />
+												<span id="${disscuss.id}"></span>
+											</form>
 										</div>
 									</div>
 								</c:forEach>
 							</div>
 							<div align="right">
-								<a href="<%=basePath%>getPostServlet?nowPages=1&postId=${post.id}">首页</a>
+								<a
+									href="<%=basePath%>getPostServlet?nowPages=1&postId=${post.id}">首页</a>
 								<c:choose>
 									<c:when test="${nowPages!=1 }">
-										<a href="<%=basePath%>getPostServlet?nowPages=${nowPages-1}&postId=${post.id}">上一页</a>
+										<a
+											href="<%=basePath%>getPostServlet?nowPages=${nowPages-1}&postId=${post.id}">上一页</a>
 									</c:when>
 									<c:otherwise>
 										<a href="javascript:return false;" onclick="return false;"
@@ -156,7 +159,8 @@
 								<a> ${nowPages}</a>/<a>${commonPages.totalpages} </a>
 								<c:choose>
 									<c:when test="${nowPages!=commonPages.totalpages }">
-										<a href="<%=basePath%>getPostServlet?nowPages=${nowPages+1}&postId=${post.id}">下一页</a>
+										<a
+											href="<%=basePath%>getPostServlet?nowPages=${nowPages+1}&postId=${post.id}">下一页</a>
 									</c:when>
 									<c:otherwise>
 										<a href="javascript:return false;" onclick="return false;"
@@ -183,7 +187,9 @@
 		</div>
 	</div>
 	<script type="text/javascript">
+	var formId;
 		function add(id) {
+			formId=id;
 			var input = document.createElement('textarea'); //创建input节点
 			input.setAttribute('rows', '6'); //定义类型是文本输
 			input.setAttribute('name', 'info'); //定义类型是文本输入
@@ -192,12 +198,36 @@
 							'float: left; height: 30px; margin: 0px 0px 11px; width: 536px; height: 132px;'); //定义类型是文本输
 			document.getElementById(id).appendChild(input); //添加到form中显示
 			var input = document.createElement('input'); //创建input节点
-			input.setAttribute('type', 'submit'); //定义类型是文本输
+			input.setAttribute('type', 'button'); //定义类型是文本输
 			input.setAttribute('value', '确定'); //定义类型是文本输
 			input.setAttribute('class', 'btn btn-inverse'); //定义类型是文本输
 			input.setAttribute('style', 'Float:left;height:30px'); //定义类型是文本输
+			input.setAttribute('id', 'save-btn'); //定义类型是文本输onclick="add(${disscuss.id})"
+			input.setAttribute('onclick', 'submitReply()'); //定义类型是文本输onclick="add(${disscuss.id})"
 			document.getElementById(id).appendChild(input); //添加到form中显示
 		}
+	</script>
+	<script type="text/javascript">
+	function submitReply() {
+        $.ajax({ 
+            type: 'post', 
+		    url:'localhost:8080/mybbs/toUserServlet?flag=look',  
+            dataType:"json",
+            async:true,
+            success: function (data) {
+        		alert(formId);
+                if("fail"!=data){
+            		alert(formId);
+                }else{
+            		alert(formId);
+                }
+            },
+            error:function()
+            {
+                alert("获取数据出错!");
+            },            
+        });
+	}
 	</script>
 </body>
 </html>
