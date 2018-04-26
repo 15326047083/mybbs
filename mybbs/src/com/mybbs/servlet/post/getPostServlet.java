@@ -1,15 +1,21 @@
 package com.mybbs.servlet.post;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.mybbs.dao.ReplyDao;
 import com.mybbs.service.CommonService;
+import com.mybbs.service.ReplyService;
 import com.mybbs.service.impl.CommonServiceImpl;
+import com.mybbs.service.impl.ReplyServiceImpl;
 import com.mybbs.vo.CommonPages;
+import com.mybbs.vo.vDisscussAndReply;
 import com.mybbs.vo.vDisscussAndUser;
 import com.mybbs.vo.vUserAndPost;
 
@@ -47,7 +53,7 @@ public class getPostServlet extends HttpServlet {
 
 		// get评论类表
 		vDisscussAndUser dv = new vDisscussAndUser();
-		String dsql = "select discuss.id id,userId,user.name userName,postId,info,discuss.time time,photoNum from user,discuss where user.id=discuss.userId";
+		String dsql = "select discuss.id id,userId,user.name userName,postId,info,discuss.time time,photoNum from user,discuss where user.id=discuss.userId and postId="+postId;
 		int count = dcommonService.count(dsql, dv);
 		int allPages = count / 20;
 		if (count % 20 != 0)
@@ -62,6 +68,13 @@ public class getPostServlet extends HttpServlet {
 		request.setAttribute("commonPages", commonPages);
 		request.setAttribute("nowPages", nowPages);
 		request.setAttribute("titleName", "全部帖子");
+		
+		//get回复列表
+		List<vDisscussAndReply> replyList=new ArrayList<vDisscussAndReply>();
+		ReplyService replyService=new ReplyServiceImpl();
+		replyList=replyService.getAllList(postId);
+		request.setAttribute("replyList", replyList);	
+		
 		request.getRequestDispatcher("WEB-INF/pages/post/getPost.jsp").forward(request, response);
 	}
 

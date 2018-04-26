@@ -62,29 +62,31 @@
 						</div>
 					</div>
 					<c:if test="${userSession.id!=-1 }">
-					<form
-						action="<%=basePath%>newDisscussServlet?nowPages=${commonPages.totalpages}"
-						method="post">
+						<form
+							action="<%=basePath%>newDisscussServlet?nowPages=${commonPages.totalpages}"
+							method="post">
 
-						<div class="panel panel-default">
-							<div class="panel-heading">
-								<h3 class="panel-title">发表评论</h3>
-							</div>
-							<div class="panel-body">
-								<input name="postId" value="${post.id}" type="hidden" /> <input
-									name="userId" value="${userSession.id}" type="hidden" />
-								<textarea rows="6" name="dissDussInfo"
-									style="margin: 0px 0px 11px; width: 536px; height: 132px;"></textarea>
-								<br />
-								<div>
-									<input type="submit" name="submit" value="发布"
-										class="btn btn-inverse"> <img src="images/loading.gif"
-										id="contact-loader" alt="Loading...">
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h3 class="panel-title">发表评论</h3>
+								</div>
+								<div class="panel-body">
+									<input name="postId" value="${post.id}" type="hidden" /> <input
+										name="userId" value="${userSession.id}" type="hidden" />
+									<textarea rows="6" name="dissDussInfo"
+										style="margin: 0px 0px 11px; width: 536px; height: 132px;"></textarea>
+									<br />
+									<div>
+										<input type="submit" name="submit" value="发布"
+											class="btn btn-inverse"> <img
+											src="images/loading.gif" id="contact-loader" alt="Loading...">
+									</div>
 								</div>
 							</div>
-						</div>
-					</form>
+						</form>
 					</c:if>
+
+
 					<div class="panel panel-default">
 						<div class="panel-heading">
 							<h3 class="panel-title">评论列表</h3>
@@ -103,35 +105,38 @@
 											</c:if>
 
 											<a>评论：${disscuss.info}</a> <a
-												style="color: gray; font-size: 9px"><br>
-											<i class="glyphicon glyphicon-time"></i>${disscuss.time }</a>
-											<button class="btn btn-inverse" style="float: right"
-												onclick="add(${comments.id})">回复</button>
+												style="color: gray; font-size: 9px"><br> <i
+												class="glyphicon glyphicon-time"></i>${disscuss.time }</a>
+											
 
-											<%-- <c:if test="${comments.userId==user.userId}">
-												<a
-													href="<%=basePath%>comments/${comments.id}/${post.id}/${user.userId}/deleteComments"
-													style="float: right; color: blue">删除评论</a>
-											</c:if> --%>
-											<%-- <p>
-												<span class="count"><i
-													class="glyphicon glyphicon-user"></i><a href="#">${userList[loop.count-1].email}</a></span>
-											</p> --%>
-											<%-- <div style="border: 2px solid;">
+											<div class="panel panel-default" style="width: 750px;float: right;" >				
 												<h4>回复列表</h4>
-												<c:forEach var="r" items="${replylist}" varStatus="l">
-													<c:if test="${comments.id==r.commentsId}">
-												用户：${replyUserList[l.count-1].email}的回复：
-												<div style="font-size: 15px">${r.info}</div>
+												<c:forEach var="r" items="${replyList}" varStatus="l">
+
+													<c:if test="${disscuss.id==r.discussId}">
+														<hr
+															style="height: 1px; border: none; border-top: 1px dashed gray ;">
+															${r.userName}
+																<c:if test="${post.userId==r.userId}">
+															<a style="color: red">(楼主)</a>
+														</c:if>
+															的回复：${r.info}
+												<a style="color: gray; font-size: 9px"><br> <i
+															class="glyphicon glyphicon-time"></i>${r.time }</a>
 													</c:if>
-												</c:forEach>
+												</c:forEach>									
 											</div>
-											<form action="<%=basePath%>reply/newReply" method="post">
+											
+											<button style="float: right;border: none"
+												onclick="add(${comments.id})">说点什么。。。</button>
+										
+										
+											<%-- 	<form action="<%=basePath%>reply/newReply" method="post">
 												<input name="postId" type="hidden" value="${post.id}" /> <input
 													name="commentsId" type="hidden" value="${comments.id}" />
 												<input name="userId" type="hidden" value="${user.userId}" />
 												<span id="${comments.id}"></span>
-											</form> --%>
+											</form>  --%>
 										</div>
 									</div>
 								</c:forEach>
