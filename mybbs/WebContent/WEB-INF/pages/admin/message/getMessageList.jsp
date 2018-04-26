@@ -138,7 +138,7 @@ tr.over td {
 
 
 									<td style="border-right: none"><a
-										href="deleteUserServlet?id=${message.id}">删除</a></td>
+										href="deleteMessageServlet?id=${message.id}">删除</a></td>
 								</tr>
 							</c:forEach>
 

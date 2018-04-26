@@ -419,4 +419,14 @@
     <servlet-name>newMessageServlet</servlet-name>
     <url-pattern>/newMessageServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>deleteMessageServlet</display-name>
+    <servlet-name>deleteMessageServlet</servlet-name>
+    <servlet-class>com.mybbs.servlet.admin.deleteMessageServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>deleteMessageServlet</servlet-name>
+    <url-pattern>/deleteMessageServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
