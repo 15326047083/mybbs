@@ -8,9 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.mybbs.po.Post;
 import com.mybbs.service.CommonService;
-import com.mybbs.service.PlateService;
 import com.mybbs.service.impl.CommonServiceImpl;
-import com.mybbs.service.impl.PlateServiceImpl;
 
 import util.SQLUtil;
 

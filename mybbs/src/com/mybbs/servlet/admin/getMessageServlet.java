@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.mybbs.po.Message;
-import com.mybbs.po.User;
 import com.mybbs.service.CommonService;
 import com.mybbs.service.impl.CommonServiceImpl;
 import com.mybbs.vo.CommonPages;
