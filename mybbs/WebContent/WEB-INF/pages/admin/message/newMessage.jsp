@@ -105,15 +105,16 @@ tr.over td {
 </head>
 <body style="background: #edf6fa;">
 	<h2 style="color: gray">
-		&nbsp;&nbsp;&nbsp;<a href="index.jsp">主页</a> > <a href="<%=basePath%>newMessageServlet?nowPages=1">发送公告</a> > 
+		&nbsp;&nbsp;&nbsp;<a href="index.jsp">主页</a> > <a
+			href="<%=basePath%>newMessageServlet?nowPages=1">发送公告</a> >
 	</h2>
 
-	<form action ="newMessageServlet" method="post">
-	<ul>
-	 <li>公告内容</li>
-	 <li><input type="text" name="info"></li>
-	<input type="submit" value="提交">
-	</ul>>
+	<form action="<%=basePath%>newMessageServlet" method="post">
+		<ul>
+			<li>公告内容</li>
+			<li><input type="text" name="info"></li>
+			<li><input type="submit" value="提交"></li>
+		</ul>
 	</form>
 </body>
 </html>
