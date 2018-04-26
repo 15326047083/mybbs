@@ -127,8 +127,8 @@
 												</c:forEach>									
 											</div>
 											
-											<button style="float: right;border: none"
-												onclick="add(${comments.id})">说点什么。。。</button>
+											<button style="float: right;border: none;border-radius:20px;font-weight:bold;color:red;"
+												onclick="add(${comments.id})">说点什么. . . </button>
 										
 										
 											<%-- 	<form action="<%=basePath%>reply/newReply" method="post">
@@ -142,10 +142,10 @@
 								</c:forEach>
 							</div>
 							<div align="right">
-								<a href="<%=basePath%>getPostServlet?nowPages=1">首页</a>
+								<a href="<%=basePath%>getPostServlet?nowPages=1&postId=${post.id}">首页</a>
 								<c:choose>
 									<c:when test="${nowPages!=1 }">
-										<a href="<%=basePath%>getPostServlet?nowPages=${nowPages-1}">上一页</a>
+										<a href="<%=basePath%>getPostServlet?nowPages=${nowPages-1}&postId=${post.id}">上一页</a>
 									</c:when>
 									<c:otherwise>
 										<a href="javascript:return false;" onclick="return false;"
@@ -156,7 +156,7 @@
 								<a> ${nowPages}</a>/<a>${commonPages.totalpages} </a>
 								<c:choose>
 									<c:when test="${nowPages!=commonPages.totalpages }">
-										<a href="<%=basePath%>getPostServlet?nowPages=${nowPages+1}">下一页</a>
+										<a href="<%=basePath%>getPostServlet?nowPages=${nowPages+1}&postId=${post.id}">下一页</a>
 									</c:when>
 									<c:otherwise>
 										<a href="javascript:return false;" onclick="return false;"
@@ -165,7 +165,7 @@
 									</c:otherwise>
 								</c:choose>
 								<a
-									href="<%=basePath%>getPostervlet?nowPages=${commonPages.totalpages}">尾页</a>
+									href="<%=basePath%>getPostServlet?nowPages=${commonPages.totalpages}&postId=${post.id}">尾页</a>
 
 							</div>
 						</div>
