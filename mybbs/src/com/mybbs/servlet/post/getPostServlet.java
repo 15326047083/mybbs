@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.mybbs.dao.ReplyDao;
 import com.mybbs.service.CommonService;
 import com.mybbs.service.ReplyService;
 import com.mybbs.service.impl.CommonServiceImpl;
