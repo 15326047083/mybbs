@@ -43,9 +43,8 @@ public class newPostServlet extends HttpServlet {
 
 		// 页面获取
 		int plateId = Integer.parseInt(request.getParameter("plateId"));
-		String title = new String(request.getParameter("title").getBytes("iso-8859-1"), "utf-8");
-		String info = new String(request.getParameter("info").getBytes("iso-8859-1"), "utf-8");
-
+		String title = request.getParameter("title");
+		String info = request.getParameter("info");
 		Post post = new Post();
 		post.setTitle(title);
 		post.setInfo(info);
@@ -58,8 +57,8 @@ public class newPostServlet extends HttpServlet {
 		post.setPhotonum(-1);
 		post.setFlag(0);
 		CommonService<Post> commonService = new CommonServiceImpl<Post>();
-		String sql="update plate set postNum=postNum+1 where id ="+plateId;
-		commonService.saveOrUpdate(post, SQLUtil.newPost,sql);
+		String sql = "update plate set postNum=postNum+1 where id =" + plateId;
+		commonService.saveOrUpdate(post, SQLUtil.newPost, sql);
 		commonService.closeDB();
 		response.sendRedirect("myPostServlet?nowPages=1");
 	}

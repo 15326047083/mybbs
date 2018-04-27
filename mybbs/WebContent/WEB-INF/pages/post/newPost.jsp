@@ -24,6 +24,19 @@
 <link rel='stylesheet' id='custom-css-css'
 	href='<%=request.getContextPath()%>/js/index/css/custom5152.html?ver=1.0'
 	type='text/css' media='all' />
+
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="./ueditor/themes/default/css/umeditor.css" type="text/css"
+	rel="stylesheet">
+<script type="text/javascript"
+	src="<%=request.getContextPath()%>/ueditor/third-party/jquery.min.js"></script>
+<script type="text/javascript" charset="utf-8"
+	src="<%=request.getContextPath()%>/ueditor/umeditor.config.js"></script>
+<script type="text/javascript" charset="utf-8"
+	src="<%=request.getContextPath()%>/ueditor/umeditor.min.js"></script>
+<script type="text/javascript"
+	src="<%=request.getContextPath()%>/ueditor/lang/zh-cn/zh-cn.js"></script>
 </head>
 <body>
 	<div class="w_container">
@@ -35,9 +48,9 @@
 						<hr>
 						<p style="color: red">发表你的帖子，请注意言辞，不然会被版主和管理删除！</p>
 					</article>
-					<form class="row" action="<%=basePath%>newPostServlet" method="post">
+					<form class="row" id="form">
 						<!--   图片  enctype="multipart/form-data" -->
-						
+
 						<div class="span2">
 							<label for="name">请选择板块</label>
 						</div>
@@ -59,21 +72,39 @@
 							<label for="name">内容</label>
 						</div>
 						<div class="span6">
-							<textarea name="info" class="required span6" rows="6"
-								title="Please provide your info"></textarea>
-						</div>
-						<div class="span2">
-							<label for="name">添加图片</label>
+							<script type="text/plain" id="myEditor"
+								style="width: 650px; height: 400px;">
+								<p >在这里输入文章！！！</p>
+							</script>
+							<input type="hidden" id="info" name="info" />
+							<script type="text/javascript">
+								//实例化编辑器
+								var um = UM.getEditor('myEditor');
+							</script>
+							<script type="text/javascript">
+								function submitInfo() {
+									document.getElementById('info').value = UM
+											.getEditor('myEditor').getContent();
 
-						</div>
-						<div class="span6">
-							<input type="file" name="file" onchange="add()">
-							<div id="form"></div>
+									$.ajax({
+										type : 'post',
+										data : $('#form').serialize(),
+										url : 'newPostServlet',
+										dataType : "json",
+										async : true,
+										success : function() {
+										},
+										error : function() {
+											alert('提交成功');
+										},
+									});
+								}
+							</script>
 						</div>
 						<div class="span6 offset2 bm30">
-							<input type="submit" name="submit" value="发布"
-								class="btn btn-inverse"> <img src="images/loading.gif"
-								id="contact-loader" alt="Loading...">
+							<img src="images/loading.gif" id="contact-loader"
+								alt="Loading...">
+							<button onclick="submitInfo()" class="btn btn-inverse">发布</button>
 						</div>
 					</form>
 				</div>
