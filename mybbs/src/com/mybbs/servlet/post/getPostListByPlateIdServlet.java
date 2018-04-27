@@ -60,9 +60,10 @@ public class getPostListByPlateIdServlet extends HttpServlet {
 	
 		request.setAttribute("commonPages", commonPages);
 		request.setAttribute("nowPages", nowPages);
+		request.setAttribute("plateId", plateId);
 		request.setAttribute("titleName", plate.getName()+" 板块下的全部帖子");
 		
-		request.getRequestDispatcher("WEB-INF/pages/post/getPostList.jsp").forward(request, response);
+		request.getRequestDispatcher("WEB-INF/pages/post/getListByPlateId.jsp").forward(request, response);
 	
 	}
 

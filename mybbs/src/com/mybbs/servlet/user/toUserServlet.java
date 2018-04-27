@@ -116,9 +116,10 @@ public class toUserServlet extends HttpServlet {
 			commonService.closeDB();
 			request.setAttribute("commonPages", commonPages);
 			request.setAttribute("nowPages", nowPages);
+			request.setAttribute("areaId", areaId);
 			request.setAttribute("titleName", areaName+" 区域下的全部帖子");
 			
-			request.getRequestDispatcher("WEB-INF/pages/post/getPostList.jsp").forward(request, response);
+			request.getRequestDispatcher("WEB-INF/pages/post/getListByAreaId.jsp").forward(request, response);
 		} else {
 			request.getRequestDispatcher("WEB-INF/pages/user/login.jsp").forward(request, response);
 		}
