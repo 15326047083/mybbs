@@ -42,6 +42,7 @@ public class newReplyServlet extends HttpServlet {
 		reply.setUserId(Integer.parseInt(request.getParameter("userId")));
 		CommonService<Reply> commonService = new CommonServiceImpl<Reply>();
 		commonService.saveOrUpdate(reply, SQLUtil.newReply);
+		commonService.closeDB();
 	}
 
 	/**
