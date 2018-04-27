@@ -122,16 +122,16 @@
 															<a style="color: red">(楼主)</a>
 														</c:if>
 															的回复：${r.info}
-												<br> <i
-															class="glyphicon glyphicon-time"></i>${r.time }
+												<br>
+														<i class="glyphicon glyphicon-time"></i>${r.time }
 													</c:if>
 												</c:forEach>
 											</div>
-
-											<button
-												style="float: right; border: none; border-radius: 20px; font-weight: bold; color: red;"
-												onclick="add(${disscuss.id})">说点什么. . .</button>
-
+											<c:if test="${userSession.id!=-1 }">
+												<button
+													style="float: right; border: none; border-radius: 20px; font-weight: bold; color: red;"
+													onclick="add(${disscuss.id})">说点什么. . .</button>
+											</c:if>
 
 											<form id="${disscuss.id}">
 												<input name="discussId" type="hidden" value="${disscuss.id}" />
@@ -238,7 +238,7 @@
         $.ajax({ 
             type: 'post', 
             data:$('#'+formId).serialize(),
-		    url:'toUserServlet?flag=look',  
+		    url:'newReplyServlet',  
             dataType:"json",
             async:true,
             success: function () {
