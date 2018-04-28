@@ -38,11 +38,17 @@ public class getPlateListServlet extends HttpServlet {
 		String areaId;
 		String aId;
 		String andAreaId;
+		int count=0;
+		HttpSession session=request.getSession();
+		User user=(User)session.getAttribute("userSession");
+		int sessionUserId=user.getId();
 		CommonService<vUserAndPlate> commonService =new CommonServiceImpl<vUserAndPlate>();
+		vUserAndPlate v= new vUserAndPlate();
 		if(request.getParameter("areaId")==null) {//全部版块
 			areaId="";
 			aId="";
 			andAreaId="";
+		
 			request.setAttribute("flag", 1);
 		}else {
 			areaId=" and areaId="+request.getParameter("areaId");
@@ -50,22 +56,26 @@ public class getPlateListServlet extends HttpServlet {
 			andAreaId=" and areaId="+request.getParameter("areaId");
 			request.setAttribute("flag", 0);
 			String id=request.getParameter("areaId");
+			
 			request.setAttribute("areaId", "&areaId="+id); //判断areaId
 		}
-		vUserAndPlate v= new vUserAndPlate();
-		int count=commonService.count("select count(*) from plate"+aId, v);
+	
+		
 		int allPages=count/20;
+		if(count==0) {
+			count=1;
+		}
 		if(count%20!=0)
 			allPages++;
 		//获取登录人ID
 		String sql="";
-		HttpSession session=request.getSession();
-		User user=(User)session.getAttribute("userSession");
-		int sessionUserId=user.getId();
+		
 		if(user.getPower()==0) {//admin
 			sql="select user.id userId ,user.name userName,email,plate.id plateId,plate.name plateName,plate.info info,area.name areaName,postNum,areaId from user,plate,area where user.id=plate.userId and areaId=area.id"+andAreaId;		
+			count=commonService.count("select count(*) from plate"+aId, v);
 		}
 		else {//版主
+			count=commonService.count("select count(*) from plate and userId="+sessionUserId+andAreaId+aId, v);
 			sql="select user.id userId ,user.name userName,email,plate.id plateId,plate.name plateName,plate.info info,area.name areaName,postNum,areaId from user,plate,area where user.id=plate.userId and areaId=area.id and plate.userId="+sessionUserId+andAreaId;		
 		}
 		
