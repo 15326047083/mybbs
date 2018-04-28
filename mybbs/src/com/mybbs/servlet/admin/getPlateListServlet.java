@@ -61,13 +61,6 @@ public class getPlateListServlet extends HttpServlet {
 
 			request.setAttribute("areaId", "&areaId=" + id); // 判断areaId
 		}
-
-		int allPages = count / 20;
-		if (count % 20 != 0)
-			allPages++;
-		if (allPages == 0) {
-			allPages = 1;
-		}
 		// 获取登录人ID
 		String sql = "";
 
@@ -81,6 +74,12 @@ public class getPlateListServlet extends HttpServlet {
 					+ sessionUserId + andAreaId;
 		}
 
+		int allPages = count / 20;
+		if (count % 20 != 0)
+			allPages++;
+		if (allPages == 0) {
+			allPages = 1;
+		}
 		CommonPages<vUserAndPlate> commonPages = new CommonPages<vUserAndPlate>();
 		commonPages.setCommonList(commonService.getAllList(v, sql, " limit ?,20", nowPages));
 		commonPages.setCount(count);
