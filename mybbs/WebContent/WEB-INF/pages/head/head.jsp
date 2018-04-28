@@ -35,7 +35,7 @@
 						</c:if>
 						<c:if test="${userSession.id!=-1}">
 							<li><a href="<%=basePath%>toPostServlet">发帖</a></li>
-							<li><a href="">发言记录</a></li>
+							<li><a href="<%=basePath%>loginAdminServlet">进入管理员模式</a></li>
 							<li><a href="<%=basePath%>myPostServlet?nowPages=1">我的帖子</a></li>
 							<li><a href="<%=basePath%>toUserServlet?flag=update">个人信息</a></li>
 							<li><a href="<%=basePath%>toUserServlet?flag=look">退出登录</a></li>
@@ -49,9 +49,9 @@
 								name="queryStr" placeholder="search" /> <input type="submit"
 								value="搜索" />
 						</form>
-					</div>			
+					</div>
 				</div>
-				
+
 			</div>
 		</div>
 	</div>
