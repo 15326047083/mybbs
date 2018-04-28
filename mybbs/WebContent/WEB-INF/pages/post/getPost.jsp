@@ -25,7 +25,7 @@
 	type='text/css' media='all' />
 </head>
 <body>
-${script }
+	${script }
 	<div class="w_container">
 		<div class="container">
 			<div class="row w_main_row">
@@ -34,13 +34,14 @@ ${script }
 						<div class="panel-heading">
 							<h3>${post.title}</h3>
 							<hr>
-							<a class="overView">
-								<span class="count"><i class="glyphicon glyphicon-user"></i>${post.userName}
-								</span> <span class="count"><i class="glyphicon glyphicon-time"></i>${post.time}</span>
+							<a class="overView"> <span class="count"><i
+									class="glyphicon glyphicon-user"></i>${post.userName} </span> <span
+								class="count"><i class="glyphicon glyphicon-time"></i>${post.time}</span>
 								<a style="color: #FF6347;"> ${post.plateName}</a>
 								<div align="right">
-								<a href="updatePostServlet?postId=${post.id}" style="color:black;">【举报】</a>
-							</div>
+									<a href="updatePostServlet?postId=${post.id}"
+										style="color: black;">【举报】</a>
+								</div>
 							</a>
 						</div>
 
@@ -75,20 +76,31 @@ ${script }
 								<div class="panel-body">
 									<input name="postId" value="${post.id}" type="hidden" /> <input
 										name="userId" value="${userSession.id}" type="hidden" />
-									<textarea rows="6" name="dissDussInfo"
+									<textarea rows="6" name="dissDussInfo" id="dissDussInfo"
 										style="margin: 0px 0px 11px; width: 536px; height: 132px;"></textarea>
 									<br />
 									<div>
 										<input type="submit" name="submit" value="发布"
-											class="btn btn-inverse"> <img
-											src="images/loading.gif" id="contact-loader" alt="Loading...">
+											onclick="return submitDiscuss()" class="btn btn-inverse">
+										<img src="images/loading.gif" id="contact-loader"
+											alt="Loading...">
 									</div>
 								</div>
 							</div>
 						</form>
 					</c:if>
-
-
+					<!-- 判断评论是否够字数begin -->
+					<script type="text/javascript">
+					function submitDiscuss() {
+						if(document.getElementById('dissDussInfo').value.length<=15||document.getElementById('dissDussInfo').value.length>=100){
+							alert("文本不符合规定，请输入大于15个字符并且小于100个字符");
+							return false;
+						}else{
+							return true;
+						}
+					}
+					</script>
+					<!-- 判断评论是否够字数end -->
 					<div class="panel panel-default">
 						<div class="panel-heading">
 							<h3 class="panel-title">评论列表</h3>
@@ -212,47 +224,51 @@ ${script }
 	</script>
 	<script type="text/javascript">
 	function submitReply() {
-        var hr=document.createElement('hr');
-        hr.setAttribute('style', 'height: 1px; border: none; border-top: 1px dashed gray;'); //定义类型是文本输
-		document.getElementById('reply'+formId).appendChild(hr); //添加到form中显示
-		var textNode=document.createTextNode("${userSession.name}"+"的回复："+document.getElementById('info'+formId).value);
-		document.getElementById('reply'+formId).appendChild(textNode); //添加到form中显示
-		var br=document.createElement('br');
-		document.getElementById('reply'+formId).appendChild(br); //添加到form中显示
-		var i=document.createElement('i');
-        i.setAttribute('class', 'glyphicon glyphicon-time'); //定义类型是文本输
-		document.getElementById('reply'+formId).appendChild(i); //添加到form中显示
-		var date = new Date();
-	    var seperator1 = "-";
-	    var seperator2 = ":";
-	    var month = date.getMonth() + 1;
-	    var strDate = date.getDate();
-	    if (month >= 1 && month <= 9) {
-	        month = "0" + month;
-	    }
-	    if (strDate >= 0 && strDate <= 9) {
-	        strDate = "0" + strDate;
-	    }
-	    var currentdate = document.createTextNode(date.getFullYear() + seperator1 + month + seperator1 + strDate
-	            + " " + date.getHours() + seperator2 + date.getMinutes()
-	            + seperator2 + date.getSeconds());
-		document.getElementById('reply'+formId).appendChild(currentdate); //添加到form中显示
-        $.ajax({ 
-            type: 'post', 
-            data:$('#'+formId).serialize(),
-		    url:'newReplyServlet',  
-            dataType:"json",
-            async:true,
-            success: function () {
-            },
-            error:function()
-            {
-        		document.getElementById('span'+formId).parentNode.removeChild(document.getElementById('span'+formId)); //添加到form中显示
-                var span=document.createElement('span');
-                span.setAttribute('id', 'span'+formId); //定义类型是文本输
-        		document.getElementById(formId).appendChild(span); //添加到form中显示
-            },            
-        });
+		if(document.getElementById('info'+formId).value.length<=15||document.getElementById('info'+formId).value.length>=100){
+			alert("文本不符合规定，请输入大于15个字符并且小于100个字符");
+		}else{
+	        var hr=document.createElement('hr');
+	        hr.setAttribute('style', 'height: 1px; border: none; border-top: 1px dashed gray;'); //定义类型是文本输
+			document.getElementById('reply'+formId).appendChild(hr); //添加到form中显示
+			var textNode=document.createTextNode("${userSession.name}"+"的回复："+document.getElementById('info'+formId).value);
+			document.getElementById('reply'+formId).appendChild(textNode); //添加到form中显示
+			var br=document.createElement('br');
+			document.getElementById('reply'+formId).appendChild(br); //添加到form中显示
+			var i=document.createElement('i');
+	        i.setAttribute('class', 'glyphicon glyphicon-time'); //定义类型是文本输
+			document.getElementById('reply'+formId).appendChild(i); //添加到form中显示
+			var date = new Date();
+		    var seperator1 = "-";
+		    var seperator2 = ":";
+		    var month = date.getMonth() + 1;
+		    var strDate = date.getDate();
+		    if (month >= 1 && month <= 9) {
+		        month = "0" + month;
+		    }
+		    if (strDate >= 0 && strDate <= 9) {
+		        strDate = "0" + strDate;
+		    }
+		    var currentdate = document.createTextNode(date.getFullYear() + seperator1 + month + seperator1 + strDate
+		            + " " + date.getHours() + seperator2 + date.getMinutes()
+		            + seperator2 + date.getSeconds());
+			document.getElementById('reply'+formId).appendChild(currentdate); //添加到form中显示
+	        $.ajax({ 
+	            type: 'post', 
+	            data:$('#'+formId).serialize(),
+			    url:'newReplyServlet',  
+	            dataType:"json",
+	            async:true,
+	            success: function () {
+	            },
+	            error:function()
+	            {
+	        		document.getElementById('span'+formId).parentNode.removeChild(document.getElementById('span'+formId)); //添加到form中显示
+	                var span=document.createElement('span');
+	                span.setAttribute('id', 'span'+formId); //定义类型是文本输
+	        		document.getElementById(formId).appendChild(span); //添加到form中显示
+	            },            
+	        });
+		}
 	}
 	</script>
 </body>

@@ -68,7 +68,7 @@
 						</div>
 						<div class="span6">
 							<input type="text" name="title" class="required input-xlarge"
-								title="Please provide your title">
+								title="Please provide your title" id="postTitle">
 						</div>
 						<div class="span2">
 							<label for="name">内容</label>
@@ -87,15 +87,24 @@
 							</script>
 							<script type="text/javascript">
 								function submitInfo() {
-									document.getElementById('info').value = UE
-											.getEditor('editor').getContent();
+									if (document.getElementById('postTitle').value.length <= 4
+											|| document
+													.getElementById('postTitle').value.length >= 15) {
+										alert("标题长度错误,请介于4到15个字符之间");
+										return false;
+									} else {
+										document.getElementById('info').value = UE
+												.getEditor('editor')
+												.getContent();
+										return true;
+									}
 								}
 							</script>
 						</div>
 						<div class="span6 offset2 bm30">
 							<img src="images/loading.gif" id="contact-loader"
 								alt="Loading...">
-							<button type="submit" onclick="submitInfo()"
+							<button type="submit" onclick="return submitInfo()"
 								class="btn btn-inverse">发布</button>
 						</div>
 					</form>
