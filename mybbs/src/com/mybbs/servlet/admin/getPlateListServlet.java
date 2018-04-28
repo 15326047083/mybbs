@@ -67,9 +67,9 @@ public class getPlateListServlet extends HttpServlet {
 		if (user.getPower() == 0) {// admin
 			sql = "select user.id userId ,user.name userName,email,plate.id plateId,plate.name plateName,plate.info info,area.name areaName,postNum,areaId from user,plate,area where user.id=plate.userId and areaId=area.id"
 					+ andAreaId;
-			count = commonService.count("select count(*) from plate" + aId, v);
+			count = commonService.count("select count(*) from plate" + andAreaId, v);
 		} else {// 版主
-			count = commonService.count("select count(*) from plate and userId=" + sessionUserId + andAreaId + aId, v);
+			count = commonService.count("select count(*) from plate where userId=" + sessionUserId + andAreaId, v);
 			sql = "select user.id userId ,user.name userName,email,plate.id plateId,plate.name plateName,plate.info info,area.name areaName,postNum,areaId from user,plate,area where user.id=plate.userId and areaId=area.id and plate.userId="
 					+ sessionUserId + andAreaId;
 		}

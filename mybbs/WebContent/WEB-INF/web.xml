@@ -439,4 +439,14 @@
     <servlet-name>getPostListByPlateIdServlet</servlet-name>
     <url-pattern>/getPostListByPlateIdServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>getReportListServlet</display-name>
+    <servlet-name>getReportListServlet</servlet-name>
+    <servlet-class>com.mybbs.servlet.admin.getReportListServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>getReportListServlet</servlet-name>
+    <url-pattern>/getReportListServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

@@ -105,23 +105,13 @@ tr.over td {
 
 
 <body style="background: #edf6fa;">
+${script }
 	<h2 style="color: gray">
-		&nbsp;&nbsp;&nbsp;<a href="index.jsp">主页</a> > <a>区域管理</a>
+		&nbsp;&nbsp;&nbsp;<a href="index.jsp">主页</a> > 
+		<a>被删除的帖子</a>
 	</h2>
-	${script}
 	<div class="table_div">
-		<div class="div_clear">
-
-			<div class="left_top"></div>
-			<div class="center_top">
-
-				<div style="float: right; padding-right: 6px">
-					<a class="sel_btn ch_cls"
-						href="<%=basePath%>toAreaServlet?flag=new">新增区域</a>&nbsp;
-				</div>
-			</div>
-			<div class="right_top"></div>
-		</div>
+		
 		<div class="div_clear">
 			<div class="left_center"></div>
 			<div class="center_center">
@@ -129,24 +119,26 @@ tr.over td {
 					<table cellspacing="0px" cellpadding="0px">
 						<thead>
 							<tr>
-								<th width="16%">区域名称</th>
-								<th width="16%">区域简介</th>
-								<th width="16%">版块数量</th>
+								<th >帖子名称</th>
+								<th width="15%">作者昵称</th>
+								<th width="20%">发表时间</th>
 								<th width="20%" style="border-right: none">操作</th>
 							</tr>
 						</thead>
 						<tbody>
-							<c:forEach var="area" items="${commonPages.commonList }"
+							<c:forEach var="post" items="${commonPages.commonList }"
 								varStatus="loop">
 								<tr>
-									<td width="16%">${area.name }</td>
-									<td width="16%">${area.info }</td>
-									<td width="16%">${area.plateNum }</td>
-									<td width="20%" style="border-right: none"><a
-										href="<%=basePath %>getReportListServlet?nowPages=1">查看板块</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										<a href="toAreaServlet?id=${area.id}&flag=update">修改</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										<a
-										href="deleteAreaServlet?id=${area.id}&plateNum=${area.plateNum }">删除</a></td>
+									<td>${post.title }
+									<c:if test="${post.flag==1 }"><a style="color: red">（因违规已被管理员删除）</a></c:if>
+									</td>
+									<td>${post.userName }</td>
+									<td>${post.time }</td>
+									<td style="border-right: none"><a
+										href="<%=basePath %>adminGetPostServlet?postId=${post.id}">查看</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									
+										<a href="<%=basePath %>adminDeletePostServlet?postId=${post.id}&flag=report">删除</a></td>
+										
 								</tr>
 							</c:forEach>
 
@@ -155,11 +147,11 @@ tr.over td {
 				</div>
 				<div align="right">
 					<a class="sel_btn ch_cls"
-						href="<%=basePath%>getAreaListServlet?nowPages=1">首页</a>
+						href="<%=basePath%>getReportListServlet?nowPages=1">首页</a>
 					<c:choose>
 						<c:when test="${nowPages!=1 }">
 							<a class="sel_btn ch_cls"
-								href="<%=basePath%>getAreaListServlet?nowPages=${nowPages-1}">上一页</a>
+								href="<%=basePath%>getReportListServlet?nowPages=${nowPages-1}">上一页</a>
 						</c:when>
 						<c:otherwise>
 							<a class="sel_btn ch_cls" href="javascript:return false;"
@@ -171,7 +163,7 @@ tr.over td {
 					<c:choose>
 						<c:when test="${nowPages!=commonPages.totalpages }">
 							<a class="sel_btn ch_cls"
-								href="<%=basePath%>getAreaListServlet?nowPages=${nowPages+1}">下一页</a>
+								href="<%=basePath%>getReportListServlet?nowPages=${nowPages+1}">下一页</a>
 						</c:when>
 						<c:otherwise>
 							<a class="sel_btn ch_cls" href="javascript:return false;"
@@ -180,7 +172,7 @@ tr.over td {
 						</c:otherwise>
 					</c:choose>
 					<a class="sel_btn ch_cls"
-						href="<%=basePath%>getAreaListServlet?nowPages=${commonPages.totalpages}">尾页</a>
+						href="<%=basePath%>getReportListServlet?nowPages=${commonPages.totalpages}">尾页</a>
 				</div>
 			</div>
 		</div>

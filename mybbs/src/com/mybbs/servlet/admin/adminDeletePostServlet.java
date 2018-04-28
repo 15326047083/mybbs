@@ -42,7 +42,13 @@ public class adminDeletePostServlet extends HttpServlet {
 		commonService.saveOrUpdate(post, SQLUtil.updatePost);
 		commonService.closeDB();
 		String script = "ok";
-		response.sendRedirect("adminPostListServlet?nowPages=1&script="+script+"&plateId="+plateId);
+		if("report".equals(request.getParameter("flag"))) {
+			response.sendRedirect("getReportListServlet?nowPages=1&script="+script);
+		}
+		else {
+			response.sendRedirect("adminPostListServlet?nowPages=1&script="+script+"&plateId="+plateId);
+		}
+		
 	}
 
 	/**

@@ -67,7 +67,7 @@
 			</dd>
 		</c:if>
 
-		<c:if test="${userSession.power==0 }">
+		<c:if test="${userSession.power!=-1 }">
 			<dd>
 				<div class="title">
 					<span><img
@@ -75,7 +75,7 @@
 				</div>
 				<ul class="menuson">
 					<li><cite></cite><a
-						href="<%=basePath%>getAreaListServlet?nowPages=1"
+						href="<%=basePath%>getReportListServlet?nowPages=1"
 						target="rightFrame">被举报的帖子</a><i></i></li>
 				</ul>
 			</dd>
