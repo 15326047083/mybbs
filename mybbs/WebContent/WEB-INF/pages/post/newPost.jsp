@@ -24,26 +24,20 @@
 <link rel='stylesheet' id='custom-css-css'
 	href='<%=request.getContextPath()%>/js/index/css/custom5152.html?ver=1.0'
 	type='text/css' media='all' />
-
-
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link
-	href="<%=request.getContextPath()%>/ueditor/themes/default/css/umeditor.css"
-	type="text/css" rel="stylesheet">
-<script type="text/javascript"
-	src="<%=request.getContextPath()%>/ueditor/third-party/jquery.min.js"></script>
-<script type="text/javascript"
-	src="<%=request.getContextPath()%>/ueditor/third-party/template.min.js"></script>
+<!-- 富文本编辑器 -->
+
 <script type="text/javascript" charset="utf-8"
-	src="<%=request.getContextPath()%>/ueditor/umeditor.config.js"></script>
+	src="<%=request.getContextPath()%>/ueditor/ueditor.config.js"></script>
 <script type="text/javascript" charset="utf-8"
-	src="<%=request.getContextPath()%>/ueditor/umeditor.min.js"></script>
-<script type="text/javascript"
+	src="<%=request.getContextPath()%>/ueditor/ueditor.all.min.js">
+	
+</script>
+<!--建议手动加在语言，避免在ie下有时因为加载语言失败导致编辑器加载失败-->
+<!--这里加载的语言文件会覆盖你在配置项目里添加的语言类型，比如你在配置项目里配置的是英文，这里加载的中文，那最后就是中文-->
+<script type="text/javascript" charset="utf-8"
 	src="<%=request.getContextPath()%>/ueditor/lang/zh-cn/zh-cn.js"></script>
-<script type="text/javascript"
-	src="<%=request.getContextPath()%>/ueditor/themes/default/css/umeditor.css"></script>
-<script type="text/javascript"
-	src="http://img.baidu.com/hunter/ueditor.js"></script>
+<!-- 结束 -->
 </head>
 <body>
 	<div class="w_container">
@@ -80,15 +74,16 @@
 							<label for="name">内容</label>
 						</div>
 						<div class="span6">
-							<script type="text/plain" id="myEditor"
-								style="width: 650px; height: 400px;">
+							<input type="hidden" id="info" name="info" />
+
+							<script id="editor" type="text/plain"
+								style="width: 1024px; height: 500px;">
 								<p >在这里输入文章！！！</p>
 							</script>
-							<input type="hidden" id="info" name="info" />
-							<div id="myEditor"></div>
+
 							<script type="text/javascript">
 								//实例化编辑器
-								var um = UM.getEditor('myEditor');
+								var um = UM.getEditor('editor');
 							</script>
 							<script type="text/javascript">
 								function submitInfo() {
