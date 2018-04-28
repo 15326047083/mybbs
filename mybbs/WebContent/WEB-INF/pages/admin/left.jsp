@@ -43,44 +43,56 @@
 		<span></span>操作栏
 	</div>
 	<dl class="leftmenu">
+		<c:if test="${userSession.power!=-1 }">
+			<dd>
+				<div class="title">
+					<span><img
+						src="<%=request.getContextPath()%>/js/admin/images/leftico03.png" /></span>论坛管理
+				</div>
+				<ul class="menuson">
+					<c:if test="${userSession.power==0 }">
+						<li><cite></cite><a
+							href="<%=basePath%>getAreaListServlet?nowPages=1"
+							target="rightFrame">区域管理</a><i></i></li>
+					</c:if>
+					<li><cite></cite><a
+						href="<%=basePath%>getPlateListServlet?nowPages=1"
+						target="rightFrame">板块管理</a><i></i></li>
+					<c:if test="${userSession.power==0 }">
+						<li><cite></cite><a
+							href="<%=basePath%>getUserListServlet?nowPages=1"
+							target="rightFrame">用户管理</a><i></i></li>
+					</c:if>
+				</ul>
+			</dd>
+		</c:if>
 
-		<dd>
-			<div class="title">
-				<span><img
-					src="<%=request.getContextPath()%>/js/admin/images/leftico03.png" /></span>论坛管理
-			</div>
-			<ul class="menuson">
-				<li><cite></cite><a href="<%=basePath%>getAreaListServlet?nowPages=1"
-					target="rightFrame">区域管理</a><i></i></li>
-				<li><cite></cite><a href="<%=basePath%>getPlateListServlet?nowPages=1"
-					target="rightFrame">板块管理</a><i></i></li>
-				<li><cite></cite><a href="<%=basePath%>getUserListServlet?nowPages=1"
-					target="rightFrame">用户管理</a><i></i></li>
-			</ul>
-		</dd>
-		<dd>
-			<div class="title">
-				<span><img
-					src="<%=request.getContextPath()%>/js/admin/images/leftico03.png" /></span>审核管理
-			</div>
-			<ul class="menuson">
-				<li><cite></cite><a href="<%=basePath%>getAreaListServlet?nowPages=1"
-					target="rightFrame">被举报的帖子</a><i></i></li>
-			</ul>
-		</dd>
-		<dd>
-			<div class="title">
-				<span><img
-					src="<%=request.getContextPath()%>/js/admin/images/leftico01.png" /></span>公告管理
-			</div>
-			<ul class="menuson">
-				<li><cite></cite><a href="<%=basePath%>jumpServlet?flag=message"
-					target="rightFrame">发送公告</a><i></i></li>
-				<li><cite></cite><a
-					href="<%=basePath%>getMessageServlet?nowPages=1" target="rightFrame">已发公告</a><i></i></li>
-			</ul>
-		</dd>
-
+		<c:if test="${userSession.power==0 }">
+			<dd>
+				<div class="title">
+					<span><img
+						src="<%=request.getContextPath()%>/js/admin/images/leftico03.png" /></span>审核管理
+				</div>
+				<ul class="menuson">
+					<li><cite></cite><a
+						href="<%=basePath%>getAreaListServlet?nowPages=1"
+						target="rightFrame">被举报的帖子</a><i></i></li>
+				</ul>
+			</dd>
+			<dd>
+				<div class="title">
+					<span><img
+						src="<%=request.getContextPath()%>/js/admin/images/leftico01.png" /></span>公告管理
+				</div>
+				<ul class="menuson">
+					<li><cite></cite><a
+						href="<%=basePath%>jumpServlet?flag=message" target="rightFrame">发送公告</a><i></i></li>
+					<li><cite></cite><a
+						href="<%=basePath%>getMessageServlet?nowPages=1"
+						target="rightFrame">已发公告</a><i></i></li>
+				</ul>
+			</dd>
+		</c:if>
 	</dl>
 </body>
 </html>

@@ -35,7 +35,9 @@
 						</c:if>
 						<c:if test="${userSession.id!=-1}">
 							<li><a href="<%=basePath%>toPostServlet">发帖</a></li>
-							<li><a href="<%=basePath%>loginAdminServlet">进入管理员模式</a></li>
+							<c:if test="${userSession.power!=-1 }">
+								<li><a href="<%=basePath%>loginAdminServlet">进入管理员模式</a></li>
+							</c:if>
 							<li><a href="<%=basePath%>myPostServlet?nowPages=1">我的帖子</a></li>
 							<li><a href="<%=basePath%>toUserServlet?flag=update">个人信息</a></li>
 							<li><a href="<%=basePath%>toUserServlet?flag=look">退出登录</a></li>
