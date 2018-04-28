@@ -77,18 +77,18 @@
 							<input type="hidden" id="info" name="info" />
 
 							<script id="editor" type="text/plain"
-								style="width: 1024px; height: 500px;">
+								style="width: 650px; height: 350px;">
 								<p >在这里输入文章！！！</p>
 							</script>
 
 							<script type="text/javascript">
 								//实例化编辑器
-								var um = UM.getEditor('editor');
+								var ue = UE.getEditor('editor');
 							</script>
 							<script type="text/javascript">
 								function submitInfo() {
-									document.getElementById('info').value = UM
-											.getEditor('myEditor').getContent();
+									document.getElementById('info').value = UE
+											.getEditor('editor').getContent();
 								}
 							</script>
 						</div>
