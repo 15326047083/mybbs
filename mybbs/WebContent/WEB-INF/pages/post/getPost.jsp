@@ -25,6 +25,7 @@
 	type='text/css' media='all' />
 </head>
 <body>
+${script }
 	<div class="w_container">
 		<div class="container">
 			<div class="row w_main_row">
@@ -33,11 +34,14 @@
 						<div class="panel-heading">
 							<h3>${post.title}</h3>
 							<hr>
-							<p class="overView">
+							<a class="overView">
 								<span class="count"><i class="glyphicon glyphicon-user"></i>${post.userName}
 								</span> <span class="count"><i class="glyphicon glyphicon-time"></i>${post.time}</span>
 								<a style="color: #FF6347;"> ${post.plateName}</a>
-							</p>
+								<div align="right">
+								<a href="updatePostServlet?postId=${post.id}" style="color:black;">【举报】</a>
+							</div>
+							</a>
 						</div>
 
 						<div class="panel-body">
@@ -45,21 +49,6 @@
 
 							<!--文章列表开始-->
 							<div style="float: left;">${post.info}</div>
-
-
-							<%-- 	<c:if test="${post.photoNum>=0}">
-								<c:forEach var="x" begin="0" end="${post.photoNum}" step="1">
-									<br />
-									<br />
-									<a href="<%=basePath %>moyifan/${post.id}/${x}.jpg"
-										target="_Blank"><img
-										src="<%=basePath %>moyifan/${post.id}/${x}.jpg" height="350px"
-										width="350px" /></a>
-									<br />
-								</c:forEach>
-							</c:if> --%>
-							<!--文章列表结束-->
-
 						</div>
 					</div>
 					<!-- 百度分享开始 -->

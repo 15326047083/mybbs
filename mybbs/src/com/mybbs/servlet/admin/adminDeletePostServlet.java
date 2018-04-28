@@ -8,7 +8,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.mybbs.po.Post;
 import com.mybbs.service.CommonService;
+import com.mybbs.service.PlateService;
 import com.mybbs.service.impl.CommonServiceImpl;
+import com.mybbs.service.impl.PlateServiceImpl;
 
 import util.SQLUtil;
 
@@ -40,6 +42,11 @@ public class adminDeletePostServlet extends HttpServlet {
 		post.setFlag(1);
 	//	System.out.println(post.toString());
 		commonService.saveOrUpdate(post, SQLUtil.updatePost);
+		commonService.closeDB();
+		//plate postId -1
+		PlateService plateService = new PlateServiceImpl();
+		plateService.lessPostNum(plateId);
+
 		commonService.closeDB();
 		String script = "ok";
 		if("report".equals(request.getParameter("flag"))) {

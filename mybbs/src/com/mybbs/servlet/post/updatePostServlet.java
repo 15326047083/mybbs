@@ -6,6 +6,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.mybbs.po.Post;
+import com.mybbs.service.CommonService;
+import com.mybbs.service.impl.CommonServiceImpl;
+
+import util.SQLUtil;
+
 /**
  * Servlet implementation class updatePostServlet
  */
@@ -25,7 +31,16 @@ public class updatePostServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		int postId = Integer.parseInt(request.getParameter("postId"));
+		CommonService<Post> commonService = new CommonServiceImpl<Post>();
+		Post post = new Post();
+		post.setId(postId);
+		post = commonService.getById(post, SQLUtil.getByIdFirstSql, SQLUtil.getByIdSecondSql);
+		post.setFlag(3);
+		commonService.saveOrUpdate(post, SQLUtil.updatePost);
+		String script = "ok";
+		
+		response.sendRedirect("getPostServlet?nowPages=1&script=" + script+"&postId="+postId);
 	}
 
 	/**

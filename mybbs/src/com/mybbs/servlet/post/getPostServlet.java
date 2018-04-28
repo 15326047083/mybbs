@@ -77,7 +77,14 @@ public class getPostServlet extends HttpServlet {
 		ReplyService replyService = new ReplyServiceImpl();
 		replyList = replyService.getAllList(postId);
 		request.setAttribute("replyList", replyList);
-
+		//判断可否删除
+				if("ok".equals(request.getParameter("script"))) {
+					String script="	<script type=\"text/javascript\">\r\n" + 
+							"		alert(\"举报成功！！！\");\r\n" + 
+							"	</script>";
+					request.setAttribute("script", script);
+				}
+		
 		request.getRequestDispatcher("WEB-INF/pages/post/getPost.jsp").forward(request, response);
 	}
 
