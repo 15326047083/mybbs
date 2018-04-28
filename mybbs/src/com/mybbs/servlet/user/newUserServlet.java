@@ -48,6 +48,7 @@ public class newUserServlet extends HttpServlet {
 			CommonService<User> commonService = new CommonServiceImpl<User>();
 			commonService.saveOrUpdate(user, SQLUtil.newUser);
 			EmailUtil.sendUserInfo(user);
+			request.getRequestDispatcher("WEB-INF/pages/user/login.jsp").forward(request, response);
 		} else {
 			request.setAttribute("user", user);
 			request.setAttribute("code", request.getParameter("surecode"));

@@ -27,16 +27,23 @@
 
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link href="./ueditor/themes/default/css/umeditor.css" type="text/css"
-	rel="stylesheet">
+<link
+	href="<%=request.getContextPath()%>/ueditor/themes/default/css/umeditor.css"
+	type="text/css" rel="stylesheet">
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/ueditor/third-party/jquery.min.js"></script>
+<script type="text/javascript"
+	src="<%=request.getContextPath()%>/ueditor/third-party/template.min.js"></script>
 <script type="text/javascript" charset="utf-8"
 	src="<%=request.getContextPath()%>/ueditor/umeditor.config.js"></script>
 <script type="text/javascript" charset="utf-8"
 	src="<%=request.getContextPath()%>/ueditor/umeditor.min.js"></script>
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/ueditor/lang/zh-cn/zh-cn.js"></script>
+<script type="text/javascript"
+	src="<%=request.getContextPath()%>/ueditor/themes/default/css/umeditor.css"></script>
+<script type="text/javascript"
+	src="http://img.baidu.com/hunter/ueditor.js"></script>
 </head>
 <body>
 	<div class="w_container">
@@ -78,6 +85,7 @@
 								<p >在这里输入文章！！！</p>
 							</script>
 							<input type="hidden" id="info" name="info" />
+							<div id="myEditor"></div>
 							<script type="text/javascript">
 								//实例化编辑器
 								var um = UM.getEditor('myEditor');
