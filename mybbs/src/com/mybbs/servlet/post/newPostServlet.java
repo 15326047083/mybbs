@@ -43,8 +43,8 @@ public class newPostServlet extends HttpServlet {
 
 		// 页面获取
 		int plateId = Integer.parseInt(request.getParameter("plateId"));
-		String title = request.getParameter("title");
-		String info = request.getParameter("info");
+		String title = new String(request.getParameter("title").getBytes("iso-8859-1"), "utf-8");
+		String info = new String(request.getParameter("info").getBytes("iso-8859-1"), "utf-8");
 		Post post = new Post();
 		post.setTitle(title);
 		post.setInfo(info);

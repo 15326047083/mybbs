@@ -48,7 +48,8 @@
 						<hr>
 						<p style="color: red">发表你的帖子，请注意言辞，不然会被版主和管理删除！</p>
 					</article>
-					<form class="row" id="form">
+					<form class="row" id="form" action="<%=basePath%>newPostServlet"
+						method="post">
 						<!--   图片  enctype="multipart/form-data" -->
 
 						<div class="span2">
@@ -85,26 +86,14 @@
 								function submitInfo() {
 									document.getElementById('info').value = UM
 											.getEditor('myEditor').getContent();
-
-									$.ajax({
-										type : 'post',
-										data : $('#form').serialize(),
-										url : 'newPostServlet',
-										dataType : "json",
-										async : true,
-										success : function() {
-										},
-										error : function() {
-											alert('提交成功');
-										},
-									});
 								}
 							</script>
 						</div>
 						<div class="span6 offset2 bm30">
 							<img src="images/loading.gif" id="contact-loader"
 								alt="Loading...">
-							<button onclick="submitInfo()" class="btn btn-inverse">发布</button>
+							<button type="submit" onclick="submitInfo()"
+								class="btn btn-inverse">发布</button>
 						</div>
 					</form>
 				</div>
