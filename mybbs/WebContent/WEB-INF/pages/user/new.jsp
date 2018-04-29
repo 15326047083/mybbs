@@ -57,7 +57,7 @@
 			req = new ActiveXObject("Microsoft.XMLHTTP");
 		}
 		if (req) {
-			var url = "http://10.0.85.151:8080/mybbs/sendEmailServlet?bj=0&email"
+			var url = "http://localhost:8080/mybbs/sendEmailServlet?bj=0&email="
 					+ email;
 			req.open("post", url, true);
 			req.setRequestHeader("Content-Type",
@@ -74,7 +74,7 @@
 			req = new ActiveXObject("Microsoft.XMLHTTP");
 		}
 		if (req) {
-			var url = "http://10.0.85.151:8080/mybbs/sendEmailServlet?bj=1&email="
+			var url = "http://localhost:8080/mybbs/sendEmailServlet?bj=1&email="
 					+ email;
 			req.open("post", url, true);
 			req.setRequestHeader("Content-Type",
