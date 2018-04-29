@@ -143,7 +143,7 @@ tr.over td {
 									<td width="16%">${area.info }</td>
 									<td width="16%">${area.plateNum }</td>
 									<td width="20%" style="border-right: none"><a
-										href="<%=basePath %>getReportListServlet?nowPages=1">查看板块</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										href="<%=basePath %>getPlateListServlet?nowPages=1&areaId=${area.id}">查看板块</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										<a href="toAreaServlet?id=${area.id}&flag=update">修改</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										<a
 										href="deleteAreaServlet?id=${area.id}&plateNum=${area.plateNum }">删除</a></td>

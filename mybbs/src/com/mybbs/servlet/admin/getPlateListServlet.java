@@ -53,7 +53,7 @@ public class getPlateListServlet extends HttpServlet {
 
 			request.setAttribute("flag", 1);
 		} else {
-			areaId = " and areaId=" + request.getParameter("areaId");
+			areaId = " where areaId=" + request.getParameter("areaId");
 			aId = " where areaId=" + request.getParameter("areaId");
 			andAreaId = " and areaId=" + request.getParameter("areaId");
 			request.setAttribute("flag", 0);
@@ -67,7 +67,7 @@ public class getPlateListServlet extends HttpServlet {
 		if (user.getPower() == 0) {// admin
 			sql = "select user.id userId ,user.name userName,email,plate.id plateId,plate.name plateName,plate.info info,area.name areaName,postNum,areaId from user,plate,area where user.id=plate.userId and areaId=area.id"
 					+ andAreaId;
-			count = commonService.count("select count(*) from plate" + andAreaId, v);
+			count = commonService.count("select count(*) from plate" + areaId, v);
 		} else {// 版主
 			count = commonService.count("select count(*) from plate where userId=" + sessionUserId + andAreaId, v);
 			sql = "select user.id userId ,user.name userName,email,plate.id plateId,plate.name plateName,plate.info info,area.name areaName,postNum,areaId from user,plate,area where user.id=plate.userId and areaId=area.id and plate.userId="

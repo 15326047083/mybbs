@@ -18,60 +18,69 @@ import com.mybbs.vo.vUserAndPost;
  */
 public class myPostServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public myPostServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public myPostServlet() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
 		User user = new User();
 		user = (User) session.getAttribute("userSession");
-		
-		int nowPages=Integer.parseInt(request.getParameter("nowPages"));
-		CommonService<vUserAndPost> commonService =new CommonServiceImpl<vUserAndPost>();
-		vUserAndPost v =new vUserAndPost();
-		String sql="select post.id id,post.userId,user.name userName,post.plateId,plate.name plateName,title,post.info info,post.flag flag,post.time time,photoNum from user,post,plate where user.id=post.userId and plate.id=post.plateId and user.id="+user.getId();
-		int count=commonService.count(sql, v);
-		int allPages=count/20;
-		if(count%20!=0)
+
+		int nowPages = Integer.parseInt(request.getParameter("nowPages"));
+		CommonService<vUserAndPost> commonService = new CommonServiceImpl<vUserAndPost>();
+		vUserAndPost v = new vUserAndPost();
+		String sql = "select post.id id,post.userId,user.name userName,post.plateId,plate.name plateName,title,post.info info,post.flag flag,post.time time,photoNum from user,post,plate where user.id=post.userId and plate.id=post.plateId and user.id="
+				+ user.getId();
+
+		String countSql = "select count(*) from user,post,plate where user.id=post.userId and plate.id=post.plateId and user.id="
+				+ user.getId();
+		int count = commonService.count(countSql, v);
+		int allPages = count / 20;
+		if (count % 20 != 0)
 			allPages++;
-		CommonPages<vUserAndPost> commonPages=new CommonPages<vUserAndPost>();
-		commonPages.setCommonList(commonService.getAllList(v,sql," order by post.id desc limit ?,20", nowPages));
+		if (allPages == 0)
+			allPages = 1;
+		CommonPages<vUserAndPost> commonPages = new CommonPages<vUserAndPost>();
+		commonPages.setCommonList(commonService.getAllList(v, sql, " order by post.id desc limit ?,20", nowPages));
 		commonPages.setCount(count);
 		commonPages.setPages(nowPages);
-		
+
 		commonPages.setTotalpages(allPages);
 		commonPages.setLimit(1);
 		commonService.closeDB();
-		//System.out.println(commonPages.toString());
-		//判断可否删除
-		if("ok".equals(request.getParameter("script"))) {
-			String script="	<script type=\"text/javascript\">\r\n" + 
-					"		alert(\"删除成功！！！\");\r\n" + 
-					"	</script>";
+		// System.out.println(commonPages.toString());
+		// 判断可否删除
+		if ("ok".equals(request.getParameter("script"))) {
+			String script = "	<script type=\"text/javascript\">\r\n" + "		alert(\"删除成功！！！\");\r\n"
+					+ "	</script>";
 			request.setAttribute("script", script);
 		}
-		
+
 		request.setAttribute("commonPages", commonPages);
 		request.setAttribute("nowPages", nowPages);
 		request.setAttribute("titleName", "我的帖子");
 		request.getRequestDispatcher("WEB-INF/pages/post/getPostList.jsp").forward(request, response);
-		
+
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
