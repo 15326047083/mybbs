@@ -39,6 +39,9 @@ public class getAreaListServlet extends HttpServlet {
 		int allPages=count/20;
 		if(count%20!=0)
 			allPages++;
+		if(allPages==0) {
+			allPages=1;
+		}
 		CommonPages<Area> commonPages=new CommonPages<Area>();
 		commonPages.setCommonList(commonService.getAllList(area, SQLUtil.getListFirstSql, SQLUtil.getListSecondSql, nowPages));
 		commonPages.setCount(count);

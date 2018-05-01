@@ -52,13 +52,15 @@ public class getPostServlet extends HttpServlet {
 
 		// get评论类表
 		vDisscussAndUser dv = new vDisscussAndUser();
-		String dsql = "select discuss.id id,userId,user.name userName,postId,info,discuss.time time,photoNum from user,discuss where user.id=discuss.userId and postId="
-				+ postId;
-		int count = dcommonService.count(dsql, dv);
+		String dsql = "select discuss.id id,userId,user.name userName,postId,info,discuss.time time,photoNum from user,"
+				+ "discuss where user.id=discuss.userId and postId=" + postId;
+
+		String countSql = "select count(*) from user,discuss where user.id=discuss.userId and postId=" + postId;
+		int count = dcommonService.count(countSql, dv);
 		int allPages = count / 20;
 		if (count % 20 != 0)
 			allPages++;
-		else if (count == 0) {
+		if (allPages == 0) {
 			allPages = 1;
 		}
 		CommonPages<vDisscussAndUser> commonPages = new CommonPages<vDisscussAndUser>();
@@ -77,14 +79,13 @@ public class getPostServlet extends HttpServlet {
 		ReplyService replyService = new ReplyServiceImpl();
 		replyList = replyService.getAllList(postId);
 		request.setAttribute("replyList", replyList);
-		//判断可否删除
-				if("ok".equals(request.getParameter("script"))) {
-					String script="	<script type=\"text/javascript\">\r\n" + 
-							"		alert(\"举报成功！！！\");\r\n" + 
-							"	</script>";
-					request.setAttribute("script", script);
-				}
-		
+		// 判断可否删除
+		if ("ok".equals(request.getParameter("script"))) {
+			String script = "	<script type=\"text/javascript\">\r\n" + "		alert(\"举报成功！！！\");\r\n"
+					+ "	</script>";
+			request.setAttribute("script", script);
+		}
+
 		request.getRequestDispatcher("WEB-INF/pages/post/getPost.jsp").forward(request, response);
 	}
 

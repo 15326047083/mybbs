@@ -39,6 +39,9 @@ public class getUserListServlet extends HttpServlet {
 		int allPages=count/20;
 		if(count%20!=0)
 			allPages++;
+		if (allPages == 0) {
+			allPages = 1;
+		}
 		CommonPages<User> commonPages=new CommonPages<User>();
 		commonPages.setCommonList(commonService.getAllList(user, SQLUtil.getListFirstSql, SQLUtil.getListSecondSql, nowPages));
 		commonPages.setCount(count);

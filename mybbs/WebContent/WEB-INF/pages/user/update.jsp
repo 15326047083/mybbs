@@ -62,14 +62,14 @@
 								value="0">男 <input type="radio" name="sex"
 								class="" value="1"/>女 -->
 							<select name="sex">
-							<c:if test="${userSession.sex==0 }">
-								<option value="0" selected="selected" >男</option>
-								<option value="1" >女</option>
-							</c:if>
+								<c:if test="${userSession.sex==0 }">
+									<option value="0" selected="selected">男</option>
+									<option value="1">女</option>
+								</c:if>
 								<c:if test="${userSession.sex==1 }">
-								<option value="0" class="required input-xlarge">男</option>
-								<option value="1" selected="selected">女</option>
-							</c:if>
+									<option value="0" class="required input-xlarge">男</option>
+									<option value="1" selected="selected">女</option>
+								</c:if>
 							</select>
 						</div>
 						<div class="span2">
@@ -90,17 +90,23 @@
 							<label for="name">用户密码</label>
 						</div>
 						<div class="span6">
-							<input type="hidden" name="password1" class="required input-xlarge"
-								value="${userSession.password }">
-							<input type="text" name="password2" class="required input-xlarge"
-								>
+							<input type="hidden" name="password1"
+								class="required input-xlarge" value="${userSession.password }">
+							<input type="text" name="password2" class="required input-xlarge">
 						</div>
-						
+
 						<div class="span6 offset2 bm30">
 							<input type="submit" name="submit" value="修改"
-								class="btn btn-inverse"> <img src="images/loading.gif"
-								id="contact-loader" alt="Loading...">
+								onclick="return submitUpdate()" class="btn btn-inverse">
+							<img src="images/loading.gif" id="contact-loader"
+								alt="Loading...">
 						</div>
+						<script type="text/javascript">
+							function submitUpdate() {
+								alert("修改成功");
+								return true;
+							}
+						</script>
 					</form>
 				</div>
 				<!--左侧开始-->

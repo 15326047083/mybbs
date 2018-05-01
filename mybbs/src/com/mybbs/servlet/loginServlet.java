@@ -33,11 +33,19 @@ public class loginServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		CommonService<vUserAndPost> commonService = new CommonServiceImpl<vUserAndPost>();
 		vUserAndPost v = new vUserAndPost();
-		String sql = "select post.id id,post.userId,user.name userName,post.plateId,post.flag flag,plate.name plateName,title,post.info info,post.time time,photoNum from user,post,plate where user.id=post.userId and plate.id=post.plateId and flag=0";
-		int count = commonService.count(sql, v);
+		String sql = "select post.id id,post.userId,user.name userName,post.plateId,post.flag flag,plate.name plateName,"
+				+ "title,post.info info,post.time time,photoNum from user,post,plate where user.id=post.userId "
+				+ "and plate.id=post.plateId and flag<>1";
+
+		String countSql = "select count(*) from user,post,plate where user.id=post.userId "
+				+ "and plate.id=post.plateId and flag<>1";
+		int count = commonService.count(countSql, v);
 		int allPages = count / 20;
 		if (count % 20 != 0)
 			allPages++;
+		if (allPages == 0) {
+			allPages = 1;
+		}
 		CommonPages<vUserAndPost> commonPages = new CommonPages<vUserAndPost>();
 		commonPages.setCommonList(commonService.getAllList(v, sql, " order by post.id desc limit ?,10", 1));
 		commonPages.setCount(count);

@@ -40,12 +40,24 @@ public class getReportListServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		User user = (User) session.getAttribute("userSession");
 		int sessionUserId = user.getId();
-
+		String sql="";
+		String countSql="";
+		if(user.getPower()==0) {//admin
+			sql = "select post.id id,post.userId,user.name userName,post.plateId,post.flag flag,plate.name plateName,"
+					+ "title,post.info info,post.time time,photoNum from user,post,plate where user.id=post.userId "
+					+ "and plate.id=post.plateId and post.flag=3";
+			countSql = "select count(*) from user,post,plate where user.id=post.userId and plate.id=post.plateId "
+					+ "and post.flag=3";
+		}
+		else {
+			sql = "select post.id id,post.userId,user.name userName,post.plateId,post.flag flag,plate.name plateName,"
+					+ "title,post.info info,post.time time,photoNum from user,post,plate where user.id=post.userId "
+					+ "and plate.id=post.plateId and post.flag=3 and plate.userId=" + sessionUserId;
+			countSql = "select count(*) from user,post,plate where user.id=post.userId and plate.id=post.plateId "
+					+ "and post.flag=3 and plate.userId=" + sessionUserId;
+		}
 		vUserAndPost v = new vUserAndPost();
-		String sql = "select post.id id,post.userId,user.name userName,post.plateId,post.flag flag,plate.name plateName,title,post.info info,post.time time,photoNum from user,post,plate where user.id=post.userId and plate.id=post.plateId and post.flag=3 and plate.userId="
-				+ sessionUserId;
-		String countSql = "select count(*) from user,post,plate where user.id=post.userId and plate.id=post.plateId and post.flag=3 and plate.userId="
-				+ sessionUserId;
+		
 		int count = commonService.count(countSql, v);
 		int allPages = count / 20;
 		if (count % 20 != 0)

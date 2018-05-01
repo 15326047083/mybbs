@@ -105,13 +105,13 @@ tr.over td {
 
 
 <body style="background: #edf6fa;">
-${script }
+	${script }
 	<h2 style="color: gray">
-		&nbsp;&nbsp;&nbsp;<a href="index.jsp">主页</a> >
-		<a href="<%=basePath%>getPlateListServlet?nowPages=1">版块管理</a> > <a>帖子管理</a>
+		&nbsp;&nbsp;&nbsp;<a href="index.jsp">主页</a> > <a
+			href="<%=basePath%>getPlateListServlet?nowPages=1">版块管理</a> > <a>帖子管理</a>
 	</h2>
 	<div class="table_div">
-		
+
 		<div class="div_clear">
 			<div class="left_center"></div>
 			<div class="center_center">
@@ -119,7 +119,7 @@ ${script }
 					<table cellspacing="0px" cellpadding="0px">
 						<thead>
 							<tr>
-								<th >帖子名称</th>
+								<th>帖子名称</th>
 								<th width="15%">作者昵称</th>
 								<th width="20%">发表时间</th>
 								<th width="20%" style="border-right: none">操作</th>
@@ -129,22 +129,23 @@ ${script }
 							<c:forEach var="post" items="${commonPages.commonList }"
 								varStatus="loop">
 								<tr>
-									<td>${post.title }
-									<c:if test="${post.flag==1 }"><a style="color: red">（因违规已被管理员删除）</a></c:if>
+									<td>${post.title }<c:if test="${post.flag==1 }">
+											<a style="color: red">（因违规已被管理员删除）</a>
+										</c:if>
 									</td>
 									<td>${post.userName }</td>
 									<td>${post.time }</td>
 									<td style="border-right: none"><a
 										href="<%=basePath %>adminGetPostServlet?postId=${post.id}">查看</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									<c:choose>
-										<c:when test="${post.flag==0 }">
-										<a href="<%=basePath %>adminDeletePostServlet?postId=${post.id}">删除</a></td>
-										</c:when>
-										<c:when test="${post.flag==1 }">
-										<a style="color: gray">删除</a>
-										</c:when>
-									</c:choose>
-										
+										<c:choose>
+											<c:when test="${post.flag!=1 }">
+												<a
+													href="<%=basePath %>adminDeletePostServlet?postId=${post.id}">删除</a>
+											</c:when>
+											<c:otherwise>
+												<a style="color: gray">删除</a>
+											</c:otherwise>
+										</c:choose></td>
 								</tr>
 							</c:forEach>
 

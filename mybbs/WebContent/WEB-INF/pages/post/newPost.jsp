@@ -87,7 +87,7 @@
 							</script>
 							<script type="text/javascript">
 								function submitInfo() {
-									if (document.getElementById('postTitle').value.length <= 4
+									if (document.getElementById('postTitle').value.length <= 1
 											|| document
 													.getElementById('postTitle').value.length >= 15) {
 										alert("标题长度错误,请介于4到15个字符之间");
