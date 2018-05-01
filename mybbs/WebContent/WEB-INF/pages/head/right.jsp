@@ -21,7 +21,13 @@
 						<h3 style="color: red" class="panel-title">登录后有更多体验哦 亲！</h3>
 					</c:when>
 					<c:otherwise>
-						<h3 style="color: red" class="panel-title">欢迎您：${userSession.name }</h3>
+						<h3 style="color: red" class="panel-title">欢迎您：${userSession.name }
+						<c:if test="${userSession.power!=-1 }">
+				<div align="right">
+								<a  class="label label-default"
+							style="background-color:#FF6347;color: white "href="<%=basePath1%>loginAdminServlet">管理模式</a>
+							</c:if></div>
+						</h3>
 					</c:otherwise>
 				</c:choose>
 			</div>
