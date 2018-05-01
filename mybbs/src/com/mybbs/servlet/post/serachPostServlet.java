@@ -12,6 +12,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.mybbs.service.CommonService;
+import com.mybbs.service.impl.CommonServiceImpl;
+import com.mybbs.vo.CommonPages;
+import com.mybbs.vo.vUserAndPost;
+
 /**
  * Servlet implementation class serachPost
  */
@@ -30,35 +35,39 @@ public class serachPostServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		 try {
-			try {
-				Class.forName("com.mysql.jdbc.Driver");
-			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-				String queryStr = request.getParameter("queryStr");
-				Connection conn = DriverManager.getConnection("jdbc:mysql://10.0.61.2:3306/mybbs?useUnicode=true&characterEncoding=utf8", "root", "123456");
-				String sql = "select * from post where title like '%' "+queryStr+" '%'";
-				Statement state = conn.createStatement();
-				 ResultSet rs = state.executeQuery(sql);
-				  while(rs.next()){
-					  String find = rs.getString("title");
-					  System.out.println(find);
-				  }
-				  rs.close();
-				  conn.close();
-				  state.close();
-				  
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		 
-		} 
+		int nowPages = Integer.parseInt(request.getParameter("nowPages"));
+		String queryStr = new String(request.getParameter("queryStr").getBytes("iso-8859-1"), "utf-8");
+		vUserAndPost v = new vUserAndPost();
+		CommonService<vUserAndPost> commonService = new CommonServiceImpl<vUserAndPost>();
+		String sql = "select post.id id,post.userId userId,user.name userName,post.plateId plateId,post.flag flag,plate.name plateName,"
+				+ "title,post.info info,post.time time,photoNum from user,post,plate where user.id=post.userId and plate.id=post.plateId"
+				+ " and flag<>1 and (post.title like '%" + queryStr + "%' or user.name like '%" + queryStr + "%')";
+		String countSql = "select count(*) from user,post,plate where user.id=post.userId and plate.id=post.plateId"
+				+ " and flag<>1 and (post.title like '%" + queryStr + "%' or user.name like '%" + queryStr + "%')";
+		int count = commonService.count(countSql, v);
+		
+		int allPages = count / 20;
+		if (count % 20 != 0)
+			allPages++;
+		if(allPages==0) {
+			allPages=1;
+		}
+		CommonPages<vUserAndPost> commonPages = new CommonPages<vUserAndPost>();
+		commonPages.setCommonList(commonService.getAllList(v, sql, " order by post.id desc limit ?,20", nowPages));
+		commonPages.setCount(count);
+		commonPages.setPages(nowPages);
+
+		commonPages.setTotalpages(allPages);
+		commonPages.setLimit(1);
+		commonService.closeDB();
+
+		request.setAttribute("str", queryStr);
+		request.setAttribute("commonPages", commonPages);
+		request.setAttribute("nowPages", nowPages);
+		request.setAttribute("titleName", "为您找到有关"+queryStr+"的全部帖子");
+
+		request.getRequestDispatcher("WEB-INF/pages/post/getSerachPostList.jsp").forward(request, response);
+	} 
 	
 
 	/**

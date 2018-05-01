@@ -71,7 +71,7 @@ public class myPostServlet extends HttpServlet {
 		request.setAttribute("commonPages", commonPages);
 		request.setAttribute("nowPages", nowPages);
 		request.setAttribute("titleName", "我的帖子");
-		request.getRequestDispatcher("WEB-INF/pages/post/getPostList.jsp").forward(request, response);
+		request.getRequestDispatcher("WEB-INF/pages/post/getMyPostList.jsp").forward(request, response);
 
 	}
 
