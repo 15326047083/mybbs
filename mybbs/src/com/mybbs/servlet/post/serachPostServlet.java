@@ -42,7 +42,7 @@ public class serachPostServlet extends HttpServlet {
 			
 				String queryStr = request.getParameter("queryStr");
 				Connection conn = DriverManager.getConnection("jdbc:mysql://10.0.61.2:3306/mybbs?useUnicode=true&characterEncoding=utf8", "root", "123456");
-				String sql = "select * from post where title like %queryStr%";
+				String sql = "select * from post where title like '%' "+queryStr+" '%'";
 				Statement state = conn.createStatement();
 				 ResultSet rs = state.executeQuery(sql);
 				  while(rs.next()){
