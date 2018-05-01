@@ -449,4 +449,14 @@
     <servlet-name>getReportListServlet</servlet-name>
     <url-pattern>/getReportListServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>serachPostServlet</display-name>
+    <servlet-name>serachPostServlet</servlet-name>
+    <servlet-class>com.mybbs.servlet.post.serachPostServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>serachPostServlet</servlet-name>
+    <url-pattern>/serachPostServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

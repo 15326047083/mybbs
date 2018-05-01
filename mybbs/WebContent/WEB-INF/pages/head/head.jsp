@@ -46,7 +46,7 @@
 				</span>
 				<div align="left" class="w_search">
 					<div class="w_searchbox">
-						<form action="" method="post">
+						<form action="serachPostServlet" method="post">
 							<input type="hidden" name="path" value="" /> <input type="text"
 								name="queryStr" placeholder="search" /> <input type="submit"
 								value="搜索" />
