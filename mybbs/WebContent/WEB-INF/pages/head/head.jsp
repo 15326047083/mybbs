@@ -19,7 +19,7 @@
 <script src="<%=request.getContextPath()%>/js/head/plugin/jquery.min.js"></script>
 <script
 	src="<%=request.getContextPath()%>/js/head/plugin/bootstrap/js/bootstrap.min.js"></script>
-<title>Insert title here</title>
+<title>MyBBs</title>
 </head>
 <body>
 	<div class="w_header">
