@@ -34,7 +34,7 @@
 						<div class="panel-heading">
 							<h3>${post.title}</h3>
 							<hr>
-							<a class="overView"> <span class="count"><i
+							<img style="border-radius: 100px;width: 50px;height: 50px;" src="<%=request.getContextPath()%>/js/img/1.jpg" ><a class="overView"> <span class="count"><i
 									class="glyphicon glyphicon-user"></i>${post.userName} </span> <span
 								class="count"><i class="glyphicon glyphicon-time"></i>${post.time}</span>
 								<a style="color: #FF6347;"> ${post.plateName}</a>
@@ -112,6 +112,7 @@
 									${loop.count+(nowPages-1)*20}楼
 									<div class="panel panel-default">
 										<div class="panel-body">
+										<img style="border-radius: 100px;width: 30px;height: 30px;" src="<%=request.getContextPath()%>/js/img/${loop.count+1}.jpg" >
 											<i class="glyphicon glyphicon-user"></i> <a
 												style="color: blue">${disscuss.userName}</a>
 											<c:if test="${post.userId==disscuss.userId}">
