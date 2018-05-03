@@ -138,41 +138,46 @@ tr.over td {
 						<tbody>
 							<c:forEach var="user" items="${commonPages.commonList }"
 								varStatus="loop">
-								<tr>
-									<td>${user.name}</td>
-									<td>${user.email}</td>
-									<c:choose>
-										<c:when test="${user.sex==0 }">
-												<td>男</td>		
-										</c:when>
-										<c:otherwise>
-											<td>女</td>
-										</c:otherwise>
-									</c:choose>
-									<td>${user.age }</td>
-									<td>${user.birthday}</td>
-									<c:choose>
+								<c:if test="${userSession.id!=user.id }">
+									<tr>
+										<td>${user.name}</td>
+										<td>${user.email}</td>
+										<c:choose>
+											<c:when test="${user.sex==0 }">
+												<td>男</td>
+											</c:when>
+											<c:otherwise>
+												<td>女</td>
+											</c:otherwise>
+										</c:choose>
+										<td>${user.age }</td>
+										<td>${user.birthday}</td>
+										<c:choose>
 											<c:when test="${user.time==0 }">
 												<form action="bannedUserSpeakServlet?id=${user.id}"
 													method="post">
-													<td ><input type="date" name="time" align="center">&nbsp;&nbsp;&nbsp;</td>
-												<td align="center"><input class="sel_btn ch_cls" type="submit" value="禁言"></td>
+													<td><input type="date" name="time" align="center">&nbsp;&nbsp;&nbsp;</td>
+													<td align="center"><input class="sel_btn ch_cls"
+														type="submit" value="禁言"></td>
 												</form>
 											</c:when>
-											<c:otherwise>	
-											
-												<form action="bannedUserSpeakServlet?id=${user.id}&time=0" method="post">
-												&nbsp;&nbsp;&nbsp;
-												
-												 <td style="color: red" align="center">禁言中</td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-												 <td align="center"><input class="sel_btn ch_cls" type="submit" value="解除禁言"></td>
+											<c:otherwise>
+
+												<form action="bannedUserSpeakServlet?id=${user.id}&time=0"
+													method="post">
+													&nbsp;&nbsp;&nbsp;
+
+													<td style="color: red" align="center">禁言中</td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+													<td align="center"><input class="sel_btn ch_cls"
+														type="submit" value="解除禁言"></td>
 												</form>
 											</c:otherwise>
 										</c:choose>
 
-									<td style="border-right: none">
-									 <a href="deleteUserServlet?id=${user.id}">删除</a></td>
-								</tr>
+										<td style="border-right: none"><a
+											href="deleteUserServlet?id=${user.id}">删除</a></td>
+									</tr>
+								</c:if>
 							</c:forEach>
 
 						</tbody>

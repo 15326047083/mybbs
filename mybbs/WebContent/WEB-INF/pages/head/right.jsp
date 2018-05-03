@@ -21,12 +21,15 @@
 						<h3 style="color: red" class="panel-title">登录后有更多体验哦 亲！</h3>
 					</c:when>
 					<c:otherwise>
-						<h3 style="color: red" class="panel-title">欢迎您：${userSession.name }
-						<c:if test="${userSession.power!=-1 }">
-				<div align="right">
-								<a  class="label label-default"
-							style="background-color:#FF6347;color: white "href="<%=basePath1%>loginAdminServlet">管理模式</a>
-							</c:if></div>
+						<h3 style="color: red" class="panel-title">
+							欢迎您：${userSession.name }
+							<c:if test="${userSession.power!=-1 }">
+								<div align="right">
+									<a class="label label-default"
+										style="background-color: #FF6347; color: white"
+										href="<%=basePath1%>loginAdminServlet">管理模式</a>
+								</div>
+							</c:if>
 						</h3>
 					</c:otherwise>
 				</c:choose>
@@ -39,7 +42,8 @@
 			<div class="panel-body">
 				<div class="labelList">
 					<c:forEach varStatus="loop" var="area" items="${areaListSession }">
-						<a href="<%=basePath1 %>toUserServlet?flag=area&areaId=${area.id}&nowPages=1"
+						<a
+							href="<%=basePath1 %>toUserServlet?flag=area&areaId=${area.id}&nowPages=1"
 							class="label label-default"
 							style="background-color:rgb(${loop.count*30},${loop.count*10},${255-loop.count*30})">${area.name }</a>
 					</c:forEach>
@@ -56,7 +60,9 @@
 
 					<c:forEach varStatus="loop" var="plate"
 						items="${plateListSession }">
-						<a href="<%=basePath1 %>getPostListByPlateIdServlet?nowPages=1&plateId=${plate.id}" class="label label-default"
+						<a
+							href="<%=basePath1 %>getPostListByPlateIdServlet?nowPages=1&plateId=${plate.id}"
+							class="label label-default"
 							style="background-color:rgb(${loop.count*5},80,${255-loop.count*5})">${plate.name }</a>
 					</c:forEach>
 
